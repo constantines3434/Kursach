@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b90f42c359444080b1a15a8c817f1295" Name="Diagram1">
+        <EntityTypeShape EntityType="BaseModel.Chairman_pck" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Cycle_commissions" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Disciplines" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Komplect_tickets" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Kurs" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Protocols" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Questions" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Semesters" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Speciality" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Teacher" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Tickets" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Users" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="BaseModel.FK__Cycle_com__id_ch__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Cycle_com__code___4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Cycle_com__id_te__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Protocols__id_cy__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Questions__id_di__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Komplect___nom_k__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Komplect___nom_p__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Komplect___nom_s__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Tickets__nom_kom__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Tickets__id_ques__6477ECF3" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

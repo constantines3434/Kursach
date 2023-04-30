@@ -1,0 +1,64 @@
+﻿<Page x:Class="WpfApp1.ViewingTableData"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1500"
+      Title="ViewingTableData">
+
+    <Grid x:Name="ViewingTable" Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="377*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="DFrid" AutoGenerateColumns="False" >
+
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Индентифиатор вопроса"
+                                    Binding="{Binding id_question}"
+                                    Width="50">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Индетификатор дисциплины"
+                                    Binding="{Binding id_discipline}"
+                                    Width="200">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Название дисциплины"
+                                    Binding="{Binding Discipline.name_discipline}"
+                                    Width="300">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Вопрос"
+                                    Binding="{Binding question1}"
+                                    Width="300">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Тип вопроса"
+                                    Binding="{Binding type_question}"
+                                    Width="90">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Проверка"
+                                    Binding="{Binding cheking}"
+                                    Width="80">
+
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="153">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" Name="BtnEdit">
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</Page>

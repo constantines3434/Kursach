@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище BaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Chairman_pck">
+          <Key>
+            <PropertyRef Name="id_chairman_pck" />
+          </Key>
+          <Property Name="id_chairman_pck" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_" Type="nvarchar" MaxLength="20" />
+          <Property Name="surname" Type="nvarchar" MaxLength="20" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Cycle_commissions">
+          <Key>
+            <PropertyRef Name="id_cycle_commission" />
+          </Key>
+          <Property Name="id_cycle_commission" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_chairman_pck" Type="int" />
+          <Property Name="id_teacher" Type="int" />
+          <Property Name="code_speciality" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Disciplines">
+          <Key>
+            <PropertyRef Name="id_discipline" />
+          </Key>
+          <Property Name="id_discipline" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="name_discipline" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Komplect_tickets">
+          <Key>
+            <PropertyRef Name="nom_komplect" />
+          </Key>
+          <Property Name="nom_komplect" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_kurs" Type="int" />
+          <Property Name="nom_semester" Type="int" />
+          <Property Name="nom_protocol" Type="int" />
+          <Property Name="id_discipline" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Kurs">
+          <Key>
+            <PropertyRef Name="nom_kurs" />
+          </Key>
+          <Property Name="nom_kurs" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Protocols">
+          <Key>
+            <PropertyRef Name="nom_protocol" />
+          </Key>
+          <Property Name="nom_protocol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date_protocol" Type="date" />
+          <Property Name="id_cycle_commission" Type="int" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="id_question" />
+          </Key>
+          <Property Name="id_question" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_discipline" Type="nvarchar" MaxLength="100" />
+          <Property Name="question" Type="nvarchar" MaxLength="100" />
+          <Property Name="type_question" Type="nvarchar" MaxLength="100" />
+          <Property Name="cheking" Type="bit" />
+        </EntityType>
+        <EntityType Name="Semesters">
+          <Key>
+            <PropertyRef Name="nom_semester" />
+          </Key>
+          <Property Name="nom_semester" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="academic_year" Type="date" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="code_speciality" />
+          </Key>
+          <Property Name="code_speciality" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="name_of_speciality" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="id_teacher" />
+          </Key>
+          <Property Name="id_teacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="name_" Type="nvarchar" MaxLength="100" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="id_ticket" />
+            <PropertyRef Name="nom_quetion_in_ticket" />
+          </Key>
+          <Property Name="id_ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_quetion_in_ticket" Type="int" Nullable="false" />
+          <Property Name="id_question" Type="int" />
+          <Property Name="nom_komplect" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="nom_user" />
+          </Key>
+          <Property Name="nom_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login_" Type="nvarchar" MaxLength="50" />
+          <Property Name="password_" Type="nvarchar" MaxLength="50" />
+          <Property Name="role_" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <Association Name="FK__Cycle_com__code___4F7CD00D">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cycle_commissions" Type="Self.Cycle_commissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="code_speciality" />
+            </Principal>
+            <Dependent Role="Cycle_commissions">
+              <PropertyRef Name="code_speciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cycle_com__id_ch__5070F446">
+          <End Role="Chairman_pck" Type="Self.Chairman_pck" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cycle_commissions" Type="Self.Cycle_commissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chairman_pck">
+              <PropertyRef Name="id_chairman_pck" />
+            </Principal>
+            <Dependent Role="Cycle_commissions">
+              <PropertyRef Name="id_chairman_pck" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cycle_com__id_te__5165187F">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cycle_commissions" Type="Self.Cycle_commissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="id_teacher" />
+            </Principal>
+            <Dependent Role="Cycle_commissions">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Komplect___nom_k__5DCAEF64">
+          <End Role="Kurs" Type="Self.Kurs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Komplect_tickets" Type="Self.Komplect_tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurs">
+              <PropertyRef Name="nom_kurs" />
+            </Principal>
+            <Dependent Role="Komplect_tickets">
+              <PropertyRef Name="nom_kurs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Komplect___nom_p__5EBF139D">
+          <End Role="Protocols" Type="Self.Protocols" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Komplect_tickets" Type="Self.Komplect_tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Protocols">
+              <PropertyRef Name="nom_protocol" />
+            </Principal>
+            <Dependent Role="Komplect_tickets">
+              <PropertyRef Name="nom_protocol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Komplect___nom_s__5CD6CB2B">
+          <End Role="Semesters" Type="Self.Semesters" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Komplect_tickets" Type="Self.Komplect_tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semesters">
+              <PropertyRef Name="nom_semester" />
+            </Principal>
+            <Dependent Role="Komplect_tickets">
+              <PropertyRef Name="nom_semester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Protocols__id_cy__5441852A">
+          <End Role="Cycle_commissions" Type="Self.Cycle_commissions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Protocols" Type="Self.Protocols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cycle_commissions">
+              <PropertyRef Name="id_cycle_commission" />
+            </Principal>
+            <Dependent Role="Protocols">
+              <PropertyRef Name="id_cycle_commission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__id_di__619B8048">
+          <End Role="Disciplines" Type="Self.Disciplines" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplines">
+              <PropertyRef Name="id_discipline" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="id_discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tickets__id_ques__6477ECF3">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id_question" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_question" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tickets__nom_kom__656C112C">
+          <End Role="Komplect_tickets" Type="Self.Komplect_tickets" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Komplect_tickets">
+              <PropertyRef Name="nom_komplect" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="nom_komplect" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище BaseModelContainer">
+          <EntitySet Name="Chairman_pck" EntityType="Self.Chairman_pck" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cycle_commissions" EntityType="Self.Cycle_commissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disciplines" EntityType="Self.Disciplines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Komplect_tickets" EntityType="Self.Komplect_tickets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kurs" EntityType="Self.Kurs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Protocols" EntityType="Self.Protocols" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semesters" EntityType="Self.Semesters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cycle_com__code___4F7CD00D" Association="Self.FK__Cycle_com__code___4F7CD00D">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="Cycle_commissions" EntitySet="Cycle_commissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cycle_com__id_ch__5070F446" Association="Self.FK__Cycle_com__id_ch__5070F446">
+            <End Role="Chairman_pck" EntitySet="Chairman_pck" />
+            <End Role="Cycle_commissions" EntitySet="Cycle_commissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cycle_com__id_te__5165187F" Association="Self.FK__Cycle_com__id_te__5165187F">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Cycle_commissions" EntitySet="Cycle_commissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Komplect___nom_k__5DCAEF64" Association="Self.FK__Komplect___nom_k__5DCAEF64">
+            <End Role="Kurs" EntitySet="Kurs" />
+            <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Komplect___nom_p__5EBF139D" Association="Self.FK__Komplect___nom_p__5EBF139D">
+            <End Role="Protocols" EntitySet="Protocols" />
+            <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Komplect___nom_s__5CD6CB2B" Association="Self.FK__Komplect___nom_s__5CD6CB2B">
+            <End Role="Semesters" EntitySet="Semesters" />
+            <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Protocols__id_cy__5441852A" Association="Self.FK__Protocols__id_cy__5441852A">
+            <End Role="Cycle_commissions" EntitySet="Cycle_commissions" />
+            <End Role="Protocols" EntitySet="Protocols" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__id_di__619B8048" Association="Self.FK__Questions__id_di__619B8048">
+            <End Role="Disciplines" EntitySet="Disciplines" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tickets__id_ques__6477ECF3" Association="Self.FK__Tickets__id_ques__6477ECF3">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tickets__nom_kom__656C112C" Association="Self.FK__Tickets__nom_kom__656C112C">
+            <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Chairman_pck">
+          <Key>
+            <PropertyRef Name="id_chairman_pck" />
+          </Key>
+          <Property Name="id_chairman_pck" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="patronymic" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cycle_commissions" Relationship="Self.FK__Cycle_com__id_ch__5070F446" FromRole="Chairman_pck" ToRole="Cycle_commissions" />
+        </EntityType>
+        <EntityType Name="Cycle_commissions">
+          <Key>
+            <PropertyRef Name="id_cycle_commission" />
+          </Key>
+          <Property Name="id_cycle_commission" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_chairman_pck" Type="Int32" />
+          <Property Name="id_teacher" Type="Int32" />
+          <Property Name="code_speciality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Chairman_pck" Relationship="Self.FK__Cycle_com__id_ch__5070F446" FromRole="Cycle_commissions" ToRole="Chairman_pck" />
+          <NavigationProperty Name="Speciality" Relationship="Self.FK__Cycle_com__code___4F7CD00D" FromRole="Cycle_commissions" ToRole="Speciality" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__Cycle_com__id_te__5165187F" FromRole="Cycle_commissions" ToRole="Teacher" />
+          <NavigationProperty Name="Protocols" Relationship="Self.FK__Protocols__id_cy__5441852A" FromRole="Cycle_commissions" ToRole="Protocols" />
+        </EntityType>
+        <EntityType Name="Disciplines">
+          <Key>
+            <PropertyRef Name="id_discipline" />
+          </Key>
+          <Property Name="id_discipline" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_discipline" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Questions__id_di__619B8048" FromRole="Disciplines" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Komplect_tickets">
+          <Key>
+            <PropertyRef Name="nom_komplect" />
+          </Key>
+          <Property Name="nom_komplect" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_kurs" Type="Int32" />
+          <Property Name="nom_semester" Type="Int32" />
+          <Property Name="nom_protocol" Type="Int32" />
+          <Property Name="id_discipline" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kurs" Relationship="Self.FK__Komplect___nom_k__5DCAEF64" FromRole="Komplect_tickets" ToRole="Kurs" />
+          <NavigationProperty Name="Protocols" Relationship="Self.FK__Komplect___nom_p__5EBF139D" FromRole="Komplect_tickets" ToRole="Protocols" />
+          <NavigationProperty Name="Semesters" Relationship="Self.FK__Komplect___nom_s__5CD6CB2B" FromRole="Komplect_tickets" ToRole="Semesters" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__nom_kom__656C112C" FromRole="Komplect_tickets" ToRole="Tickets" />
+        </EntityType>
+        <EntityType Name="Kurs">
+          <Key>
+            <PropertyRef Name="nom_kurs" />
+          </Key>
+          <Property Name="nom_kurs" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Komplect_tickets" Relationship="Self.FK__Komplect___nom_k__5DCAEF64" FromRole="Kurs" ToRole="Komplect_tickets" />
+        </EntityType>
+        <EntityType Name="Protocols">
+          <Key>
+            <PropertyRef Name="nom_protocol" />
+          </Key>
+          <Property Name="nom_protocol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date_protocol" Type="DateTime" Precision="0" />
+          <Property Name="id_cycle_commission" Type="Int32" />
+          <NavigationProperty Name="Cycle_commissions" Relationship="Self.FK__Protocols__id_cy__5441852A" FromRole="Protocols" ToRole="Cycle_commissions" />
+          <NavigationProperty Name="Komplect_tickets" Relationship="Self.FK__Komplect___nom_p__5EBF139D" FromRole="Protocols" ToRole="Komplect_tickets" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="id_question" />
+          </Key>
+          <Property Name="id_question" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_discipline" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="question" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="type_question" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cheking" Type="Boolean" />
+          <NavigationProperty Name="Disciplines" Relationship="Self.FK__Questions__id_di__619B8048" FromRole="Questions" ToRole="Disciplines" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__id_ques__6477ECF3" FromRole="Questions" ToRole="Tickets" />
+        </EntityType>
+        <EntityType Name="Semesters">
+          <Key>
+            <PropertyRef Name="nom_semester" />
+          </Key>
+          <Property Name="nom_semester" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="academic_year" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Komplect_tickets" Relationship="Self.FK__Komplect___nom_s__5CD6CB2B" FromRole="Semesters" ToRole="Komplect_tickets" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="code_speciality" />
+          </Key>
+          <Property Name="code_speciality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_of_speciality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cycle_commissions" Relationship="Self.FK__Cycle_com__code___4F7CD00D" FromRole="Speciality" ToRole="Cycle_commissions" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="id_teacher" />
+          </Key>
+          <Property Name="id_teacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="name_" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cycle_commissions" Relationship="Self.FK__Cycle_com__id_te__5165187F" FromRole="Teacher" ToRole="Cycle_commissions" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="id_ticket" />
+            <PropertyRef Name="nom_quetion_in_ticket" />
+          </Key>
+          <Property Name="id_ticket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_quetion_in_ticket" Type="Int32" Nullable="false" />
+          <Property Name="id_question" Type="Int32" />
+          <Property Name="nom_komplect" Type="Int32" />
+          <NavigationProperty Name="Komplect_tickets" Relationship="Self.FK__Tickets__nom_kom__656C112C" FromRole="Tickets" ToRole="Komplect_tickets" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Tickets__id_ques__6477ECF3" FromRole="Tickets" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="nom_user" />
+          </Key>
+          <Property Name="nom_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="role_" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Cycle_com__id_ch__5070F446">
+          <End Role="Chairman_pck" Type="Self.Chairman_pck" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cycle_commissions" Type="Self.Cycle_commissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chairman_pck">
+              <PropertyRef Name="id_chairman_pck" />
+            </Principal>
+            <Dependent Role="Cycle_commissions">
+              <PropertyRef Name="id_chairman_pck" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cycle_com__code___4F7CD00D">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cycle_commissions" Type="Self.Cycle_commissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="code_speciality" />
+            </Principal>
+            <Dependent Role="Cycle_commissions">
+              <PropertyRef Name="code_speciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cycle_com__id_te__5165187F">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cycle_commissions" Type="Self.Cycle_commissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="id_teacher" />
+            </Principal>
+            <Dependent Role="Cycle_commissions">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Protocols__id_cy__5441852A">
+          <End Role="Cycle_commissions" Type="Self.Cycle_commissions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Protocols" Type="Self.Protocols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cycle_commissions">
+              <PropertyRef Name="id_cycle_commission" />
+            </Principal>
+            <Dependent Role="Protocols">
+              <PropertyRef Name="id_cycle_commission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__id_di__619B8048">
+          <End Role="Disciplines" Type="Self.Disciplines" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplines">
+              <PropertyRef Name="id_discipline" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="id_discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Komplect___nom_k__5DCAEF64">
+          <End Role="Kurs" Type="Self.Kurs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Komplect_tickets" Type="Self.Komplect_tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurs">
+              <PropertyRef Name="nom_kurs" />
+            </Principal>
+            <Dependent Role="Komplect_tickets">
+              <PropertyRef Name="nom_kurs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Komplect___nom_p__5EBF139D">
+          <End Role="Protocols" Type="Self.Protocols" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Komplect_tickets" Type="Self.Komplect_tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Protocols">
+              <PropertyRef Name="nom_protocol" />
+            </Principal>
+            <Dependent Role="Komplect_tickets">
+              <PropertyRef Name="nom_protocol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Komplect___nom_s__5CD6CB2B">
+          <End Role="Semesters" Type="Self.Semesters" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Komplect_tickets" Type="Self.Komplect_tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semesters">
+              <PropertyRef Name="nom_semester" />
+            </Principal>
+            <Dependent Role="Komplect_tickets">
+              <PropertyRef Name="nom_semester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tickets__nom_kom__656C112C">
+          <End Role="Komplect_tickets" Type="Self.Komplect_tickets" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Komplect_tickets">
+              <PropertyRef Name="nom_komplect" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="nom_komplect" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tickets__id_ques__6477ECF3">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id_question" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_question" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RandomTicketGenerator" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Chairman_pck" EntityType="Self.Chairman_pck" />
+          <EntitySet Name="Cycle_commissions" EntityType="Self.Cycle_commissions" />
+          <EntitySet Name="Disciplines" EntityType="Self.Disciplines" />
+          <EntitySet Name="Komplect_tickets" EntityType="Self.Komplect_tickets" />
+          <EntitySet Name="Kurs" EntityType="Self.Kurs" />
+          <EntitySet Name="Protocols" EntityType="Self.Protocols" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" />
+          <EntitySet Name="Semesters" EntityType="Self.Semesters" />
+          <EntitySet Name="Speciality" EntityType="Self.Speciality" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <EntitySet Name="Tickets" EntityType="Self.Tickets" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Cycle_com__id_ch__5070F446" Association="Self.FK__Cycle_com__id_ch__5070F446">
+            <End Role="Chairman_pck" EntitySet="Chairman_pck" />
+            <End Role="Cycle_commissions" EntitySet="Cycle_commissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cycle_com__code___4F7CD00D" Association="Self.FK__Cycle_com__code___4F7CD00D">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="Cycle_commissions" EntitySet="Cycle_commissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cycle_com__id_te__5165187F" Association="Self.FK__Cycle_com__id_te__5165187F">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Cycle_commissions" EntitySet="Cycle_commissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Protocols__id_cy__5441852A" Association="Self.FK__Protocols__id_cy__5441852A">
+            <End Role="Cycle_commissions" EntitySet="Cycle_commissions" />
+            <End Role="Protocols" EntitySet="Protocols" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__id_di__619B8048" Association="Self.FK__Questions__id_di__619B8048">
+            <End Role="Disciplines" EntitySet="Disciplines" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Komplect___nom_k__5DCAEF64" Association="Self.FK__Komplect___nom_k__5DCAEF64">
+            <End Role="Kurs" EntitySet="Kurs" />
+            <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Komplect___nom_p__5EBF139D" Association="Self.FK__Komplect___nom_p__5EBF139D">
+            <End Role="Protocols" EntitySet="Protocols" />
+            <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Komplect___nom_s__5CD6CB2B" Association="Self.FK__Komplect___nom_s__5CD6CB2B">
+            <End Role="Semesters" EntitySet="Semesters" />
+            <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tickets__nom_kom__656C112C" Association="Self.FK__Tickets__nom_kom__656C112C">
+            <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tickets__id_ques__6477ECF3" Association="Self.FK__Tickets__id_ques__6477ECF3">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BaseModelContainer" CdmEntityContainer="RandomTicketGenerator">
+          <EntitySetMapping Name="Chairman_pck">
+            <EntityTypeMapping TypeName="BaseModel.Chairman_pck">
+              <MappingFragment StoreEntitySet="Chairman_pck">
+                <ScalarProperty Name="id_chairman_pck" ColumnName="id_chairman_pck" />
+                <ScalarProperty Name="name_" ColumnName="name_" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cycle_commissions">
+            <EntityTypeMapping TypeName="BaseModel.Cycle_commissions">
+              <MappingFragment StoreEntitySet="Cycle_commissions">
+                <ScalarProperty Name="id_cycle_commission" ColumnName="id_cycle_commission" />
+                <ScalarProperty Name="id_chairman_pck" ColumnName="id_chairman_pck" />
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+                <ScalarProperty Name="code_speciality" ColumnName="code_speciality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disciplines">
+            <EntityTypeMapping TypeName="BaseModel.Disciplines">
+              <MappingFragment StoreEntitySet="Disciplines">
+                <ScalarProperty Name="id_discipline" ColumnName="id_discipline" />
+                <ScalarProperty Name="name_discipline" ColumnName="name_discipline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Komplect_tickets">
+            <EntityTypeMapping TypeName="BaseModel.Komplect_tickets">
+              <MappingFragment StoreEntitySet="Komplect_tickets">
+                <ScalarProperty Name="nom_komplect" ColumnName="nom_komplect" />
+                <ScalarProperty Name="nom_kurs" ColumnName="nom_kurs" />
+                <ScalarProperty Name="nom_semester" ColumnName="nom_semester" />
+                <ScalarProperty Name="nom_protocol" ColumnName="nom_protocol" />
+                <ScalarProperty Name="id_discipline" ColumnName="id_discipline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kurs">
+            <EntityTypeMapping TypeName="BaseModel.Kurs">
+              <MappingFragment StoreEntitySet="Kurs">
+                <ScalarProperty Name="nom_kurs" ColumnName="nom_kurs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Protocols">
+            <EntityTypeMapping TypeName="BaseModel.Protocols">
+              <MappingFragment StoreEntitySet="Protocols">
+                <ScalarProperty Name="nom_protocol" ColumnName="nom_protocol" />
+                <ScalarProperty Name="date_protocol" ColumnName="date_protocol" />
+                <ScalarProperty Name="id_cycle_commission" ColumnName="id_cycle_commission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="BaseModel.Questions">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="id_question" ColumnName="id_question" />
+                <ScalarProperty Name="id_discipline" ColumnName="id_discipline" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="type_question" ColumnName="type_question" />
+                <ScalarProperty Name="cheking" ColumnName="cheking" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semesters">
+            <EntityTypeMapping TypeName="BaseModel.Semesters">
+              <MappingFragment StoreEntitySet="Semesters">
+                <ScalarProperty Name="nom_semester" ColumnName="nom_semester" />
+                <ScalarProperty Name="academic_year" ColumnName="academic_year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Speciality">
+            <EntityTypeMapping TypeName="BaseModel.Speciality">
+              <MappingFragment StoreEntitySet="Speciality">
+                <ScalarProperty Name="code_speciality" ColumnName="code_speciality" />
+                <ScalarProperty Name="name_of_speciality" ColumnName="name_of_speciality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="BaseModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name_" ColumnName="name_" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="BaseModel.Tickets">
+              <MappingFragment StoreEntitySet="Tickets">
+                <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
+                <ScalarProperty Name="nom_quetion_in_ticket" ColumnName="nom_quetion_in_ticket" />
+                <ScalarProperty Name="id_question" ColumnName="id_question" />
+                <ScalarProperty Name="nom_komplect" ColumnName="nom_komplect" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BaseModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="nom_user" ColumnName="nom_user" />
+                <ScalarProperty Name="login_" ColumnName="login_" />
+                <ScalarProperty Name="password_" ColumnName="password_" />
+                <ScalarProperty Name="role_" ColumnName="role_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
