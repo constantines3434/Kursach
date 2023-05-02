@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp1"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="1200"
       Title="Authorization">
 
     <Grid Background="#FFD3D3D3">
@@ -61,18 +61,20 @@
             Пароль:
         </TextBlock>
 
-        <TextBox Grid.Row="1" Grid.Column="1"
-                 Height="70" Width="400"
-                 
-                 TextWrapping="Wrap"
-                 x:Name="textBox_role"/>
+        <ComboBox Name="Role"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Height="70" Width="400"
+       
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Top" Margin="0,41,0,0" />
 
 
         <TextBox Grid.Row="2" Grid.Column="1"
                  Height="70" Width="400"
                  
                  TextWrapping="Wrap"
-                 x:Name="textBox_login">
+                 x:Name="textBox_login" Margin="100,41,100,29">
 
         </TextBox>
 
@@ -81,7 +83,7 @@
 
         <PasswordBox Grid.Row="3" Grid.Column="1"
                  Height="70" Width="400"
-                 x:Name="textBox_password"
+                 x:Name="textBox_password" Margin="100,40,100,30"
                      >
 
         </PasswordBox>

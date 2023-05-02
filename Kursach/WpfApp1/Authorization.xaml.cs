@@ -26,9 +26,21 @@ namespace WpfApp1
         public Authorization()
         {
             InitializeComponent();
+            bindcombo_Users();
             db = new RandomTicketGenerator();
             
         }
+
+        //ComboBox kurs
+        public List<Users> Users_list { get; set; }
+        private void bindcombo_Users()
+        {
+            Role.Items.Add("Admin");
+            Role.Items.Add("User");
+            Role.SelectedIndex = 0;
+        }
+        //
+
         /// <summary>
         /// сокрытие пароля
         /// </summary>
@@ -43,7 +55,9 @@ namespace WpfApp1
         private void But_authorization(object sender, RoutedEventArgs e)
         {
            var loginUser = textBox_login.Text;
-           var roleUser = textBox_role.Text;
+           
+           var roleUser = Role.Text;
+           
            var passUser = textBox_password.Password.ToString();
 
 

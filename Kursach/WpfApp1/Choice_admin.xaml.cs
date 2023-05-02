@@ -25,21 +25,23 @@ namespace WpfApp1
         public Choice_admin()
         {
             InitializeComponent();
-          
+
             bindcombo_disca();
             bindcombo_teacher();
             bindcombo_chairman_pck();
+            bindcombo_kurs();
+            bindcombo_semester();
+            bindcombo_speciality();
         }
 
         //ComboBox disca
         public List<Disciplines> Disc_list { get; set; }
         private void bindcombo_disca()
         {
-            //Disca.SelectedIndex = 0;
             var Item = RandomTicketGenerator.GetContext().Disciplines.ToList();
             Disc_list = Item;
             DataContext = Disc_list;
-            Disca.ItemsSource= Disc_list;
+            Disca.ItemsSource = Disc_list;
             Disca.SelectedValuePath = "id_discipline";
             Disca.DisplayMemberPath = "name_discipline";
             Disca.SelectedIndex = 0;
@@ -51,10 +53,9 @@ namespace WpfApp1
 
         private void bindcombo_teacher()
         {
-            //Disca.SelectedIndex = 0;
             var Item = RandomTicketGenerator.GetContext().Teacher.ToList();
             Teacher_list = Item;
-            DataContext =Teacher_list;
+            DataContext = Teacher_list;
             Teacher.ItemsSource = Teacher_list;
             Teacher.SelectedValuePath = "id_teacher";
             Teacher.DisplayMemberPath = "surname";
@@ -66,7 +67,6 @@ namespace WpfApp1
         public List<Chairman_pck> Chairman_pck_list { get; set; }
         private void bindcombo_chairman_pck()
         {
-            //Disca.SelectedIndex = 0;
             var Item = RandomTicketGenerator.GetContext().Chairman_pck.ToList();
             Chairman_pck_list = Item;
             DataContext = Disc_list;
@@ -76,19 +76,89 @@ namespace WpfApp1
             Chairman_pck.SelectedIndex = 0;
         }
         //
+
+        //ComboBox kurs
+        public List<Kurs> Kurs_list { get; set; }
+        private void bindcombo_kurs()
+        {
+            var Item = RandomTicketGenerator.GetContext().Kurs.ToList();
+            Kurs_list = Item;
+            DataContext = Kurs_list;
+            Kurs.ItemsSource = Kurs_list;
+            Kurs.SelectedValuePath = "nom_kurs";
+            Kurs.DisplayMemberPath = "nom_kurs";
+            Kurs.SelectedIndex = 0;
+        }
+        //
+
+        //ComboBox semester
+        public List<Semesters> Semesters_list { get; set; }
+        private void bindcombo_semester()
+        {
+            var Item = RandomTicketGenerator.GetContext().Semesters.ToList();
+            Semesters_list = Item;
+            DataContext = Semesters_list;
+            Semester.ItemsSource = Semesters_list;
+            Semester.SelectedValuePath = "nom_semester";
+            Semester.DisplayMemberPath = "academic_year";
+            Semester.SelectedIndex = 0;
+        }
+        //
+
+        //ComboBox semester
+        public List<Speciality> Speciality_list { get; set; }
+        private void bindcombo_speciality()
+        {
+            var Item = RandomTicketGenerator.GetContext().Speciality.ToList();
+            Speciality_list = Item;
+            DataContext = Speciality_list;
+            Spec.ItemsSource = Speciality_list;
+            Spec.SelectedValuePath = "code_speciality";
+            Spec.DisplayMemberPath = "name_of_speciality";
+            Spec.SelectedIndex = 0;
+        }
+        //
         private void But_Click_Form_Ticket(object sender, RoutedEventArgs e)
         {
-            if (true)
+            var disca_content = Disca.Text;
+
+            var count_teo = count_of_teo_questions.Text;
+            
+            var count_prac = count_of_prac_questions.Text;
+
+            var helper = new WordHelper("Ex_Ticket_Prac.docx");
+
+            var count_tickets = count_of_tickets.Text;
+
+            var teacher_content = Teacher.Text;
+
+            var Chairman_pck_content = Chairman_pck.Text;
+
+            var kurs_content = Kurs.Text;
+            
+            var semester_content = Semester.Text;
+
+            var speciality_content = Spec.Text;
+
+            var Items = new Dictionary<string, string>
             {
-                var disca_content = Disca.Text;
-                var teacher_content = Teacher.Text;
-                var Chaiman_pck_content = Chairman_pck.Text;
-                MessageBox.Show($"Выбор сделан, {disca_content}, {teacher_content}, {Chaiman_pck_content} ");
-            }
-            if (false)
-            {
-                MessageBox.Show("Ошибка при формирование билета");
-            }
+                {"<DISC>", disca_content},
+                {"<PCK>",  Chairman_pck_content},
+                {"<PREP>", teacher_content},
+                {"<KURS>", kurs_content},
+                {"<SEM>", semester_content},
+                {"<SPEC>", speciality_content}
+
+            };
+
+            helper.Process(Items);
+
+                MessageBox.Show($"Выбор сделан, Дисциплина: {disca_content},\n" +
+                    $"Количество теоретических вопросов: {count_teo},\n" +
+                    $"Количество практических вопросов: {count_prac},\n" +
+                    $"Количество билетов: {count_tickets},\n" +
+                    $"Преподаватель {teacher_content},\n" +
+                    $"Председатель цикловой комиссии {Chairman_pck_content} ");
         }
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {

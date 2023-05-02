@@ -79,25 +79,25 @@ SELECT id_chairman_pck, name_, surname, patronymic FROM Chairman_pck WHERE (id_c
   <xs:element name="BaseDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="BaseDataSet" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="BaseDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Chairman_pck" msprop:Generator_RowEvHandlerName="Chairman_pckRowChangeEventHandler" msprop:Generator_RowDeletedName="Chairman_pckRowDeleted" msprop:Generator_RowDeletingName="Chairman_pckRowDeleting" msprop:Generator_RowEvArgName="Chairman_pckRowChangeEvent" msprop:Generator_TablePropName="Chairman_pck" msprop:Generator_RowChangedName="Chairman_pckRowChanged" msprop:Generator_RowChangingName="Chairman_pckRowChanging" msprop:Generator_TableClassName="Chairman_pckDataTable" msprop:Generator_RowClassName="Chairman_pckRow" msprop:Generator_TableVarName="tableChairman_pck" msprop:Generator_UserTableName="Chairman_pck">
+        <xs:element name="Chairman_pck" msprop:Generator_RowEvHandlerName="Chairman_pckRowChangeEventHandler" msprop:Generator_RowDeletedName="Chairman_pckRowDeleted" msprop:Generator_RowDeletingName="Chairman_pckRowDeleting" msprop:Generator_RowEvArgName="Chairman_pckRowChangeEvent" msprop:Generator_TablePropName="Chairman_pck" msprop:Generator_RowChangedName="Chairman_pckRowChanged" msprop:Generator_UserTableName="Chairman_pck" msprop:Generator_RowChangingName="Chairman_pckRowChanging" msprop:Generator_RowClassName="Chairman_pckRow" msprop:Generator_TableClassName="Chairman_pckDataTable" msprop:Generator_TableVarName="tableChairman_pck">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id_chairman_pck" msprop:Generator_ColumnPropNameInRow="id_chairman_pck" msprop:Generator_ColumnPropNameInTable="id_chairman_pckColumn" msprop:Generator_ColumnVarNameInTable="columnid_chairman_pck" msprop:Generator_UserColumnName="id_chairman_pck" type="xs:int" />
-              <xs:element name="name_" msprop:Generator_ColumnPropNameInRow="name_" msprop:Generator_ColumnPropNameInTable="name_Column" msprop:Generator_ColumnVarNameInTable="columnname_" msprop:Generator_UserColumnName="name_" minOccurs="0">
+              <xs:element name="id_chairman_pck" msprop:Generator_ColumnPropNameInTable="id_chairman_pckColumn" msprop:Generator_ColumnPropNameInRow="id_chairman_pck" msprop:Generator_UserColumnName="id_chairman_pck" msprop:Generator_ColumnVarNameInTable="columnid_chairman_pck" type="xs:int" />
+              <xs:element name="name_" msprop:Generator_ColumnPropNameInTable="name_Column" msprop:Generator_ColumnPropNameInRow="name_" msprop:Generator_UserColumnName="name_" msprop:Generator_ColumnVarNameInTable="columnname_" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="surname" msprop:Generator_ColumnPropNameInRow="surname" msprop:Generator_ColumnPropNameInTable="surnameColumn" msprop:Generator_ColumnVarNameInTable="columnsurname" msprop:Generator_UserColumnName="surname" minOccurs="0">
+              <xs:element name="surname" msprop:Generator_ColumnPropNameInTable="surnameColumn" msprop:Generator_ColumnPropNameInRow="surname" msprop:Generator_UserColumnName="surname" msprop:Generator_ColumnVarNameInTable="columnsurname" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="patronymic" msprop:Generator_ColumnPropNameInRow="patronymic" msprop:Generator_ColumnPropNameInTable="patronymicColumn" msprop:Generator_ColumnVarNameInTable="columnpatronymic" msprop:Generator_UserColumnName="patronymic" minOccurs="0">
+              <xs:element name="patronymic" msprop:Generator_ColumnPropNameInTable="patronymicColumn" msprop:Generator_ColumnPropNameInRow="patronymic" msprop:Generator_UserColumnName="patronymic" msprop:Generator_ColumnVarNameInTable="columnpatronymic" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />

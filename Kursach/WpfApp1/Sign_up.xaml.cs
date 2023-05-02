@@ -29,8 +29,18 @@ namespace WpfApp1
         DataBase database = new DataBase();
         public Sign_up()
         {
-            InitializeComponent();
-            db = new RandomTicketGenerator();
+                InitializeComponent();
+                bindcombo_Users();
+                db = new RandomTicketGenerator();
+        }
+
+        //ComboBox kurs
+        public List<Users> Users_list { get; set; }
+        private void bindcombo_Users()
+        {
+            Role.Items.Add("Admin");
+            Role.Items.Add("User");
+            Role.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -47,7 +57,9 @@ namespace WpfApp1
         private void But_registration(object sender, RoutedEventArgs e)
         {
             var login = textBox_login.Text;
-            var role = textBox_role.Text;
+
+            var role = Role.Text;
+
             var password = textBox_password.Password.ToString();
 
             if ((login != "") && (role != "") && (password != ""))
@@ -89,7 +101,7 @@ namespace WpfApp1
         private Boolean check_user()
         {
             var login = textBox_login.Text;
-            var role = textBox_role.Text;
+            var role = Role.Text;
             var password = textBox_password.Password.ToString();
 
             SqlDataAdapter adapter = new SqlDataAdapter();

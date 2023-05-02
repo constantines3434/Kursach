@@ -15,7 +15,7 @@ namespace WpfApp1
     
     public partial class RandomTicketGenerator : DbContext
     {
-        private static RandomTicketGenerator _context;
+        private static RandomTicketGenerator context_;
         public RandomTicketGenerator()
             : base("name=RandomTicketGenerator")
         {
@@ -23,13 +23,11 @@ namespace WpfApp1
 
         public static RandomTicketGenerator GetContext()
         {
-            if(_context == null)
-            {
-                _context= new RandomTicketGenerator();
-            }
-            return _context;
+            if (context_ == null)
+                context_ = new RandomTicketGenerator();
+            return context_;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\VS Projects\Kursach\WpfApp1\RandomTicketGenerator.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\VS Projects\Commit\Kursach\Kursach\WpfApp1\RandomTicketGenerator.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.
