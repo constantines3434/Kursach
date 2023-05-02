@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Генератор экзаменационных билетов" Height="450" Width="1200">
+        Title="Генератор экзаменационных билетов" Height="400" Width="1200">
 
     <Frame x:Name="MainFrame" Background="Blue" NavigationUIVisibility="Hidden"/>
 </Window>

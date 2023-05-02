@@ -46,33 +46,38 @@ namespace WpfApp1
         /// </summary>
         private void But_registration(object sender, RoutedEventArgs e)
         {
-
-            var nom = 6;
             var login = textBox_login.Text;
             var role = textBox_role.Text;
             var password = textBox_password.Password.ToString();
 
             if ((login != "") && (role != "") && (password != ""))
             {
-                try
+                if ((role == "User") || (role == "Admin"))
                 {
-                    if (db.Users.Any(o => o.login_ == login))
+                    try
                     {
-                        throw new Exception("Логин уже занят");
+                        if (db.Users.Any(o => o.login_ == login))
+                        {
+                            throw new Exception("Логин уже занят");
+                        }
+                        Users newUser = new Users();
+                        newUser.login_ = login;
+                        newUser.password_ = password;
+                        newUser.role_ = role;
+
+                        db.Users.Add(newUser);
+                        db.SaveChanges();
+                        MessageBox.Show("Регистрация прошла успешно");
+                        NavigationService.Navigate(new Authorization());
                     }
-                    Users newUser = new Users();
-                    newUser.login_ = login;
-                    newUser.password_ = password;
-                    newUser.role_ = role;
-                    
-                    db.Users.Add(newUser);
-                    db.SaveChanges();
-                    MessageBox.Show("Регистрация прошла успешно");
-                    NavigationService.Navigate(new Authorization());
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Неверно указана роль пользователя");
                 }
             }
             else MessageBox.Show("Для продолжения заполните все поля");
@@ -107,7 +112,9 @@ namespace WpfApp1
                 return false;
             }
         }
-
+        /// <summary>
+        /// Переход к авторизации
+        /// </summary>
         private void But_authorization(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Authorization());

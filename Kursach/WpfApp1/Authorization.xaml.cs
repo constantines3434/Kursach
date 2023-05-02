@@ -49,20 +49,43 @@ namespace WpfApp1
 
             if ((loginUser != "") && (roleUser != "") && (passUser != ""))
             {
-                //сверяем введённые данные и данные в бд
-                if (db.Users.Any(o => (o.login_ == loginUser) && (o.password_ == passUser) && (o.role_ == roleUser)))
+                if (roleUser == "Admin") //работает Admin
                 {
-                    MessageBox.Show("Успешная авторизация");
-                    NavigationService.Navigate(new Choice());
+                    //сверяем введённые данные и данные в бд
+                    if (db.Users.Any(o => (o.login_ == loginUser) && (o.password_ == passUser) && (o.role_ == roleUser)))
+                    {
+                        MessageBox.Show("Успешная авторизация");
+                        NavigationService.Navigate(new Choice_admin());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неправильный логин или пароль");
+                    }
+                }
+                else if (roleUser == "User") //работает User
+                {
+                    //сверяем введённые данные и данные в бд
+                    if (db.Users.Any(o => (o.login_ == loginUser) && (o.password_ == passUser) && (o.role_ == roleUser)))
+                    {
+                        MessageBox.Show("Успешная авторизация");
+                        NavigationService.Navigate(new Choice_user());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неправильный логин или пароль");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Неправильный логин или пароль");
+                    MessageBox.Show("Неверно указана роль пользователя");
                 }
+
             }
             else MessageBox.Show("Для продолжения заполните все поля");            
         }
-
+        /// <summary>
+        /// Переход к регистрации
+        /// </summary>
         private void But_registration(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Sign_up());

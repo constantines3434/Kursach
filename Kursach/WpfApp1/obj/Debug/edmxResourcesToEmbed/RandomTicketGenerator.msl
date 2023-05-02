@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище BaseModelContainer" CdmEntityContainer="RandomTicketGenerator">
+    <EntitySetMapping Name="Chairman_pck">
+      <EntityTypeMapping TypeName="BaseModel.Chairman_pck">
+        <MappingFragment StoreEntitySet="Chairman_pck">
+          <ScalarProperty Name="id_chairman_pck" ColumnName="id_chairman_pck" />
+          <ScalarProperty Name="name_" ColumnName="name_" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cycle_commissions">
+      <EntityTypeMapping TypeName="BaseModel.Cycle_commissions">
+        <MappingFragment StoreEntitySet="Cycle_commissions">
+          <ScalarProperty Name="id_cycle_commission" ColumnName="id_cycle_commission" />
+          <ScalarProperty Name="id_chairman_pck" ColumnName="id_chairman_pck" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="code_speciality" ColumnName="code_speciality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Disciplines">
+      <EntityTypeMapping TypeName="BaseModel.Disciplines">
+        <MappingFragment StoreEntitySet="Disciplines">
+          <ScalarProperty Name="id_discipline" ColumnName="id_discipline" />
+          <ScalarProperty Name="name_discipline" ColumnName="name_discipline" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Komplect_tickets">
+      <EntityTypeMapping TypeName="BaseModel.Komplect_tickets">
+        <MappingFragment StoreEntitySet="Komplect_tickets">
+          <ScalarProperty Name="nom_komplect" ColumnName="nom_komplect" />
+          <ScalarProperty Name="nom_kurs" ColumnName="nom_kurs" />
+          <ScalarProperty Name="nom_semester" ColumnName="nom_semester" />
+          <ScalarProperty Name="nom_protocol" ColumnName="nom_protocol" />
+          <ScalarProperty Name="id_discipline" ColumnName="id_discipline" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kurs">
+      <EntityTypeMapping TypeName="BaseModel.Kurs">
+        <MappingFragment StoreEntitySet="Kurs">
+          <ScalarProperty Name="nom_kurs" ColumnName="nom_kurs" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Protocols">
+      <EntityTypeMapping TypeName="BaseModel.Protocols">
+        <MappingFragment StoreEntitySet="Protocols">
+          <ScalarProperty Name="nom_protocol" ColumnName="nom_protocol" />
+          <ScalarProperty Name="date_protocol" ColumnName="date_protocol" />
+          <ScalarProperty Name="id_cycle_commission" ColumnName="id_cycle_commission" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="BaseModel.Questions">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="id_question" ColumnName="id_question" />
+          <ScalarProperty Name="id_discipline" ColumnName="id_discipline" />
+          <ScalarProperty Name="question" ColumnName="question" />
+          <ScalarProperty Name="type_question" ColumnName="type_question" />
+          <ScalarProperty Name="cheking" ColumnName="cheking" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Semesters">
+      <EntityTypeMapping TypeName="BaseModel.Semesters">
+        <MappingFragment StoreEntitySet="Semesters">
+          <ScalarProperty Name="nom_semester" ColumnName="nom_semester" />
+          <ScalarProperty Name="academic_year" ColumnName="academic_year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Speciality">
+      <EntityTypeMapping TypeName="BaseModel.Speciality">
+        <MappingFragment StoreEntitySet="Speciality">
+          <ScalarProperty Name="code_speciality" ColumnName="code_speciality" />
+          <ScalarProperty Name="name_of_speciality" ColumnName="name_of_speciality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teacher">
+      <EntityTypeMapping TypeName="BaseModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="name_" ColumnName="name_" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tickets">
+      <EntityTypeMapping TypeName="BaseModel.Tickets">
+        <MappingFragment StoreEntitySet="Tickets">
+          <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
+          <ScalarProperty Name="nom_quetion_in_ticket" ColumnName="nom_quetion_in_ticket" />
+          <ScalarProperty Name="id_question" ColumnName="id_question" />
+          <ScalarProperty Name="nom_komplect" ColumnName="nom_komplect" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="BaseModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="nom_user" ColumnName="nom_user" />
+          <ScalarProperty Name="login_" ColumnName="login_" />
+          <ScalarProperty Name="password_" ColumnName="password_" />
+          <ScalarProperty Name="role_" ColumnName="role_" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,16 @@
+C:\VS Projects\Kursach\Kursach\bin\Debug\Kursach.exe.config
+C:\VS Projects\Kursach\Kursach\bin\Debug\Kursach.exe
+C:\VS Projects\Kursach\Kursach\bin\Debug\Kursach.pdb
+C:\VS Projects\Kursach\Kursach\obj\Debug\Kursach.csproj.AssemblyReference.cache
+C:\VS Projects\Kursach\Kursach\obj\Debug\Kursach.csproj.SuggestedBindingRedirects.cache
+C:\VS Projects\Kursach\Kursach\obj\Debug\MainWindow.g.cs
+C:\VS Projects\Kursach\Kursach\obj\Debug\App.g.cs
+C:\VS Projects\Kursach\Kursach\obj\Debug\Kursach_MarkupCompile.cache
+C:\VS Projects\Kursach\Kursach\obj\Debug\Kursach_MarkupCompile.lref
+C:\VS Projects\Kursach\Kursach\obj\Debug\MainWindow.baml
+C:\VS Projects\Kursach\Kursach\obj\Debug\Kursach.g.resources
+C:\VS Projects\Kursach\Kursach\obj\Debug\Kursach.Properties.Resources.resources
+C:\VS Projects\Kursach\Kursach\obj\Debug\Kursach.csproj.GenerateResource.cache
+C:\VS Projects\Kursach\Kursach\obj\Debug\Kursach.csproj.CoreCompileInputs.cache
+C:\VS Projects\Kursach\Kursach\obj\Debug\Kursach.exe
+C:\VS Projects\Kursach\Kursach\obj\Debug\Kursach.pdb

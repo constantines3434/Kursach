@@ -83,8 +83,11 @@
     <Compile Include="Chairman_pck.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Choice.xaml.cs">
-      <DependentUpon>Choice.xaml</DependentUpon>
+    <Compile Include="Choice_admin.xaml.cs">
+      <DependentUpon>Choice_admin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Choice_user.xaml.cs">
+      <DependentUpon>Choice_user.xaml</DependentUpon>
     </Compile>
     <Compile Include="Cycle_commissions.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
@@ -138,14 +141,22 @@
     <Compile Include="Users.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewingTableData.xaml.cs">
-      <DependentUpon>ViewingTableData.xaml</DependentUpon>
+    <Compile Include="ViewingTableData_admin.xaml.cs">
+      <DependentUpon>ViewingTableData_admin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewingTableData_user.xaml.cs">
+      <DependentUpon>ViewingTableData_user.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WatermarkedTextBox.cs" />
     <Page Include="Authorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Choice.xaml">
+    <Page Include="Choice_admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Choice_user.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,7 +176,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewingTableData.xaml">
+    <Page Include="ViewingTableData_admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewingTableData_user.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
