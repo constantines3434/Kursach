@@ -178,7 +178,7 @@
         <TextBlock  Grid.Row="3"
                     Grid.Column="2"
                     Height="70"
-                    Width="120"
+                    Width="135"
                     FontSize="14"
                     FontFamily="Verdana"
                     FontWeight="Bold"
@@ -187,6 +187,18 @@
             Специальность:
         </TextBlock>
 
+        <TextBlock  Grid.Row="3"
+                    Grid.Column="3"
+                    Height="70"
+                    Width="120"
+                    FontSize="14"
+                    FontFamily="Verdana"
+                    FontWeight="Bold"
+                    x:Name="Prot_header"
+                    VerticalAlignment="Center">
+            Протокол:
+        </TextBlock>
+        
         <ComboBox Name="Disca"
                   Grid.Row="1"
                   Grid.Column="0"
@@ -201,7 +213,7 @@
                  Width="133"
                  TextWrapping="Wrap" Grid.ColumnSpan="2"
                
-                 x:Name="count_of_teo_questions" 
+                 x:Name="Count_of_teo_questions" 
                   Background="White" Margin="133,116,1,77" Grid.RowSpan="2"/>
 
 
@@ -269,6 +281,14 @@
         <ComboBox Name="Spec"
                   Grid.Row="4"
                   Grid.Column="2"
+                  Height="30"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Width="133" Margin="0,0,0,70" />
+
+        <ComboBox Name="Protocol"
+                  Grid.Row="4"
+                  Grid.Column="3"
                   Height="30"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"

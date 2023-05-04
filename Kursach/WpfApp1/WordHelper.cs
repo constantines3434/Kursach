@@ -22,14 +22,10 @@ namespace WpfApp1
                 throw new ArgumentException("File not found");
             }
         }
-            
 
         /// <summary>
         /// ////////////
         /// </summary>
-        /// <param name="items"></param>
-        /// <exception cref="NotImplementedException"></exception>
-
           internal bool Process(Dictionary<string, string> items)
           {
                 Word.Application app = null;
@@ -63,7 +59,7 @@ namespace WpfApp1
                             ReplaceWith: missing, Replace: replace
                             );
                     }
-                    Object newFileName = Path.Combine(fileinfo_.DirectoryName,
+                    Object newFileName = Path.Combine("C:\\VS Projects\\Commit\\Kursach\\Kursach\\WpfApp1\\Tickets\\",
                         DateTime.Now.ToString("yyyyMMdd HHmmss") + fileinfo_.Name);
                     app.ActiveDocument.SaveAs2(newFileName);
                     app.ActiveDocument.Close();
@@ -83,7 +79,7 @@ namespace WpfApp1
                         app.Quit();
                     }
                 }
-          }
+        }
        
     }
 }
