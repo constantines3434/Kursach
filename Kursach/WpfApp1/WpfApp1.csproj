@@ -151,6 +151,15 @@
     <Compile Include="Speciality.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Teacher.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
@@ -256,18 +265,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RandomTicketGenerator.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RandomTicketGenerator.edmx</DependentUpon>
-      <LastGenOutput>RandomTicketGenerator.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="RandomTicketGenerator.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RandomTicketGenerator.edmx</DependentUpon>
-      <LastGenOutput>RandomTicketGenerator.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.8 %28x86 и x64%29</ProductName>
@@ -278,6 +275,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RandomTicketGenerator.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RandomTicketGenerator.edmx</DependentUpon>
+      <LastGenOutput>RandomTicketGenerator.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="RandomTicketGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RandomTicketGenerator.edmx</DependentUpon>
+      <LastGenOutput>RandomTicketGenerator.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

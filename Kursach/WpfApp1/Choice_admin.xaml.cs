@@ -177,7 +177,7 @@ namespace WpfApp1
         {
             var disca_content = Disca.Text;
 
-            var count_teo = count_of_teo_questions.Text;
+            //var count_teo = count_of_teo_questions.Text;
             
             var count_prac = count_of_prac_questions.Text;
 
@@ -222,7 +222,7 @@ namespace WpfApp1
             nom_ticket++;
 
             MessageBox.Show($"Выбор сделан, Дисциплина: {disca_content},\n" +
-                    $"Количество теоретических вопросов: {count_teo},\n" +
+                    //$"Количество теоретических вопросов: {count_teo},\n" +
                     $"Количество практических вопросов: {count_prac},\n" +
                     $"Количество билетов: {count_tickets},\n" +
                     $"Преподаватель {teacher_content},\n" +

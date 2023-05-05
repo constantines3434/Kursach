@@ -10,20 +10,10 @@
 namespace WpfApp1
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Disciplines
+    public partial class sp_helpdiagramdefinition_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Disciplines()
-        {
-            this.Questions = new HashSet<Questions>();
-        }
-    
-        public int id_discipline { get; set; }
-        public string name_discipline { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Questions> Questions { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
