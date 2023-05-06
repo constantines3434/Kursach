@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
+
 
 namespace WpfApp1
 {
@@ -27,26 +27,20 @@ namespace WpfApp1
         {
             InitializeComponent();
 
-            bindcombo_disca();
-            bindcombo_teacher();
-            bindcombo_chairman_pck();
-            bindcombo_kurs();
-            bindcombo_semester();
-            bindcombo_speciality();
-            bindcombo_protocols();
+            Bindcombo_disca();
+            Bindcombo_teacher();
+            Bindcombo_chairman_pck();
+            Bindcombo_kurs();
+            Bindcombo_semester();
+            Bindcombo_speciality();
+            Bindcombo_protocols();
+            Initialize_questions();
+
         }
 
-
-        //var Item = RandomTicketGenerator.GetContext().Protocols.ToList();
-        //Protocols_list = Item;
-        //    DataContext = Protocols_list;
-        //    Protocol.ItemsSource = Protocols_list;
-        //    Protocol.SelectedValuePath = "";
-        //    Protocol.DisplayMemberPath = "nom_protocol";
-        //    Protocol.SelectedIndex = 0;
         //ComboBox disca
         public List<Disciplines> Disc_list { get; set; }
-        private void bindcombo_disca()
+        private void Bindcombo_disca()
         {
             var Item = RandomTicketGenerator.GetContext().Disciplines.ToList();
             Disc_list = Item;
@@ -56,12 +50,17 @@ namespace WpfApp1
             Disca.DisplayMemberPath = "name_discipline";
             Disca.SelectedIndex = 0;
         }
+
+        private int GetDisipline()
+        {
+            return ((Disciplines)Disca.SelectedItem).id_discipline;
+        }
         //
 
         //ComboBox Teacher
         public List<Teacher> Teacher_list { get; set; }
 
-        private void bindcombo_teacher()
+        private void Bindcombo_teacher()
         {
             var Item = RandomTicketGenerator.GetContext().Teacher.ToList();
             Teacher_list = Item;
@@ -73,9 +72,9 @@ namespace WpfApp1
         }
         //
 
-        //ComboBox disca
+        //ComboBox Chairman_pck
         public List<Chairman_pck> Chairman_pck_list { get; set; }
-        private void bindcombo_chairman_pck()
+        private void Bindcombo_chairman_pck()
         {
             var Item = RandomTicketGenerator.GetContext().Chairman_pck.ToList();
             Chairman_pck_list = Item;
@@ -89,7 +88,7 @@ namespace WpfApp1
 
         //ComboBox kurs
         public List<Kurs> Kurs_list { get; set; }
-        private void bindcombo_kurs()
+        private void Bindcombo_kurs()
         {
             var Item = RandomTicketGenerator.GetContext().Kurs.ToList();
             Kurs_list = Item;
@@ -101,9 +100,9 @@ namespace WpfApp1
         }
         //
 
-        //ComboBox semester
+        //ComboBox Semester
         public List<Semesters> Semesters_list { get; set; }
-        private void bindcombo_semester()
+        private void Bindcombo_semester()
         {
             var Item = RandomTicketGenerator.GetContext().Semesters.ToList();
             Semesters_list = Item;
@@ -115,9 +114,9 @@ namespace WpfApp1
         }
         //
 
-        //ComboBox semester
+        //ComboBox Speciality
         public List<Speciality> Speciality_list { get; set; }
-        private void bindcombo_speciality()
+        private void Bindcombo_speciality()
         {
             var Item = RandomTicketGenerator.GetContext().Speciality.ToList();
             Speciality_list = Item;
@@ -129,9 +128,9 @@ namespace WpfApp1
         }
         //
 
-        //ComboBox protocol
+        //ComboBox Protocol
         public List<Protocols> Protocols_list { get; set; }
-        private void bindcombo_protocols()
+        private void Bindcombo_protocols()
         {
             var Item = RandomTicketGenerator.GetContext().Protocols.ToList();
             Protocols_list = Item;
@@ -157,20 +156,42 @@ namespace WpfApp1
         }
 
         /// <summary>
-        /// 
+        /// Вопросы
         /// </summary>
-        /// 
-        //public List<Questions> Teo_questions_list { get; set; }
-        //private void bindcombo_teo_questions()
-        //{
-        //    var Item = RandomTicketGenerator.GetContext().Questions.ToList();
-        //    Teo_questions_list = Item;
-        //    DataContext = Teo_questions_list;
-        //    //Count_of_teo_questions.ItemsSource = Teo_questions_list;
-        //    //Protocol.SelectedValuePath = "";
-        //    //Protocol.DisplayMemberPath = "nom_protocol";
-        //    //Protocol.SelectedIndex = 0;
-        //}
+        enum Type_question : short
+        {
+            teo,
+            prac
+        }
+
+        enum Type_discipline : short
+        {
+            
+        }
+
+        List<Questions> Questions_list { get; set; }
+        private void Initialize_questions()
+        {
+            Questions_list = RandomTicketGenerator.GetContext().Questions.ToList();
+
+            var rng = new Random();
+            Questions_list = Questions_list.OrderBy(x => rng.Next()).ToList();
+        }
+
+        private string RollQuestions(string type, int id_disc)
+        {
+            string answer = "";
+            foreach ( var quest in Questions_list)
+            {
+                if (quest.type_question == type && quest.id_discipline == id_disc)
+                {
+                    answer = quest.question;
+                    Questions_list.Remove(quest);
+                    break;
+                }
+            }
+            return answer;
+        }
 
         //
         private void But_Click_Form_Ticket(object sender, RoutedEventArgs e)
@@ -214,7 +235,10 @@ namespace WpfApp1
                 {"<NOMPROT>", protocol_content},
                 {"<DATEPROT>", protocol_date_content},
                 {"<YEARPROT> ", protocol_year_content},
-                {"<NOMTICK>", nom_ticket.ToString()}
+                {"<NOMTICK>", nom_ticket.ToString()},
+                {"<TEO1>", RollQuestions("Теоретический", GetDisipline())},
+                {"<TEO2>", RollQuestions("Теоретический", GetDisipline())},
+                {"<PRAC1>", RollQuestions("Практический", GetDisipline())},
 
             };
 
