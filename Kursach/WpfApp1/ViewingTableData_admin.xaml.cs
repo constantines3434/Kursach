@@ -23,10 +23,25 @@ namespace WpfApp1
         public ViewingTableData_admin()
         {
             InitializeComponent();
-            DFrid.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
+            DGridQuestion.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
         }
 
-        static void But_Click_Save_Data(object sender, RoutedEventArgs e)
+        static void BtnEdit_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
 
         }

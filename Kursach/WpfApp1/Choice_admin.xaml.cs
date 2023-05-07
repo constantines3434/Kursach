@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -259,6 +259,11 @@ namespace WpfApp1
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewingTableData_admin());
+        }
+
+        private void But_Auto(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Authorization());
         }
     }
 }
