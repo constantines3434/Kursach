@@ -27,13 +27,13 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="Название дисциплины"
-                                    Binding="{Binding Discipline.name_discipline}"
+                                    Binding="{Binding Disciplines.name_discipline}"
                                     Width="300">
 
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="Вопрос"
-                                    Binding="{Binding question1}"
+                                    Binding="{Binding Questions.}"
                                     Width="300">
 
                 </DataGridTextColumn>

@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Word = Microsoft.Office.Interop.Word;
 using System.IO;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using DocumentFormat.OpenXml;
+
 namespace WpfApp1
 {
     internal class WordHelper
@@ -28,7 +32,22 @@ namespace WpfApp1
         /// </summary>
           internal bool Process(Dictionary<string, string> items)
           {
-                Word.Application app = null;
+            using (var doc = WordprocessingDocument.Create("FilePath", WordprocessingDocumentType.Document))
+            {
+                MainDocumentPart mainPart = doc.AddMainDocumentPart();
+                mainPart.Document = new Document();
+                
+                Body body = mainPart.Document.AppendChild(new Body());
+
+                Paragraph para = body.AppendChild(new Paragraph());
+
+                Run run = para.AppendChild(new Run());
+
+                run.AppendChild (new Text("this new text for test")); 
+            }
+
+
+            Word.Application app = null;
                 try
                 {
                     app = new Word.Application();
@@ -60,7 +79,7 @@ namespace WpfApp1
                             );
                     }
                     Object newFileName = Path.Combine("C:\\VS Projects\\Commit\\Kursach\\Kursach\\WpfApp1\\Tickets\\",
-                        DateTime.Now.ToString("yyyyMMdd HHmmss") + fileinfo_.Name);
+                        DateTime.Now.ToString("HHmmss") + fileinfo_.Name);
                     app.ActiveDocument.SaveAs2(newFileName);
                     app.ActiveDocument.Close();
 

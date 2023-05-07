@@ -223,28 +223,32 @@ namespace WpfApp1
             var protocol_year_content = GetYearString();
 
             var nom_ticket = 1;
-
-            var Items = new Dictionary<string, string>
+            
+            //сделать по 20 вопросов
+            for (int i = 0; i < Convert.ToInt32(count_tickets); i++)
             {
-                {"<DISC>", disca_content},
-                {"<PCK>",  Chairman_pck_content},
-                {"<PREP>", teacher_content},
-                {"<KURS>", kurs_content},
-                {"<SEM>", semester_content},
-                {"<SPEC>", speciality_content},
-                {"<NOMPROT>", protocol_content},
-                {"<DATEPROT>", protocol_date_content},
-                {"<YEARPROT> ", protocol_year_content},
-                {"<NOMTICK>", nom_ticket.ToString()},
-                {"<TEO1>", RollQuestions("Теоретический", GetDisipline())},
-                {"<TEO2>", RollQuestions("Теоретический", GetDisipline())},
-                {"<PRAC1>", RollQuestions("Практический", GetDisipline())},
 
-            };
+                    var Items = new Dictionary<string, string>
+                {
+                    {"<DISC>", disca_content},
+                    {"<PCK>",  Chairman_pck_content},
+                    {"<PREP>", teacher_content},
+                    {"<KURS>", kurs_content},
+                    {"<SEM>", semester_content},
+                    {"<SPEC>", speciality_content},
+                    {"<NOMPROT>", protocol_content},
+                    {"<DATEPROT>", protocol_date_content},
+                    {"<YEARPROT> ", protocol_year_content},
+                    {"<NOMTICK>", nom_ticket.ToString()},
+                    {"<TEO1>", RollQuestions("Теоретический", GetDisipline())},
+                    {"<TEO2>", RollQuestions("Теоретический", GetDisipline())},
+                    {"<PRAC1>", RollQuestions("Практический", GetDisipline())},
 
-            helper.Process(Items);
-            nom_ticket++;
-
+                };
+             
+                    helper.Process(Items);
+                    nom_ticket++;
+            }
             MessageBox.Show($"Выбор сделан, Дисциплина: {disca_content},\n" +
                     //$"Количество теоретических вопросов: {count_teo},\n" +
                     $"Количество практических вопросов: {count_prac},\n" +
