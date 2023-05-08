@@ -23,20 +23,15 @@ namespace WpfApp1
         public ViewingTableData_admin()
         {
             InitializeComponent();
-            DGridQuestion.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
+            //DGridQuestion.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
         }
 
-        static void BtnEdit_Click(object sender, EventArgs e)
+        private void BtnEdit_Click(object sender, RoutedEventArgs e) //страница редактирования
         {
-        
+            NavigationService.Navigate(new EditingQuestion((sender as Button).DataContext as Questions));
         }
 
-        private void BtnEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        private void BtnAdd_Click(object sender, RoutedEventArgs e) //страница добавления
         {
             NavigationService.Navigate(new AddEditPAge());
         }
@@ -44,6 +39,15 @@ namespace WpfApp1
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ViewingTable_admin_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(Visibility== Visibility.Visible)
+            {
+                RandomTicketGenerator.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                DGridQuestion.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
+            }
         }
     }
 }

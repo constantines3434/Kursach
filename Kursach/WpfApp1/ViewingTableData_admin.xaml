@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewingTableData_admin">
-    <Grid x:Name="ViewingTable_admin" Background="#FFD3D3D3">
+    <Grid x:Name="ViewingTable_admin" Background="#FFD3D3D3" IsVisibleChanged="ViewingTable_admin_IsVisibleChanged">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>

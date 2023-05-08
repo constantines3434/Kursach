@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,16 +16,21 @@ using System.Windows.Shapes;
 namespace WpfApp1
 {
     /// <summary>
-    /// Логика взаимодействия для AddEditPAge.xaml
+    /// Логика взаимодействия для EditingQuestion.xaml
     /// </summary>
-    public partial class AddEditPAge : Page
+    public partial class EditingQuestion : Page
     {
-        public AddEditPAge()
+        private Questions _selectedQuestion;
+
+        public EditingQuestion(Questions selectedQuest)
         {
             InitializeComponent();
-            
-            DataContext = GetQuestions();
+            _selectedQuestion = selectedQuest;
+
+            DataContext = _selectedQuestion;
             Bindcombo_disca();
+
+            InitializeBoxes();
         }
 
         public List<Disciplines> Disc_list { get; set; }
@@ -41,7 +45,22 @@ namespace WpfApp1
             Disca.ItemsSource = Disc_list;
             Disca.SelectedValuePath = "";
             Disca.DisplayMemberPath = "name_discipline";
-            Disca.SelectedIndex = 0;
+        }
+
+        private void InitializeBoxes() 
+        {
+            question_textbox.Text = _selectedQuestion.question;
+            Type_question.Text = _selectedQuestion.type_question;
+
+            for (int i = 0; i < Disc_list.Count; i++)
+            {
+                Disca.SelectedIndex = i;
+
+                if (GetDisciplineId() == _selectedQuestion.id_discipline)
+                {
+                    return;
+                }
+            }
         }
 
         private int GetDisciplineId()
@@ -49,28 +68,23 @@ namespace WpfApp1
             return ((Disciplines)Disca.SelectedItem).id_discipline;
         }
 
-        private Questions GetQuestions()
+        private void UpdateQuestions()
         {
-            return new Questions
-            {
-                id_discipline = GetDisciplineId(),
-                question = question_textbox.Text,
-                type_question = Type_question.Text
-            };
+            _selectedQuestion.id_discipline = GetDisciplineId();
+            _selectedQuestion.question = question_textbox.Text;
+            _selectedQuestion.type_question = Type_question.Text;
         }
 
         private void But_Click_Save_Question(object sender, RoutedEventArgs e)
         {
-            var currentQuest = GetQuestions();
-
-            if (string.IsNullOrWhiteSpace(currentQuest.question))
+            if (string.IsNullOrWhiteSpace(_selectedQuestion.question))
             {
                 MessageBox.Show("Корректно напишите вопрос");
                 return;
             }
 
-            RandomTicketGenerator.GetContext().Questions.Add(currentQuest);
-
+            UpdateQuestions();
+            
             try
             {
                 RandomTicketGenerator.GetContext().SaveChanges();

@@ -121,6 +121,9 @@
     <Compile Include="Disciplines.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="EditingQuestion.xaml.cs">
+      <DependentUpon>EditingQuestion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Komplect_tickets.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Choice_user.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditingQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
