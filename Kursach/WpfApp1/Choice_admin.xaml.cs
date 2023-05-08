@@ -158,17 +158,6 @@ namespace WpfApp1
         /// <summary>
         /// Вопросы
         /// </summary>
-        enum Type_question : short
-        {
-            teo,
-            prac
-        }
-
-        enum Type_discipline : short
-        {
-            
-        }
-
         List<Questions> Questions_list { get; set; }
         private void Initialize_questions()
         {

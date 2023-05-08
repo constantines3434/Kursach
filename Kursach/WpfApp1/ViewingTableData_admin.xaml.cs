@@ -38,7 +38,7 @@ namespace WpfApp1
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddEditPAge());
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

@@ -212,7 +212,7 @@
                  Height="40"
                  Width="133"
                  TextWrapping="Wrap" Grid.ColumnSpan="2"
-               
+                 MaxLength="20"
                  x:Name="Count_of_teo_questions" 
                   Background="White" Margin="133,116,1,77" Grid.RowSpan="2"/>
 
@@ -222,7 +222,7 @@
                  Height="40"
                  Width="133"
                  TextWrapping="Wrap"
-              
+                 MaxLength="20"
                  x:Name="count_of_prac_questions" 
                  Background="White" Margin="0,116,0,77" Grid.RowSpan="2"/>
 
@@ -231,7 +231,7 @@
                  Height="40"
                  Width="133"
                  TextWrapping="Wrap"
-                
+                 MaxLength="20"
                  x:Name="count_of_tickets"
                  Background="White" Margin="0,116,0,77" Grid.RowSpan="2"
               />
