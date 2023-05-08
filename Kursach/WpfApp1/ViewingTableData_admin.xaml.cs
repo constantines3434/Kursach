@@ -38,7 +38,25 @@ namespace WpfApp1
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var questionForRemoving = DGridQuestion.SelectedItems.Cast<Questions>().ToList();
 
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {questionForRemoving.Count()} элементов?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try 
+                {
+                    RandomTicketGenerator.GetContext().Questions.RemoveRange(questionForRemoving);
+                    RandomTicketGenerator.GetContext().SaveChanges();
+                    MessageBox.Show("Данные удалены");
+
+                    DGridQuestion.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+
+            }
         }
 
         private void ViewingTable_admin_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
