@@ -267,7 +267,19 @@
                   HorizontalAlignment="Center"
                   VerticalAlignment="Top"
                   Width="133" />
-
+        
+        <TextBox Grid.Row="4"
+                 Grid.Column="3"
+                 Height="40"
+                 Width="133"
+                 TextWrapping="Wrap"
+                 MaxLength="20"
+                 x:Name="_of_tickets"
+                 Background="White"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Top"
+              />
+                
 
         <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"
                 Height="70" Width="250"
