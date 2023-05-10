@@ -51,53 +51,7 @@ namespace WpfApp1
             textBox_password.PasswordChar = '•';
             textBox_password.MaxLength = 100;
         }
-        /// <summary>
-        /// регистрация
-        /// </summary>
-        private void But_registration(object sender, RoutedEventArgs e)
-        {
-            var login = textBox_login.Text;
 
-            var role = Role.Text;
-
-            var password = textBox_password.Password.ToString();
-
-            if ((login != "") && (role != "") && (password != ""))
-            {
-                if ((role == "User") || (role == "Admin"))
-                {
-                    try
-                    {
-                        if (db.Users.Any(o => o.login_ == login))
-                        {
-                            throw new Exception("Логин уже занят");
-                        }
-                        Users newUser = new Users();
-                        newUser.login_ = login;
-                        newUser.password_ = password;
-                        newUser.role_ = role;
-
-                        db.Users.Add(newUser);
-                        db.SaveChanges();
-                        MessageBox.Show("Регистрация прошла успешно");
-                        NavigationService.Navigate(new Authorization());
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Неверно указана роль пользователя");
-                }
-            }
-            else MessageBox.Show("Для продолжения заполните все поля");
-        }   
-
-        /// <summary>
-        /// проверка на наличие пользователя в бд
-        /// </summary>
         private Boolean check_user()
         {
             var login = textBox_login.Text;
@@ -124,6 +78,58 @@ namespace WpfApp1
                 return false;
             }
         }
+
+        /// <summary>
+        /// регистрация
+        /// </summary>
+        private void But_registration(object sender, RoutedEventArgs e)
+        {
+            var login = textBox_login.Text;
+
+            var role = Role.Text;
+
+            var password = textBox_password.Password.ToString();
+
+            if ((login != "") && (role != "") && (password != ""))
+            {
+                if ((role == "User") || (role == "Admin"))
+                {
+                    try
+                    {
+                        if (db.Users.Any(o => o.login_ == login))
+                        {
+                            throw new Exception("Логин уже занят");
+                        }
+                        Users newUser = new Users();
+                        newUser.login_ = login;
+                        newUser.password_ = password;
+                        newUser.role_ = role;
+                        if (!check_user())
+                        {
+                            return;
+                        }
+                        db.Users.Add(newUser);
+                        db.SaveChanges();
+                        MessageBox.Show("Регистрация прошла успешно");
+                        NavigationService.Navigate(new Authorization());
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Неверно указана роль пользователя");
+                }
+            }
+            else MessageBox.Show("Для продолжения заполните все поля");
+        }   
+
+        /// <summary>
+        /// проверка на наличие пользователя в бд
+        /// </summary>
+       
         /// <summary>
         /// Переход к авторизации
         /// </summary>

@@ -189,7 +189,6 @@ namespace WpfApp1
 
             //var count_teo = count_of_teo_questions.Text;
             
-            var count_prac = count_of_prac_questions.Text;
 
             var helper = new WordHelper("Ex_Ticket_Prac.docx");
 
@@ -239,8 +238,6 @@ namespace WpfApp1
                     nom_ticket++;
             }
             MessageBox.Show($"Выбор сделан, Дисциплина: {disca_content},\n" +
-                    //$"Количество теоретических вопросов: {count_teo},\n" +
-                    $"Количество практических вопросов: {count_prac},\n" +
                     $"Количество билетов: {count_tickets},\n" +
                     $"Преподаватель {teacher_content},\n" +
                     $"Председатель цикловой комиссии {Chairman_pck_content} ");

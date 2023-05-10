@@ -94,6 +94,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddDiscipline.xaml.cs">
+      <DependentUpon>AddDiscipline.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddEditPAge.xaml.cs">
       <DependentUpon>AddEditPAge.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,10 @@
       <DependentUpon>ViewingTableData_user.xaml</DependentUpon>
     </Compile>
     <Compile Include="WordHelper.cs" />
+    <Page Include="AddDiscipline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddEditPAge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

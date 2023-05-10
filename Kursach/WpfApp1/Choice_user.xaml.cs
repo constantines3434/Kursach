@@ -35,7 +35,6 @@ namespace WpfApp1
             Bindcombo_speciality();
             Bindcombo_protocols();
             Initialize_questions();
-
         }
 
         //ComboBox disca
@@ -158,17 +157,6 @@ namespace WpfApp1
         /// <summary>
         /// Вопросы
         /// </summary>
-        enum Type_question : short
-        {
-            teo,
-            prac
-        }
-
-        enum Type_discipline : short
-        {
-
-        }
-
         List<Questions> Questions_list { get; set; }
         private void Initialize_questions()
         {
@@ -200,7 +188,6 @@ namespace WpfApp1
 
             //var count_teo = count_of_teo_questions.Text;
 
-            var count_prac = count_of_prac_questions.Text;
 
             var helper = new WordHelper("Ex_Ticket_Prac.docx");
 
@@ -224,34 +211,44 @@ namespace WpfApp1
 
             var nom_ticket = 1;
 
-            var Items = new Dictionary<string, string>
+            //сделать по 20 вопросов
+            for (int i = 0; i < Convert.ToInt32(count_tickets); i++)
             {
-                {"<DISC>", disca_content},
-                {"<PCK>",  Chairman_pck_content},
-                {"<PREP>", teacher_content},
-                {"<KURS>", kurs_content},
-                {"<SEM>", semester_content},
-                {"<SPEC>", speciality_content},
-                {"<NOMPROT>", protocol_content},
-                {"<DATEPROT>", protocol_date_content},
-                {"<YEARPROT> ", protocol_year_content},
-                {"<NOMTICK>", nom_ticket.ToString()},
-                {"<TEO1>", RollQuestions("Теоретический", GetDisipline())},
-                {"<TEO2>", RollQuestions("Теоретический", GetDisipline())},
-                {"<PRAC1>", RollQuestions("Практический", GetDisipline())},
 
-            };
+                var Items = new Dictionary<string, string>
+                {
+                    {"<DISC>", disca_content},
+                    {"<PCK>",  Chairman_pck_content},
+                    {"<PREP>", teacher_content},
+                    {"<KURS>", kurs_content},
+                    {"<SEM>", semester_content},
+                    {"<SPEC>", speciality_content},
+                    {"<NOMPROT>", protocol_content},
+                    {"<DATEPROT>", protocol_date_content},
+                    {"<YEARPROT> ", protocol_year_content},
+                    {"<NOMTICK>", nom_ticket.ToString()},
+                    {"<TEO1>", RollQuestions("Теоретический", GetDisipline())},
+                    {"<TEO2>", RollQuestions("Теоретический", GetDisipline())},
+                    {"<PRAC1>", RollQuestions("Практический", GetDisipline())},
 
-            //for(int i = 0; i < Items.)
-            helper.Process(Items);
-            nom_ticket++;
+                };
 
+                helper.Process(Items);
+                nom_ticket++;
+            }
             MessageBox.Show($"Выбор сделан, Дисциплина: {disca_content},\n" +
-                    //$"Количество теоретических вопросов: {count_teo},\n" +
-                    $"Количество практических вопросов: {count_prac},\n" +
                     $"Количество билетов: {count_tickets},\n" +
                     $"Преподаватель {teacher_content},\n" +
                     $"Председатель цикловой комиссии {Chairman_pck_content} ");
+        }
+        private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ViewingTableData_admin());
+        }
+
+        private void But_Auto(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Authorization());
         }
     }
 }

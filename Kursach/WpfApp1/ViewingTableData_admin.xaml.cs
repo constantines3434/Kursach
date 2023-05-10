@@ -67,5 +67,10 @@ namespace WpfApp1
                 DGridQuestion.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
             }
         }
+
+        private void Form_Ticket_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Choice_admin());
+        }
     }
 }

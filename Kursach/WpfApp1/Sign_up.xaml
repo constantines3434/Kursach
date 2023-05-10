@@ -92,7 +92,7 @@
                 x:Name="But2"
                 Content="Регистрация"
                  
-            Click="But_authorization" Margin="0,10,0,16">
+            Click="But_registration" Margin="0,10,0,16">
             <Button.Background>
                 <SolidColorBrush Color="#FFFA8072" />
             </Button.Background>
@@ -102,7 +102,7 @@
                 x:Name="But1"
                 Content="Авторизация"
                     
-            Click="But_registration" Margin="0,10,0,16">
+            Click="But_authorization" Margin="0,10,0,16">
             <Button.Background>
                 <SolidColorBrush Color="#FF87CEFA" />
             </Button.Background>

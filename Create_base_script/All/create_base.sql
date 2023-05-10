@@ -92,7 +92,8 @@ CREATE TABLE Questions
 	id_question INT IDENTITY,
     id_discipline int,
     question nvarchar(500),
-    type_question nvarchar(100),
+    type_question nvarchar(14),
+	complexity nvarchar(8),
 	--PRIMARY KEY(id_question, id_discipline),
 	PRIMARY KEY(id_question),
 	FOREIGN KEY (id_discipline) REFERENCES Disciplines (id_discipline) ON DELETE CASCADE ON UPDATE CASCADE	

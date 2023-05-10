@@ -66,7 +66,7 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="4"
                     Height="70"
-                    Width="280"
+                    Width="260"
                     FontSize="20"
                     FontFamily="Verdana"
                     FontWeight="Bold"
@@ -76,65 +76,47 @@
         </TextBlock>
 
         <TextBlock  Grid.Row="1"
-                    Grid.Column="0"
                     Height="70"
                     Width="120"
                     FontSize="14"
                     FontFamily="Verdana"
                     FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     x:Name="disca_header"
-                    VerticalAlignment="Center">
+                    >
             Дисциплина:
         </TextBlock>
 
-        <TextBlock  Grid.Row="1"
-                    Grid.Column="1" 
-                    Height="70" Width="120"
-                    TextWrapping="Wrap"
-                    FontSize="14" FontFamily="Verdana"
-                    FontWeight="Bold"
-                    x:Name="count_of_teo_questions_header"
-                    >
-            Количество теоретических вопросов:
-        </TextBlock>
 
-        <TextBlock  Grid.Row="1"
-                    Grid.Column="2"
-                    Height="70"
-                    Width="120"
-                    TextWrapping="Wrap"
-                    FontSize="14"
-                    FontFamily="Verdana"
-                    FontWeight="Bold"
-                    VerticalAlignment="Center"
-                    x:Name="count_of_prac_questions_header" 
-                    >
-            Количество практических вопросов:
-        </TextBlock>
+
+
 
         <TextBlock  Grid.Row="1"
                     Grid.Column="3"
                     Height="70"
-                    Width="100"
+                    Width="120"
                     TextWrapping="Wrap"
                     FontSize="14"
                     FontFamily="Verdana"
                     FontWeight="Bold"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     x:Name="count_of_tickets_header" >
             Количество билетов:
         </TextBlock>
 
         <TextBlock  Grid.Row="1"
-                    Grid.Column="3"
+                    Grid.Column="4"
                     Height="70"
                     Width="130"
                     TextWrapping="Wrap"
                     FontSize="14"
                     FontFamily="Verdana"
                     FontWeight="Bold"
-                    VerticalAlignment="Top"
-                    x:Name="teacher_header" Grid.ColumnSpan="2" Margin="133,0,4,0">
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    x:Name="teacher_header" >
             Преподаватель:
         </TextBlock>
 
@@ -146,7 +128,8 @@
                     FontSize="14"
                     FontFamily="Verdana"
                     FontWeight="Bold"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     x:Name="ck_header"  >
             Председатель цикловой комиссии:
         </TextBlock>
@@ -159,8 +142,35 @@
                     FontFamily="Verdana"
                     FontWeight="Bold"
                     x:Name="kurs_header"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             Курс:
+        </TextBlock>
+
+        <TextBlock  Grid.Row="1"
+                    Grid.Column="1"
+                    Height="70"
+                    Width="120"
+                    FontSize="14"
+                    FontFamily="Verdana"
+                    FontWeight="Bold"
+                    x:Name="Semester_header"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            Семестер:
+        </TextBlock>
+
+        <TextBlock  Grid.Row="1"
+                    Grid.Column="2"
+                    Height="70"
+                    Width="135"
+                    FontSize="14"
+                    FontFamily="Verdana"
+                    FontWeight="Bold"
+                    x:Name="Spec_header"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            Специальность:
         </TextBlock>
 
         <TextBlock  Grid.Row="3"
@@ -170,70 +180,34 @@
                     FontSize="14"
                     FontFamily="Verdana"
                     FontWeight="Bold"
-                    x:Name="Semester_header"
-                    VerticalAlignment="Center">
-            Семестер:
-        </TextBlock>
-
-        <TextBlock  Grid.Row="3"
-                    Grid.Column="2"
-                    Height="70"
-                    Width="135"
-                    FontSize="14"
-                    FontFamily="Verdana"
-                    FontWeight="Bold"
-                    x:Name="Spec_header"
-                    VerticalAlignment="Center">
-            Специальность:
-        </TextBlock>
-
-        <TextBlock  Grid.Row="3"
-                    Grid.Column="3"
-                    Height="70"
-                    Width="120"
-                    FontSize="14"
-                    FontFamily="Verdana"
-                    FontWeight="Bold"
                     x:Name="Prot_header"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             Протокол:
         </TextBlock>
 
         <ComboBox Name="Disca"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   Grid.Column="0"
+                  Width="133"
                   Height="30"
        
-                  HorizontalAlignment="Left"
+                  HorizontalAlignment="Center"
                   VerticalAlignment="Top"
-                  Width="133" Margin="0,116,0,87" Grid.RowSpan="2"/>
-
-        <TextBox Grid.Row="1"
-                 Height="40"
-                 Width="133"
-                 TextWrapping="Wrap" Grid.ColumnSpan="2"
-               
-                 x:Name="Count_of_teo_questions" 
-                  Background="White" Margin="133,116,1,77" Grid.RowSpan="2"/>
+                   />
 
 
-        <TextBox Grid.Row="1"
-                 Grid.Column="2"
-                 Height="40"
-                 Width="133"
-                 TextWrapping="Wrap"
-              
-                 x:Name="count_of_prac_questions" 
-                 Background="White" Margin="0,116,0,77" Grid.RowSpan="2"/>
 
-        <TextBox Grid.Row="1"
+        <TextBox Grid.Row="2"
                  Grid.Column="3"
                  Height="40"
                  Width="133"
                  TextWrapping="Wrap"
-                
+                 MaxLength="20"
                  x:Name="count_of_tickets"
-                 Background="White" Margin="0,116,0,77" Grid.RowSpan="2"
+                 Background="White"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Top"
               />
 
         <ComboBox Name="Teacher"
@@ -243,8 +217,8 @@
                   SelectedValuePath="id_teacher"
                   DisplayMemberPath="surname"
        
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
+                  HorizontalAlignment="Center"
+                 VerticalAlignment="Top"
                   Width="133"
                   Height="30">
         </ComboBox>
@@ -256,8 +230,8 @@
                   SelectedValuePath="id_chairman_pck"
                   DisplayMemberPath="name_"
             
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
+                  HorizontalAlignment="Center"
+                 VerticalAlignment="Top"
                   Width="133"
                   Height="30">
         </ComboBox>
@@ -266,20 +240,20 @@
                   Grid.Row="4"
                   Grid.Column="0"
                   Height="30"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  Width="133" Margin="0,0,0,70"/>
+                  HorizontalAlignment="Center"
+                 VerticalAlignment="Top"
+                  Width="133" />
 
         <ComboBox Name="Semester"
-                  Grid.Row="4"
+                  Grid.Row="2"
                   Grid.Column="1"
                   Height="30"
-                  HorizontalAlignment="Left"
+                  HorizontalAlignment="Center"
                   VerticalAlignment="Top"
-                  Width="133" Margin="0,0,0,70" />
+                  Width="133"  />
 
         <ComboBox Name="Spec"
-                  Grid.Row="4"
+                  Grid.Row="2"
                   Grid.Column="2"
                   Height="30"
                   HorizontalAlignment="Left"
@@ -288,14 +262,14 @@
 
         <ComboBox Name="Protocol"
                   Grid.Row="4"
-                  Grid.Column="3"
+                  Grid.Column="1"
                   Height="30"
-                  HorizontalAlignment="Left"
+                  HorizontalAlignment="Center"
                   VerticalAlignment="Top"
-                  Width="133" Margin="0,0,0,70" />
+                  Width="133" />
 
 
-        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4"
+        <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"
                 Height="70" Width="250"
                  FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_Form"
@@ -307,6 +281,28 @@
             </Button.Background>
         </Button>
 
-        
+        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                Height="70" Width="250"
+                 FontSize="12" FontFamily="Verdana" FontWeight="Bold"
+                x:Name="But_Authorization"
+                Content="Авторизация"
+                 
+            Click="But_Auto">
+            <Button.Background>
+                <SolidColorBrush Color="#FFFFFACD" />
+            </Button.Background>
+        </Button>
+
+        <Button Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2"
+                Height="70" Width="250"
+                FontSize="12" FontFamily="Verdana" FontWeight="Bold"
+                x:Name="But_viewing"
+                Content="Просмотр базы данных"
+                 
+            Click="But_Click_Viewing_Table_Data">
+            <Button.Background>
+                <SolidColorBrush Color="#FF87CEFA" />
+            </Button.Background>
+        </Button>
     </Grid>
 </Page>

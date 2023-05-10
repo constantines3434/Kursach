@@ -25,11 +25,11 @@
                     >
             Редактирование вопроса
         </TextBlock>
-        <DataGrid x:Name="DGridQuestion" AutoGenerateColumns="False" Grid.Row="1">
+        <DataGrid x:Name="DGridQuestion" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
 
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Индентифиатор вопроса"
-                                    
+                                        
                                     Binding="{Binding id_question}"
                                     Width="50">
 
@@ -67,13 +67,26 @@
             </DataGrid.Columns>
            
         </DataGrid>
+        <Button Content="Формирование билета"
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                Width="150"
+                Name="Form_Ticket"
+                Click="Form_Ticket_Click">
+            <Button.Background>
+            <SolidColorBrush Color="#FFFA8072" />
+            </Button.Background>
+        </Button>
+        
         <Button Content="Добавить"
                 Grid.Row="2"
                 HorizontalAlignment="Left"
                 Width="100"
                 Name="BtnAdd"
                 Click="BtnAdd_Click">
-
+            <Button.Background>
+            <SolidColorBrush Color="#FFFFFACD" />
+            </Button.Background>
         </Button>
         <Button Content="Удалить"
                 Grid.Row="2"
@@ -81,7 +94,9 @@
                 Width="100"
                 Name="BtnDelete"
                 Click="BtnDelete_Click">
-
+            <Button.Background>
+                <SolidColorBrush Color="#FF87CEFA" />
+            </Button.Background>
         </Button>
     </Grid>
 </Page>
