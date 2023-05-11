@@ -73,6 +73,7 @@ namespace WpfApp1
             _selectedQuestion.id_discipline = GetDisciplineId();
             _selectedQuestion.question = question_textbox.Text;
             _selectedQuestion.type_question = Type_question.Text;
+            _selectedQuestion.complexity = Complexity_question.Text;
         }
 
         private void But_Click_Save_Question(object sender, RoutedEventArgs e)

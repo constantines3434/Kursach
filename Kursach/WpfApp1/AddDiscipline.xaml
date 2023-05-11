@@ -10,10 +10,7 @@
 
     <Grid  x:Name="AddEditPage_user" Background="#FFD3D3D3">
         <Grid.RowDefinitions >
-            <RowDefinition>
-
-            </RowDefinition>
-
+        
             <RowDefinition>
 
             </RowDefinition>
@@ -51,77 +48,54 @@
 
         <TextBlock  Grid.Row="1"
                     Grid.Column="0"
-                    Height="30"
+                    Height="40"
                     Width="120"
                     FontSize="14"
                     FontFamily="Verdana"
                     FontWeight="Bold"
+                    TextWrapping="Wrap"
                     x:Name="disca_header"
                     VerticalAlignment="Center">
-            id_discipline:
+            Номер дисциплины:
         </TextBlock>
 
         <TextBlock  Grid.Row="2"
                     Grid.Column="0"
-                    Height="30"
-                    Width="80"
-                    FontSize="14"
-                    FontFamily="Verdana"
-                    FontWeight="Bold"
-                    x:Name="quest_header"
-                    VerticalAlignment="Center">
-            question:
-        </TextBlock>
-
-        <TextBlock  Grid.Row="3"
-                    Grid.Column="0"
-                    Height="30"
+                    Height="40"
                     Width="120"
                     FontSize="14"
                     FontFamily="Verdana"
                     FontWeight="Bold"
-                    x:Name="type_question_header"
+                    TextWrapping="Wrap"
+                    x:Name="quest_header"
                     VerticalAlignment="Center">
-            type_question:
+            Название дисциплины:
         </TextBlock>
 
+       
 
-        <ComboBox x:Name="Disca"
-                  Grid.Row="1"
-                  Grid.Column="1"
-                  Grid.ColumnSpan="2"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  Height="70"
-                  Width="600"
-                  Background="White">
-        </ComboBox>
+
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="2"
+                 Height="70"
+                 Width="600"
+                 HorizontalAlignment="Center"
+                 TextWrapping="Wrap" 
+                 MaxLength="20"
+                 x:Name="id_discipline_textbox" 
+                  Background="White" />
 
         <TextBox Grid.Row="2"
                  Grid.Column="1"
                  Grid.ColumnSpan="2"
                  Height="70"
                  Width="600"
+                 HorizontalAlignment="Center"
                  TextWrapping="Wrap" 
                  MaxLength="500"
-                 x:Name="question_textbox" 
+                 x:Name="name_discipline_textbox" 
                   Background="White" />
-
-        <ComboBox x:Name="Type_question"
-                  Grid.Row="3"
-                  Grid.Column="1"
-                  Grid.ColumnSpan="2"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  Height="70"
-                  Width="600"
-                  SelectedIndex="0"
-                  Background="White">
-
-            <TextBlock>Теоретический</TextBlock>
-            <TextBlock>Практический</TextBlock>
-        </ComboBox>
-
 
         <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                 Height="70" Width="250"

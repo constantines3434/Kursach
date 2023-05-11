@@ -18,6 +18,11 @@
 
             </RowDefinition>
 
+
+            <RowDefinition>
+
+            </RowDefinition>
+
             <RowDefinition>
 
             </RowDefinition>
@@ -124,8 +129,36 @@
             <TextBlock>Практический</TextBlock>
         </ComboBox>
 
+        <TextBlock  Grid.Row="4"
+                    Grid.Column="0"
+                    Height="30"
+                    Width="120"
+                    FontSize="14"
+                    FontFamily="Verdana"
+                    FontWeight="Bold"
+                    TextWrapping="Wrap"
+                    x:Name="complexity_header"
+                    VerticalAlignment="Center">
+            Сложность вопроса:
+        </TextBlock>
 
-        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+        <ComboBox x:Name="Complexity_question"
+                  Grid.Row="4"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Height="70"
+                  Width="600"
+                  SelectedIndex="0"
+                  Background="White">
+
+            <TextBlock>Сложный</TextBlock>
+            <TextBlock>Средний</TextBlock>
+            <TextBlock>Простой</TextBlock>
+        </ComboBox>
+
+        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
                 Height="70" Width="250"
                  FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_Save_Question"
@@ -137,7 +170,7 @@
             </Button.Background>
         </Button>
 
-        <Button Grid.Row="4" Grid.Column="0"
+        <Button Grid.Row="5" Grid.Column="0"
                 Height="70" Width="200"
                 FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_viewing"
