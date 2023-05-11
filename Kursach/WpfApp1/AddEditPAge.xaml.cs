@@ -24,7 +24,7 @@ namespace WpfApp1
         public AddEditPAge()
         {
             InitializeComponent();
-            
+
             DataContext = GetQuestions();
             Bindcombo_disca();
         }
@@ -46,7 +46,8 @@ namespace WpfApp1
 
         private int GetDisciplineId()
         {
-            return ((Disciplines)Disca.SelectedItem).id_discipline;
+            //return ((Disciplines)Disca.SelectedItem).id_discipline; ошибка
+            return 1;
         }
 
         private Questions GetQuestions()
@@ -55,7 +56,8 @@ namespace WpfApp1
             {
                 id_discipline = GetDisciplineId(),
                 question = question_textbox.Text,
-                type_question = Type_question.Text
+                type_question = Type_question.Text,
+                complexity = Complexity_question.Text
             };
         }
 

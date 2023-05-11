@@ -24,5 +24,15 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+
+        private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void But_Click_Save_Question(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

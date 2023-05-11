@@ -154,7 +154,7 @@ namespace WpfApp1
         {
             return GetDate().ToString("yyyy");
         }
-
+        
         /// <summary>
         /// Вопросы
         /// </summary>
@@ -172,7 +172,7 @@ namespace WpfApp1
             string answer = "";
             foreach ( var quest in Questions_list)
             {
-                if (quest.type_question == type && quest.id_discipline == id_disc)
+                if (quest.type_question == type && quest.id_discipline == id_disc && quest.complexity == complexity_of_question.Text)
                 {
                     answer = quest.question;
                     Questions_list.Remove(quest);
@@ -186,9 +186,6 @@ namespace WpfApp1
         private void But_Click_Form_Ticket(object sender, RoutedEventArgs e)
         {
             var disca_content = Disca.Text;
-
-            //var count_teo = count_of_teo_questions.Text;
-            
 
             var helper = new WordHelper("Ex_Ticket_Prac.docx");
 

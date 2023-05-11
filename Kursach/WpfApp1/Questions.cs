@@ -24,6 +24,7 @@ namespace WpfApp1
         public Nullable<int> id_discipline { get; set; }
         public string question { get; set; }
         public string type_question { get; set; }
+        public string complexity { get; set; }
     
         public virtual Disciplines Disciplines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

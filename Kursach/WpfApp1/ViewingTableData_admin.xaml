@@ -57,6 +57,12 @@
 
                 </DataGridTextColumn>
 
+                <DataGridTextColumn Header="Сложность вопроса"
+                                    Binding="{Binding complexity}"
+                                    Width="120">
+
+                </DataGridTextColumn>
+
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

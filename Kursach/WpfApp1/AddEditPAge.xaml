@@ -24,6 +24,10 @@
             <RowDefinition>
 
             </RowDefinition>
+
+            <RowDefinition>
+
+            </RowDefinition>
             <RowDefinition>
 
             </RowDefinition>
@@ -58,7 +62,7 @@
                     FontWeight="Bold"
                     x:Name="disca_header"
                     VerticalAlignment="Center">
-            id_discipline:
+            Дисциплина:
         </TextBlock>
 
         <TextBlock  Grid.Row="2"
@@ -70,7 +74,7 @@
                     FontWeight="Bold"
                     x:Name="quest_header"
                     VerticalAlignment="Center">
-            question:
+            Вопрос:
         </TextBlock>
 
         <TextBlock  Grid.Row="3"
@@ -82,9 +86,22 @@
                     FontWeight="Bold"
                     x:Name="type_question_header"
                     VerticalAlignment="Center">
-            type_question:
+            Тип вопроса:
         </TextBlock>
-        
+
+        <TextBlock  Grid.Row="4"
+                    Grid.Column="0"
+                    Height="30"
+                    Width="120"
+                    FontSize="14"
+                    FontFamily="Verdana"
+                    FontWeight="Bold"
+                    TextWrapping="Wrap"
+                    x:Name="complexity_header"
+                    VerticalAlignment="Center">
+            Сложность вопроса:
+        </TextBlock>
+
 
         <ComboBox x:Name="Disca"
                   Grid.Row="1"
@@ -92,9 +109,10 @@
                   Grid.ColumnSpan="2"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
+                  SelectedItem="0"
                   Height="70"
                   Width="600"
-                  Background="White">
+                  Background="White" Margin="0,7,0,0" Grid.RowSpan="2">
         </ComboBox>
 
         <TextBox Grid.Row="2"
@@ -122,8 +140,24 @@
             <TextBlock>Практический</TextBlock>
         </ComboBox>
 
+        <ComboBox x:Name="Complexity_question"
+                  Grid.Row="4"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Height="70"
+                  Width="600"
+                  SelectedIndex="0"
+                  Background="White">
 
-        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+            <TextBlock>Сложный</TextBlock>
+            <TextBlock>Средний</TextBlock>
+            <TextBlock>Простой</TextBlock>
+        </ComboBox>
+
+
+        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
                 Height="70" Width="250"
                  FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_Save_Question"
@@ -135,7 +169,7 @@
             </Button.Background>
         </Button>
 
-        <Button Grid.Row="4" Grid.Column="0"
+        <Button Grid.Row="5" Grid.Column="0"
                 Height="70" Width="200"
                 FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_viewing"

@@ -186,6 +186,20 @@
             Протокол:
         </TextBlock>
 
+        <TextBlock  Grid.Row="3"
+                    Grid.Column="2"
+                    TextWrapping="Wrap"
+                    Height="70"
+                    Width="120"
+                    FontSize="14"
+                    FontFamily="Verdana"
+                    FontWeight="Bold"
+                    x:Name="complexity_header"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            Сложность вопросов:
+        </TextBlock>
+
         <ComboBox Name="Disca"
                   Grid.Row="2"
                   Grid.Column="0"
@@ -267,19 +281,23 @@
                   HorizontalAlignment="Center"
                   VerticalAlignment="Top"
                   Width="133" />
-        
-        <TextBox Grid.Row="4"
-                 Grid.Column="3"
-                 Height="40"
-                 Width="133"
-                 TextWrapping="Wrap"
-                 MaxLength="20"
-                 x:Name="_of_tickets"
-                 Background="White"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Top"
-              />
-                
+
+        <ComboBox x:Name="complexity_of_question"
+                  Grid.Row="4"
+                  Grid.Column="2"
+                  
+                  Height="30"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Top"
+                  Width="133" 
+                  SelectedIndex="0"
+                  Background="White">
+
+            <TextBlock>Сложный</TextBlock>
+            <TextBlock>Средний</TextBlock>
+            <TextBlock>Простой</TextBlock>
+        </ComboBox>
+
 
         <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"
                 Height="70" Width="250"

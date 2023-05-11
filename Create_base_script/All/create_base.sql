@@ -1,3 +1,4 @@
+
 USE master;
 
 IF EXISTS (SELECT * FROM SYS.DATABASES WHERE NAME = 'Base')
@@ -28,7 +29,6 @@ IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Chairman_pck')
 
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Speciality')
 	DROP TABLE Speciality
-
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Cycle_commissions')
 	DROP TABLE Cycle_commissions
 
@@ -220,7 +220,8 @@ CREATE TABLE Questions
 	complexity nvarchar(8),
 	--PRIMARY KEY(id_question, id_discipline),
 	PRIMARY KEY(id_question),
-	FOREIGN KEY (id_discipline) REFERENCES Disciplines (id_discipline) ON DELETE CASCADE ON UPDATE CASCADE	
+	FOREIGN KEY (id_discipline) REFERENCES Disciplines (id_discipline)
+	ON DELETE CASCADE ON UPDATE CASCADE	
 );
 
 --DELETE FROM Questions;
@@ -344,7 +345,7 @@ DiskDirectSuite. Разбейте диск на указанные разделы.', 'Практический', 'Средний'
 ('1', 'Назначение и функции операционной системы.', 'Теоретический', 'Сложный'),
 ('1', 'Понятие программного интерфейса, его назначение. Виды интерфейсов', 'Теоретический', 'Средний'),
 ('1', 'Командный интерфейс. Виды реализации.', 'Теоретический', 'Простой'),
-('1', 'WIMP-интерфейс. SILK-интерфейс.Виды реализации.', 'Теоретический', 'Сложный'),
+('1', 'WIMP-интерфейс. SILK-интерфейс. Виды реализации.', 'Теоретический', 'Сложный'),
 --==================
 ('1', 'Определение и функции операционных систем. Эволюция ОС', 'Теоретический', 'Средний'),
 ('1', 'Архитектура ОС: ядро и вспомогательные модули, режимы работы процессора:
