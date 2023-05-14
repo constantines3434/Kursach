@@ -21,7 +21,6 @@ namespace WpfApp1
     public partial class EditingQuestion : Page
     {
         private Questions _selectedQuestion;
-
         public EditingQuestion(Questions selectedQuest)
         {
             InitializeComponent();
@@ -52,10 +51,8 @@ namespace WpfApp1
             question_textbox.Text = _selectedQuestion.question;
             Type_question.Text = _selectedQuestion.type_question;
 
-            for (int i = 0; i < Disc_list.Count; i++)
+            for (int i = 0; i < Disc_list.Count; i++) //получение по названию дисцы индекса
             {
-                Disca.SelectedIndex = i;
-
                 if (GetDisciplineId() == _selectedQuestion.id_discipline)
                 {
                     return;

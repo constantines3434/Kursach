@@ -23,45 +23,28 @@ namespace WpfApp1
         public AddDiscipline()
         {
             InitializeComponent();
-            DataContext = GetDisciplines();
-            Bindcombo_disca();
+            DataContext = GetDiscipline();
         }
 
-        
-
-        private int GetDisciplineId()
-        {
-            //return ((Disciplines)Disca.SelectedItem).id_discipline; ошибка
-            return 1;
-        }
-
-        private Disciplines GetDisciplines()
+        private Disciplines GetDiscipline()
         {
             return new Disciplines
             {
-                id_discipline = int.Parse(id_discipline_textbox.Text),
-                name_discipline = name_discipline_textbox.Text,
+                name_discipline = name_discipline_textbox.Text
             };
         }
 
-        private void But_Click_Save_Question(object sender, RoutedEventArgs e)
+        private void But_Click_Save_Discipline(object sender, RoutedEventArgs e)
         {
-            var currentQuest = GetDisciplines();
+            var currentDiscipline = GetDiscipline();
 
-            if (string.IsNullOrWhiteSpace(currentQuest.name_discipline))
+            if (string.IsNullOrWhiteSpace(currentDiscipline.name_discipline))
             {
                 MessageBox.Show("Корректно напишите название дисциплины");
                 return;
             }
 
-         //   if (string.IsNullOrWhiteSpace(currentQuest.id_discipline))
-           
-            {
-                MessageBox.Show("Корректно напишите номер дисциплины");
-                return;
-            }
-
-            RandomTicketGenerator.GetContext().Questions.Add(currentQuest);
+            RandomTicketGenerator.GetContext().Disciplines.Add(currentDiscipline);
 
             try
             {
@@ -76,7 +59,30 @@ namespace WpfApp1
 
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewingTableData_admin());
+            NavigationService.Navigate(new ViewingDisciplineTable());
+        }
+
+        private void But_Click_Save_Question(object sender, RoutedEventArgs e)
+        {
+            var currentQuest = GetDiscipline();
+
+            if (string.IsNullOrWhiteSpace(currentQuest.name_discipline))
+            {
+                MessageBox.Show("Корректно напишите вопрос");
+                return;
+            }
+
+            RandomTicketGenerator.GetContext().Disciplines.Add(currentQuest);
+
+            try
+            {
+                RandomTicketGenerator.GetContext().SaveChanges();
+                MessageBox.Show("Информация сохранена");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }

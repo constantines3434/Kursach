@@ -16,40 +16,34 @@ using System.Windows.Shapes;
 namespace WpfApp1
 {
     /// <summary>
-    /// Логика взаимодействия для ViewingTableData_admin.xaml
+    /// Логика взаимодействия для VIewingUsersTable.xaml
     /// </summary>
-    public partial class ViewingTableData_admin : Page
+    public partial class VIewingUsersTable : Page
     {
-        public ViewingTableData_admin()
+        public VIewingUsersTable()
         {
             InitializeComponent();
-            //DGridQuestion.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e) //страница редактирования
         {
-            NavigationService.Navigate(new EditingQuestion((sender as Button).DataContext as Questions));
-        }
-
-        private void BtnAdd_Click(object sender, RoutedEventArgs e) //страница добавления
-        {
-            NavigationService.Navigate(new AddEditPAge());
+            NavigationService.Navigate(new EditingUser((sender as Button).DataContext as Users));
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var questionForRemoving = DGridQuestion.SelectedItems.Cast<Questions>().ToList();
+            var userForRemoving = DGridUsers.SelectedItems.Cast<Users>().ToList();
 
-            if (MessageBox.Show($"Вы точно хотите удалить следующие {questionForRemoving.Count()} элементов?", "Внимание",
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {userForRemoving.Count()} элементов?", "Внимание",
                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                try 
+                try
                 {
-                    RandomTicketGenerator.GetContext().Questions.RemoveRange(questionForRemoving);
+                    RandomTicketGenerator.GetContext().Users.RemoveRange(userForRemoving);
                     RandomTicketGenerator.GetContext().SaveChanges();
                     MessageBox.Show("Данные удалены");
 
-                    DGridQuestion.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
+                    DGridUsers.ItemsSource = RandomTicketGenerator.GetContext().Users.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -58,13 +52,15 @@ namespace WpfApp1
 
             }
         }
-
-        private void ViewingTable_admin_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        /// <summary>
+        /// показ изменений в таблице
+        /// </summary>
+        private void ViewingUsers_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if(Visibility== Visibility.Visible)
+            if (Visibility == Visibility.Visible)
             {
                 RandomTicketGenerator.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                DGridQuestion.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
+                DGridUsers.ItemsSource = RandomTicketGenerator.GetContext().Users.ToList();
             }
         }
 
@@ -73,9 +69,5 @@ namespace WpfApp1
             NavigationService.Navigate(new Choice_admin());
         }
 
-        private void Next_Table(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new ViewingDisciplineTable());
-        }
     }
 }

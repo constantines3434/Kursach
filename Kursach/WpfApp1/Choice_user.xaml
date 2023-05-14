@@ -292,17 +292,5 @@
                 <SolidColorBrush Color="#FFFFFACD" />
             </Button.Background>
         </Button>
-
-        <Button Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2"
-                Height="70" Width="250"
-                FontSize="12" FontFamily="Verdana" FontWeight="Bold"
-                x:Name="But_viewing"
-                Content="Просмотр базы данных"
-                 
-            Click="But_Click_Viewing_Table_Data">
-            <Button.Background>
-                <SolidColorBrush Color="#FF87CEFA" />
-            </Button.Background>
-        </Button>
     </Grid>
 </Page>

@@ -181,7 +181,6 @@ namespace WpfApp1
             return answer;
         }
 
-        //
         private void But_Click_Form_Ticket(object sender, RoutedEventArgs e)
         {
             var disca_content = Disca.Text;
@@ -241,11 +240,6 @@ namespace WpfApp1
                     $"Преподаватель {teacher_content},\n" +
                     $"Председатель цикловой комиссии {Chairman_pck_content} ");
         }
-        private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new ViewingTableData_admin());
-        }
-
         private void But_Auto(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Authorization());

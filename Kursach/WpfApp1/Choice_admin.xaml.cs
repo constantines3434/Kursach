@@ -62,6 +62,7 @@ namespace WpfApp1
 
         private void Bindcombo_teacher()
         {
+            
             var Item = RandomTicketGenerator.GetContext().Teacher.ToList();
             Teacher_list = Item;
             DataContext = Teacher_list;
@@ -70,7 +71,6 @@ namespace WpfApp1
             Teacher.DisplayMemberPath = "surname";
             Teacher.SelectedIndex = 0;
         }
-        //
 
         //ComboBox Chairman_pck
         public List<Chairman_pck> Chairman_pck_list { get; set; }
@@ -85,6 +85,49 @@ namespace WpfApp1
             Chairman_pck.SelectedIndex = 0;
         }
         //
+
+        //ComboBox Speciality
+        public List<Speciality> Speciality_list { get; set; }
+        private void Bindcombo_speciality()
+        {
+            var Item = RandomTicketGenerator.GetContext().Speciality.ToList();
+            Speciality_list = Item;
+            DataContext = Speciality_list;
+            Spec.ItemsSource = Speciality_list;
+            Spec.SelectedValuePath = "";
+            Spec.DisplayMemberPath = "name_of_speciality";
+            Spec.SelectedIndex = 0;
+        }
+        //
+
+
+
+        private int GetTeacherId()
+        {
+            return ((Teacher)Teacher.SelectedItem).id_teacher;
+        }
+        private int GetChairmanId()
+        {
+            return ((Chairman_pck)Chairman_pck.SelectedItem).id_chairman_pck;
+        }
+
+        private string GetSpecialytyId()
+        {
+            return ((Speciality)Spec.SelectedItem).code_speciality;
+        }
+
+        //обдумать надобность получения данных из таблиц
+
+        public List<Cycle_commissions> Cycle_Commissions_list { get; set; }
+        private Cycle_commissions GetCommission()
+        {
+            return Cycle_Commissions_list.Find(
+                (commission) =>
+                    commission.id_teacher == GetTeacherId()
+                 && commission.id_chairman_pck == GetChairmanId()
+                 && commission.code_speciality == GetSpecialytyId()
+            );
+        }
 
         //ComboBox kurs
         public List<Kurs> Kurs_list { get; set; }
@@ -114,24 +157,12 @@ namespace WpfApp1
         }
         //
 
-        //ComboBox Speciality
-        public List<Speciality> Speciality_list { get; set; }
-        private void Bindcombo_speciality()
-        {
-            var Item = RandomTicketGenerator.GetContext().Speciality.ToList();
-            Speciality_list = Item;
-            DataContext = Speciality_list;
-            Spec.ItemsSource = Speciality_list;
-            Spec.SelectedValuePath = "";
-            Spec.DisplayMemberPath = "name_of_speciality";
-            Spec.SelectedIndex = 0;
-        }
-        //
-
         //ComboBox Protocol
         public List<Protocols> Protocols_list { get; set; }
+
         private void Bindcombo_protocols()
         {
+
             var Item = RandomTicketGenerator.GetContext().Protocols.ToList();
             Protocols_list = Item;
             DataContext = Protocols_list;
@@ -162,7 +193,7 @@ namespace WpfApp1
         private void Initialize_questions()
         {
             Questions_list = RandomTicketGenerator.GetContext().Questions.ToList();
-
+            
             var rng = new Random();
             Questions_list = Questions_list.OrderBy(x => rng.Next()).ToList();
         }
@@ -181,10 +212,12 @@ namespace WpfApp1
             }
             return answer;
         }
-
+        
         //
         private void But_Click_Form_Ticket(object sender, RoutedEventArgs e)
         {
+
+
             var disca_content = Disca.Text;
 
             var helper = new WordHelper("Ex_Ticket_Prac.docx");

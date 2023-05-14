@@ -124,8 +124,14 @@
     <Compile Include="Disciplines.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="EditingDiscipline.xaml.cs">
+      <DependentUpon>EditingDiscipline.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditingQuestion.xaml.cs">
       <DependentUpon>EditingQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditingUser.xaml.cs">
+      <DependentUpon>EditingUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Komplect_tickets.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
@@ -172,11 +178,14 @@
     <Compile Include="Users.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewingDisciplineTable.xaml.cs">
+      <DependentUpon>ViewingDisciplineTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewingTableData_admin.xaml.cs">
       <DependentUpon>ViewingTableData_admin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewingTableData_user.xaml.cs">
-      <DependentUpon>ViewingTableData_user.xaml</DependentUpon>
+    <Compile Include="VIewingUsersTable.xaml.cs">
+      <DependentUpon>VIewingUsersTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="WordHelper.cs" />
     <Page Include="AddDiscipline.xaml">
@@ -199,7 +208,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditingDiscipline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditingQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditingUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,11 +236,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewingDisciplineTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewingTableData_admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewingTableData_user.xaml">
+    <Page Include="VIewingUsersTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
