@@ -1,20 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
 using System.Data;
-
 
 namespace WpfApp1
 {
@@ -184,9 +174,6 @@ namespace WpfApp1
         private void But_Click_Form_Ticket(object sender, RoutedEventArgs e)
         {
             var disca_content = Disca.Text;
-
-            //var count_teo = count_of_teo_questions.Text;
-
 
             var helper = new WordHelper("Ex_Ticket_Prac.docx");
 

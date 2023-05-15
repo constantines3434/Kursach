@@ -1,18 +1,9 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
 using System.Data;
 
 
@@ -100,8 +91,6 @@ namespace WpfApp1
         }
         //
 
-
-
         private int GetTeacherId()
         {
             return ((Teacher)Teacher.SelectedItem).id_teacher;
@@ -116,8 +105,6 @@ namespace WpfApp1
             return ((Speciality)Spec.SelectedItem).code_speciality;
         }
 
-        //обдумать надобность получения данных из таблиц
-
         public List<Cycle_commissions> Cycle_Commissions_list { get; set; }
         private Cycle_commissions GetCommission()
         {
@@ -129,7 +116,6 @@ namespace WpfApp1
             );
         }
 
-        //ComboBox kurs
         public List<Kurs> Kurs_list { get; set; }
         private void Bindcombo_kurs()
         {
@@ -141,9 +127,7 @@ namespace WpfApp1
             Kurs.DisplayMemberPath = "nom_kurs";
             Kurs.SelectedIndex = 0;
         }
-        //
 
-        //ComboBox Semester
         public List<Semesters> Semesters_list { get; set; }
         private void Bindcombo_semester()
         {
@@ -155,9 +139,7 @@ namespace WpfApp1
             Semester.DisplayMemberPath = "nom_semester";
             Semester.SelectedIndex = 0;
         }
-        //
 
-        //ComboBox Protocol
         public List<Protocols> Protocols_list { get; set; }
 
         private void Bindcombo_protocols()
@@ -185,10 +167,7 @@ namespace WpfApp1
         {
             return GetDate().ToString("yyyy");
         }
-        
-        /// <summary>
-        /// Вопросы
-        /// </summary>
+
         List<Questions> Questions_list { get; set; }
         private void Initialize_questions()
         {
@@ -213,34 +192,21 @@ namespace WpfApp1
             return answer;
         }
         
-        //
         private void But_Click_Form_Ticket(object sender, RoutedEventArgs e)
         {
 
-
-            var disca_content = Disca.Text;
-
+            string disca_content = Disca.Text;
             var helper = new WordHelper("Ex_Ticket_Prac.docx");
-
-            var count_tickets = count_of_tickets.Text;
-
-            var teacher_content = Teacher.Text;
-
-            var Chairman_pck_content = Chairman_pck.Text;
-
-            var kurs_content = Kurs.Text;
-            
-            var semester_content = Semester.Text;
-
-            var speciality_content = Spec.Text;
-
-            var protocol_content = Protocol.Text;
-
+            string count_tickets = count_of_tickets.Text;
+            string teacher_content = Teacher.Text;
+            string Chairman_pck_content = Chairman_pck.Text;
+            string kurs_content = Kurs.Text;
+            string semester_content = Semester.Text;
+            string speciality_content = Spec.Text;
+            string protocol_content = Protocol.Text;
             var protocol_date_content = GetDateString();
-
             var protocol_year_content = GetYearString();
-
-            var nom_ticket = 1;
+            int nom_ticket = 1;
             
             //сделать по 20 вопросов
             for (int i = 0; i < Convert.ToInt32(count_tickets); i++)

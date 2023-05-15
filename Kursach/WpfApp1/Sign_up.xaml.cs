@@ -1,27 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Data.SqlClient;
-using System.Data.Entity;
 using System.Data;
-using System.Data.Entity.Infrastructure;
 
 namespace WpfApp1
 {
-    /// <summary>
-    /// Логика взаимодействия для Sign_up.xaml
-    /// </summary>
     public partial class Sign_up : Page
     {
         RandomTicketGenerator db;
@@ -29,9 +16,9 @@ namespace WpfApp1
         DataBase database = new DataBase();
         public Sign_up()
         {
-                InitializeComponent();
-                bindcombo_Users();
-                db = new RandomTicketGenerator();
+            InitializeComponent();
+            bindcombo_Users();
+            db = new RandomTicketGenerator();
         }
 
         //ComboBox kurs
@@ -52,6 +39,9 @@ namespace WpfApp1
             textBox_password.MaxLength = 100;
         }
 
+        /// <summary>
+        /// проверка на наличие пользователя в бд
+        /// </summary>
         private Boolean check_user()
         {
             var login = textBox_login.Text;
@@ -124,12 +114,8 @@ namespace WpfApp1
                 }
             }
             else MessageBox.Show("Для продолжения заполните все поля");
-        }   
+        }
 
-        /// <summary>
-        /// проверка на наличие пользователя в бд
-        /// </summary>
-       
         /// <summary>
         /// Переход к авторизации
         /// </summary>
@@ -140,4 +126,4 @@ namespace WpfApp1
     }
 }
 
-   
+

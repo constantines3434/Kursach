@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp1
 {
@@ -24,17 +15,14 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
-
         private void BtnEdit_Click(object sender, RoutedEventArgs e) //страница редактирования
         {
             NavigationService.Navigate(new EditingDiscipline((sender as Button).DataContext as Disciplines));
         }
-
         private void BtnAdd_Click(object sender, RoutedEventArgs e) //страница добавления
         {
             NavigationService.Navigate(new AddDiscipline());
         }
-
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             var disciplineForRemoving = DGridDiscipline.SelectedItems.Cast<Disciplines>().ToList();
@@ -57,7 +45,6 @@ namespace WpfApp1
 
             }
         }
-
         private void ViewingDisciplineTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
@@ -66,12 +53,10 @@ namespace WpfApp1
                 DGridDiscipline.ItemsSource = RandomTicketGenerator.GetContext().Disciplines.ToList();
             }
         }
-
         private void Form_Ticket_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Choice_admin());
         }
-
         private void Next_Table(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new VIewingUsersTable());

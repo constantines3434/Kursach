@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace WpfApp1
 {
     /// <summary>
-    /// Логика взаимодействия для EditingQuestion.xaml
+    /// Логика взаимодействия для EditingQuestion
     /// </summary>
     public partial class EditingQuestion : Page
     {
@@ -31,11 +24,7 @@ namespace WpfApp1
 
             InitializeBoxes();
         }
-
         public List<Disciplines> Disc_list { get; set; }
-        /// <summary>
-        /// ComboBox Disciplines
-        /// </summary>
         private void Bindcombo_disca()
         {
             var Item = RandomTicketGenerator.GetContext().Disciplines.ToList();
@@ -45,8 +34,7 @@ namespace WpfApp1
             Disca.SelectedValuePath = "";
             Disca.DisplayMemberPath = "name_discipline";
         }
-
-        private void InitializeBoxes() 
+        private void InitializeBoxes()
         {
             question_textbox.Text = _selectedQuestion.question;
             Type_question.Text = _selectedQuestion.type_question;
@@ -59,12 +47,10 @@ namespace WpfApp1
                 }
             }
         }
-
         private int GetDisciplineId()
         {
             return ((Disciplines)Disca.SelectedItem).id_discipline;
         }
-
         private void UpdateQuestions()
         {
             _selectedQuestion.id_discipline = GetDisciplineId();
@@ -72,7 +58,6 @@ namespace WpfApp1
             _selectedQuestion.type_question = Type_question.Text;
             _selectedQuestion.complexity = Complexity_question.Text;
         }
-
         private void But_Click_Save_Question(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(_selectedQuestion.question))
@@ -80,9 +65,7 @@ namespace WpfApp1
                 MessageBox.Show("Корректно напишите вопрос");
                 return;
             }
-
             UpdateQuestions();
-            
             try
             {
                 RandomTicketGenerator.GetContext().SaveChanges();
@@ -93,7 +76,6 @@ namespace WpfApp1
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewingTableData_admin());
