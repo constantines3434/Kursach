@@ -10,10 +10,12 @@ namespace WpfApp1
     /// </summary>
     public partial class AddDiscipline : Page
     {
-        public AddDiscipline()
+        private string roleUser;
+        public AddDiscipline(string roleUser)
         {
             InitializeComponent();
             DataContext = GetDiscipline();
+            this.roleUser = roleUser;
         }
 
         private Disciplines GetDiscipline()
@@ -48,7 +50,7 @@ namespace WpfApp1
 
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewingDisciplineTable());
+            NavigationService.Navigate(new ViewingDisciplineTable(roleUser));
         }
 
         private void But_Click_Save_Question(object sender, RoutedEventArgs e)

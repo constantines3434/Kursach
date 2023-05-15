@@ -17,6 +17,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             bindcombo_Users();
+
             db = new RandomTicketGenerator();
 
         }
@@ -44,35 +45,22 @@ namespace WpfApp1
         /// </summary>
         private void But_authorization(object sender, RoutedEventArgs e)
         {
-            var loginUser = textBox_login.Text;
+            string loginUser = textBox_login.Text;
 
-            var roleUser = Role.Text;
+            string roleUser = Role.Text;
 
-            var passUser = textBox_password.Password.ToString();
+            string passUser = textBox_password.Password.ToString();
 
 
             if ((loginUser != "") && (roleUser != "") && (passUser != ""))
             {
-                if (roleUser == "Admin") //работает Admin
+                if (roleUser == "Admin" || roleUser == "User") //работает Admin
                 {
                     //сверяем введённые данные и данные в бд
                     if (db.Users.Any(o => (o.login_ == loginUser) && (o.password_ == passUser) && (o.role_ == roleUser)))
                     {
                         MessageBox.Show("Успешная авторизация");
-                        NavigationService.Navigate(new Choice_admin());
-                    }
-                    else
-                    {
-                        MessageBox.Show("Неправильный логин или пароль");
-                    }
-                }
-                else if (roleUser == "User") //работает User
-                {
-                    //сверяем введённые данные и данные в бд
-                    if (db.Users.Any(o => (o.login_ == loginUser) && (o.password_ == passUser) && (o.role_ == roleUser)))
-                    {
-                        MessageBox.Show("Успешная авторизация");
-                        NavigationService.Navigate(new Choice_user());
+                        NavigationService.Navigate(new Choice_admin(roleUser));
                     }
                     else
                     {
@@ -83,7 +71,6 @@ namespace WpfApp1
                 {
                     MessageBox.Show("Неверно указана роль пользователя");
                 }
-
             }
             else MessageBox.Show("Для продолжения заполните все поля");
         }

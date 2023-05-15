@@ -114,9 +114,6 @@
     <Compile Include="Choice_admin.xaml.cs">
       <DependentUpon>Choice_admin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Choice_user.xaml.cs">
-      <DependentUpon>Choice_user.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Cycle_commissions.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
@@ -201,10 +198,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Choice_admin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Choice_user.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

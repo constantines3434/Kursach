@@ -11,20 +11,21 @@ namespace WpfApp1
     /// </summary>
     public partial class ViewingTableData_admin : Page
     {
-        public ViewingTableData_admin()
+        private string roleUser;
+        public ViewingTableData_admin(string role)
         {
             InitializeComponent();
-            //DGridQuestion.ItemsSource = RandomTicketGenerator.GetContext().Questions.ToList();
+            roleUser = role;
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e) //страница редактирования
         {
-            NavigationService.Navigate(new EditingQuestion((sender as Button).DataContext as Questions));
+            NavigationService.Navigate(new EditingQuestion((sender as Button).DataContext as Questions, roleUser));
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e) //страница добавления
         {
-            NavigationService.Navigate(new AddEditPAge());
+            NavigationService.Navigate(new AddEditPAge(roleUser));
         }
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -58,11 +59,11 @@ namespace WpfApp1
         }
         private void Form_Ticket_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Choice_admin());
+            NavigationService.Navigate(new Choice_admin(roleUser));
         }
         private void Next_Table(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewingDisciplineTable());
+            NavigationService.Navigate(new ViewingDisciplineTable(roleUser));
         }
     }
 }

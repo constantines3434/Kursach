@@ -8,9 +8,11 @@ namespace WpfApp1
 {
     public partial class VIewingUsersTable : Page
     {
-        public VIewingUsersTable()
+        private string roleUser;
+        public VIewingUsersTable(string roleUser)
         {
             InitializeComponent();
+            this.roleUser = roleUser;   
         }
         private void BtnEdit_Click(object sender, RoutedEventArgs e) //страница редактирования
         {
@@ -51,7 +53,7 @@ namespace WpfApp1
         }
         private void Form_Ticket_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Choice_admin());
+            NavigationService.Navigate(new Choice_admin(roleUser));
         }
 
     }

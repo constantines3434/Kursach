@@ -14,7 +14,8 @@ namespace WpfApp1
     /// </summary>
     public partial class Choice_admin : Page
     {
-        public Choice_admin()
+        private string roleUser;
+        public Choice_admin(string role)
         {
             InitializeComponent();
 
@@ -26,7 +27,7 @@ namespace WpfApp1
             Bindcombo_speciality();
             Bindcombo_protocols();
             Initialize_questions();
-
+            roleUser = role;
         }
 
         //ComboBox disca
@@ -53,7 +54,7 @@ namespace WpfApp1
 
         private void Bindcombo_teacher()
         {
-            
+
             var Item = RandomTicketGenerator.GetContext().Teacher.ToList();
             Teacher_list = Item;
             DataContext = Teacher_list;
@@ -172,7 +173,7 @@ namespace WpfApp1
         private void Initialize_questions()
         {
             Questions_list = RandomTicketGenerator.GetContext().Questions.ToList();
-            
+
             var rng = new Random();
             Questions_list = Questions_list.OrderBy(x => rng.Next()).ToList();
         }
@@ -180,7 +181,7 @@ namespace WpfApp1
         private string RollQuestions(string type, int id_disc)
         {
             string answer = "";
-            foreach ( var quest in Questions_list)
+            foreach (var quest in Questions_list)
             {
                 if (quest.type_question == type && quest.id_discipline == id_disc && quest.complexity == complexity_of_question.Text)
                 {
@@ -191,10 +192,9 @@ namespace WpfApp1
             }
             return answer;
         }
-        
+
         private void But_Click_Form_Ticket(object sender, RoutedEventArgs e)
         {
-
             string disca_content = Disca.Text;
             var helper = new WordHelper("Ex_Ticket_Prac.docx");
             string count_tickets = count_of_tickets.Text;
@@ -204,15 +204,29 @@ namespace WpfApp1
             string semester_content = Semester.Text;
             string speciality_content = Spec.Text;
             string protocol_content = Protocol.Text;
-            var protocol_date_content = GetDateString();
-            var protocol_year_content = GetYearString();
+            string protocol_date_content = GetDateString();
+            string protocol_year_content = GetYearString();
             int nom_ticket = 1;
-            
-            //сделать по 20 вопросов
+
+            int t;
+            if (Int32.TryParse(count_tickets, out t))
+            {
+                if (t < 1)
+                {
+                    MessageBox.Show("Число билетов должно быть >= 1");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Неверный формат");
+                return;
+            }
+
             for (int i = 0; i < Convert.ToInt32(count_tickets); i++)
             {
 
-                    var Items = new Dictionary<string, string>
+                var Items = new Dictionary<string, string>
                 {
                     {"<DISC>", disca_content},
                     {"<PCK>",  Chairman_pck_content},
@@ -229,9 +243,9 @@ namespace WpfApp1
                     {"<PRAC1>", RollQuestions("Практический", GetDisipline())},
 
                 };
-             
-                    helper.Process(Items);
-                    nom_ticket++;
+
+                helper.Process(Items);
+                nom_ticket++;
             }
             MessageBox.Show($"Выбор сделан, Дисциплина: {disca_content},\n" +
                     $"Количество билетов: {count_tickets},\n" +
@@ -240,7 +254,14 @@ namespace WpfApp1
         }
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewingTableData_admin());
+            if (roleUser == "Admin")
+            {
+                NavigationService.Navigate(new ViewingTableData_admin(roleUser));
+            }
+            else
+            {
+                MessageBox.Show("Только администратор может редактировать таблицы");
+            }
         }
 
         private void But_Auto(object sender, RoutedEventArgs e)

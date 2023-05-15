@@ -14,14 +14,15 @@ namespace WpfApp1
     public partial class EditingQuestion : Page
     {
         private Questions _selectedQuestion;
-        public EditingQuestion(Questions selectedQuest)
+        private string roleUser;
+        public EditingQuestion(Questions selectedQuest, string roleUser)
         {
             InitializeComponent();
             _selectedQuestion = selectedQuest;
 
             DataContext = _selectedQuestion;
             Bindcombo_disca();
-
+            this.roleUser = roleUser; 
             InitializeBoxes();
         }
         public List<Disciplines> Disc_list { get; set; }
@@ -78,7 +79,7 @@ namespace WpfApp1
         }
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewingTableData_admin());
+            NavigationService.Navigate(new ViewingTableData_admin(roleUser));
         }
     }
 }

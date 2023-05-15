@@ -48,7 +48,7 @@ namespace WpfApp1
         }
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new VIewingUsersTable());
+            NavigationService.Navigate(new VIewingUsersTable(_selectedUser.role_));
         }
     }
 }

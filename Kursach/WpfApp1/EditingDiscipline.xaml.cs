@@ -13,14 +13,15 @@ namespace WpfApp1
     {
 
         private Disciplines _selectedDiscipline;
+        private string roleUser;
 
-        public EditingDiscipline(Disciplines selectedDisca)
+        public EditingDiscipline(Disciplines selectedDisca, string roleUser)
         {
             InitializeComponent();
             _selectedDiscipline = selectedDisca;
             name_discipline_textbox.Text = selectedDisca.name_discipline;
             DataContext = _selectedDiscipline;
-
+            this.roleUser = roleUser;
         }
         public List<Disciplines> Disc_list { get; set; }
 
@@ -53,7 +54,7 @@ namespace WpfApp1
 
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewingDisciplineTable());
+            NavigationService.Navigate(new ViewingDisciplineTable(roleUser));
         }
     }
 }

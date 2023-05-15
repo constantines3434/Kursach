@@ -73,17 +73,6 @@
                 <SolidColorBrush Color="#FFFA8072" />
             </Button.Background>
         </Button>
-
-        <Button Content="Добавить"
-                Grid.Row="2"
-                HorizontalAlignment="Left"
-                Width="100"
-                Name="BtnAdd" 
-                >
-            <Button.Background>
-                <SolidColorBrush Color="#FFFFFACD" />
-            </Button.Background>
-        </Button>
         <Button Content="Удалить"
                 Grid.Row="2"
                 HorizontalAlignment="Right"

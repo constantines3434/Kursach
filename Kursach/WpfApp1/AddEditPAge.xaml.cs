@@ -12,12 +12,14 @@ namespace WpfApp1
     /// </summary>
     public partial class AddEditPAge : Page
     {
-        public AddEditPAge()
+        private string roleUser;
+        public AddEditPAge(string roleUser)
         {
             InitializeComponent();
 
             DataContext = GetQuestions();
             Bindcombo_disca();
+            this.roleUser = roleUser;
         }
 
         public List<Disciplines> Disc_list { get; set; }
@@ -77,7 +79,7 @@ namespace WpfApp1
 
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewingTableData_admin());
+            NavigationService.Navigate(new ViewingTableData_admin(roleUser));
         }
     }
 }
