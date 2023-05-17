@@ -12,18 +12,19 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Teacher
+    public partial class Examiners
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Teacher()
+        public Examiners()
         {
             this.Cycle_commissions = new HashSet<Cycle_commissions>();
         }
     
-        public int id_teacher { get; set; }
+        public int id_examiners { get; set; }
         public string surname { get; set; }
         public string name_ { get; set; }
         public string patronymic { get; set; }
+        public string role_ { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cycle_commissions> Cycle_commissions { get; set; }

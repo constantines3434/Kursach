@@ -88,9 +88,9 @@
             Дисциплина:
         </TextBlock>
 
-        
 
-       
+
+
 
         <TextBlock  Grid.Row="1"
                     Grid.Column="3"
@@ -210,8 +210,8 @@
                   VerticalAlignment="Top"
                    />
 
-        
-        
+
+
         <TextBox Grid.Row="2"
                  Grid.Column="3"
                  Height="40"
@@ -227,9 +227,6 @@
         <ComboBox Name="Teacher"
                   Grid.Row="2"
                   Grid.Column="4"
-         
-                  SelectedValuePath="id_teacher"
-                  DisplayMemberPath="surname"
        
                   HorizontalAlignment="Center"
                  VerticalAlignment="Top"
@@ -240,12 +237,9 @@
         <ComboBox Name="Chairman_pck"
                   Grid.Row="2"
                   Grid.Column="5"
-                 
-                  SelectedValuePath="id_chairman_pck"
-                  DisplayMemberPath="name_"
             
                   HorizontalAlignment="Center"
-                 VerticalAlignment="Top"
+                  VerticalAlignment="Top"
                   Width="133"
                   Height="30">
         </ComboBox>

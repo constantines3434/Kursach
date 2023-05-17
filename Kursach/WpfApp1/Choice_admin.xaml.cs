@@ -5,7 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Data;
-
+using System.Data.SqlClient;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using System.Runtime.CompilerServices;
 
 namespace WpfApp1
 {
@@ -21,7 +23,7 @@ namespace WpfApp1
 
             Bindcombo_disca();
             Bindcombo_teacher();
-            Bindcombo_chairman_pck();
+            //Bindcombo_chairman_pck();
             Bindcombo_kurs();
             Bindcombo_semester();
             Bindcombo_speciality();
@@ -42,40 +44,203 @@ namespace WpfApp1
             Disca.DisplayMemberPath = "name_discipline";
             Disca.SelectedIndex = 0;
         }
-
+        static string conString = @"Data Source=WIN-OMJN02Q49QC; Initial Catalog=BookShop; Integrated Security=true;";
         private int GetDisipline()
         {
             return ((Disciplines)Disca.SelectedItem).id_discipline;
         }
         //
 
+        //связывание таблиц
+        /////////////////////////////////////////
+        /// <summary>
+        /// получение id экзаменатора
+        /// </summary>
+        private int GetExaminersId()
+        {
+            int id =
+    (from i in RandomTicketGenerator.GetContext().Examiners
+     where i.id_examiners == Convert.ToInt32(Teacher.Text)
+     select i.id_examiners).First();
+            return id;
+        }
+
+        /// <summary>
+        /// получение id специальности 
+        /// </summary>
+        private string GetSpecialityId()
+        {
+            string id =
+    (from i in RandomTicketGenerator.GetContext().Speciality
+     where i.code_speciality == Protocol.Text
+     select i.code_speciality).First();
+            return id;
+        }
+        
+        /// <summary>
+        /// получение id цикловой комиссии
+        /// </summary>
+        private int GetCycleComissionId()
+        {
+            int id =
+    (from i in RandomTicketGenerator.GetContext().Cycle_commissions
+     where i.id_examiners == GetExaminersId() &&
+           i.code_speciality == GetSpecialityId()
+     select i.id_cycle_commission).First();
+            return id;
+        }
+        //
+        /// <summary>
+        /// получение id протокола
+        /// </summary>
+        private int GetProtocolsId()
+        {
+            int id =
+    (from i in RandomTicketGenerator.GetContext().Protocols
+     where i.nom_protocol == Convert.ToInt32(Protocol.Text)
+     && i.id_cycle_commission == GetCycleComissionId()
+     select i.nom_protocol).First();
+            return id;
+        }
+        //
+        /// <summary>
+        /// получение id Семестров
+        /// </summary>
+        private int GetSemesterId()
+        {
+            int id =
+    (from i in RandomTicketGenerator.GetContext().Semesters
+     where i.nom_semester == Convert.ToInt32(Semester.Text)
+     select i.nom_semester).First();
+            return id;
+        }
+        //
+        /// <summary>
+        /// получение id Курса
+        /// </summary>
+        private int GetKursId()
+        {
+            int id =
+    (from i in RandomTicketGenerator.GetContext().Kurs
+     where i.nom_kurs == Convert.ToInt32(Kurs.Text)
+     select i.nom_kurs).First();
+            return id;
+        }
+        //
+        private int GetDisciplineId() //+
+        {
+            int id =
+    (from i in RandomTicketGenerator.GetContext().Disciplines
+     where i.id_discipline == Convert.ToInt32(Disca.Text)
+      && i.id_semester == Convert.ToInt32(Semester.Text)
+     select i.id_discipline).First();
+            return id;
+        }
+        //
+        /// <summary>
+        /// получение id комплекта билетов
+        /// </summary>
+        private int GetKomplectId()
+        {
+            int id =
+    (int)(from i in RandomTicketGenerator.GetContext().Komplect_tickets
+     where i.nom_kurs == GetKursId()
+      && i.nom_semester == GetSemesterId()
+      && i.nom_protocol == GetProtocolsId()
+      && i.id_discipline == GetDisciplineId()
+     select i.nom_komplect).First();
+            return id;
+        }
+        //
+        /// <summary>
+        /// получение id вопроса
+        /// </summary>
+        private int GetQuestId()
+        {
+            int id =
+    (int)(from i in RandomTicketGenerator.GetContext().Questions
+          where i.id_discipline == GetDisciplineId()
+          select i.id_question).First();
+            return id;
+        }
+        //
+        /// <summary>
+        /// получение id билета
+        /// </summary>
+        private int GetTicketId()
+        {
+            int id =
+    (int)(from i in RandomTicketGenerator.GetContext().Tickets
+          where i.id_question == GetQuestId()
+          && i.nom_komplect== GetKomplectId()
+          select i.id_ticket).First();
+            return id;
+        }
+        /////////////////////////////////////////
+
         //ComboBox Teacher
-        public List<Teacher> Teacher_list { get; set; }
+        public List<Examiners> Examiners_list { get; set; }
 
         private void Bindcombo_teacher()
         {
+            var Item = RandomTicketGenerator.GetContext().Examiners.ToList();
+            Examiners_list = Item;
 
-            var Item = RandomTicketGenerator.GetContext().Teacher.ToList();
-            Teacher_list = Item;
-            DataContext = Teacher_list;
-            Teacher.ItemsSource = Teacher_list;
-            Teacher.SelectedValuePath = "";
-            Teacher.DisplayMemberPath = "surname";
-            Teacher.SelectedIndex = 0;
+            if (System.Windows.Controls.ComboBox.NameProperty.Name == "Teacher")
+            {
+
+                DataContext = Examiners_list;
+                Teacher.ItemsSource = Examiners_list;
+                if (GetExaminersRole() == "Преподаватель")
+                {
+                    Teacher.SelectedValuePath = "";
+                    Teacher.DisplayMemberPath = "surname";
+                    Teacher.SelectedIndex = 0;
+                }
+
+                else
+                {
+                    DataContext = Examiners_list;
+                    Chairman_pck.ItemsSource = Examiners_list;
+                    Chairman_pck.SelectedValuePath = "";
+                    Chairman_pck.DisplayMemberPath = "surname";
+                    Chairman_pck.SelectedIndex = 0;
+                }
+            }
         }
 
-        //ComboBox Chairman_pck
-        public List<Chairman_pck> Chairman_pck_list { get; set; }
-        private void Bindcombo_chairman_pck()
+        public int GetExaminerRole() //доделать
         {
-            var Item = RandomTicketGenerator.GetContext().Chairman_pck.ToList();
-            Chairman_pck_list = Item;
-            DataContext = Disc_list;
-            Chairman_pck.ItemsSource = Chairman_pck_list;
-            Chairman_pck.SelectedValuePath = "";
-            Chairman_pck.DisplayMemberPath = "surname";
-            Chairman_pck.SelectedIndex = 0;
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                string cmdString = "GetExaminersRole";
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(cmdString, con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter Param = new SqlParameter
+                {
+                    ParameterName = "@id",
+                };
+                cmd.Parameters.Add(Param);
+
+                int result = (int)cmd.ExecuteScalar();
+
+                con.Close();
+
+                return result;
+            }
         }
+
+
+        private string GetExaminersRole()
+        {
+            return ((Examiners)Teacher.SelectedItem).role_;
+        }
+        //ComboBox Chairman_pck
+
         //
 
         //ComboBox Speciality
@@ -90,32 +255,34 @@ namespace WpfApp1
             Spec.DisplayMemberPath = "name_of_speciality";
             Spec.SelectedIndex = 0;
         }
+
+
         //
 
-        private int GetTeacherId()
-        {
-            return ((Teacher)Teacher.SelectedItem).id_teacher;
-        }
-        private int GetChairmanId()
-        {
-            return ((Chairman_pck)Chairman_pck.SelectedItem).id_chairman_pck;
-        }
+        //private int GetTeacherId()
+        //{
+        //    return ((Teacher)Teacher.SelectedItem).id_teacher;
+        //}
+        //private int GetChairmanId()
+        //{
+        //    return ((Chairman_pck)Chairman_pck.SelectedItem).id_chairman_pck;
+        //}
 
         private string GetSpecialytyId()
         {
             return ((Speciality)Spec.SelectedItem).code_speciality;
         }
 
-        public List<Cycle_commissions> Cycle_Commissions_list { get; set; }
-        private Cycle_commissions GetCommission()
-        {
-            return Cycle_Commissions_list.Find(
-                (commission) =>
-                    commission.id_teacher == GetTeacherId()
-                 && commission.id_chairman_pck == GetChairmanId()
-                 && commission.code_speciality == GetSpecialytyId()
-            );
-        }
+        //public List<Cycle_commissions> Cycle_Commissions_list { get; set; }
+        //private Cycle_commissions GetCommission()
+        //{
+        //    return Cycle_Commissions_list.Find(
+        //        (commission) =>
+        //            commission.id_teacher == GetTeacherId()
+        //         && commission.id_chairman_pck == GetChairmanId()
+        //         && commission.code_speciality == GetSpecialytyId()
+        //    );
+        //}
 
         public List<Kurs> Kurs_list { get; set; }
         private void Bindcombo_kurs()
@@ -209,7 +376,7 @@ namespace WpfApp1
             int nom_ticket = 1;
 
             int t;
-            if (Int32.TryParse(count_tickets, out t))
+            if (int.TryParse(count_tickets, out t))
             {
                 if (t < 1)
                 {

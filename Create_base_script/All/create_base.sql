@@ -1,4 +1,3 @@
-
 USE master;
 
 IF EXISTS (SELECT * FROM SYS.DATABASES WHERE NAME = 'Base')
@@ -22,13 +21,11 @@ GO
 USE Base;
 
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Teacher')
-	DROP TABLE Teacher
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Chairman_pck')
-	DROP TABLE Chairman_pck
+	DROP TABLE Examiners
 
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Speciality')
 	DROP TABLE Speciality
+
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Cycle_commissions')
 	DROP TABLE Cycle_commissions
 
@@ -56,48 +53,116 @@ IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Tickets')
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Users')
 	DROP TABLE Users
 
-
-CREATE TABLE Teacher
+CREATE TABLE Users
 (
-	id_teacher INT IDENTITY PRIMARY KEY,
+	nom_user INT IDENTITY PRIMARY KEY,
+    login_ nvarchar(50),
+    password_ nvarchar(50),
+	role_ nvarchar(5)
+);
+
+--DELETE FROM Users;
+INSERT INTO Users (login_, password_, role_)
+VALUES ('Consta', '34', 'User'),
+('Nohcha', '11','User'),
+('Alex', '12','Admin'),
+('Elena', '13','Admin'),
+('Parampampam', '14','User');
+
+CREATE TABLE Kurs
+(
+    nom_kurs INT PRIMARY KEY
+);
+
+--DELETE FROM Kurs;
+INSERT INTO Kurs (nom_kurs)
+VALUES ('1'),
+('2'),
+('3'),
+('4'),
+('5');
+
+CREATE TABLE Semesters
+(
+	nom_semester INT IDENTITY PRIMARY KEY,
+    academic_year DATE
+);
+
+--DELETE FROM Semesters;
+INSERT INTO Semesters (academic_year)
+VALUES ('01.01.2019'),
+('05.05.2020'),
+('01.01.2021'),
+('05.05.2022'),
+('01.01.2023');
+
+
+CREATE TABLE Protocols
+(
+	nom_protocol INT IDENTITY PRIMARY KEY,
+    date_protocol date,
+);
+
+--DELETE FROM Protocols;
+INSERT INTO Protocols (date_protocol)
+VALUES ('02.02.2023'),
+('03.03.2023'),
+('04.04.2023'),
+('05.05.2023'),
+('06.06.2023');
+
+CREATE TABLE Examiners
+(
+	id_examiners INT IDENTITY PRIMARY KEY,
     surname nvarchar(100),
 	name_ nvarchar(100),
-    patronymic nvarchar(100)
+    patronymic nvarchar(100),
+	role_ nvarchar(16) --Учитель Председатель ПЦК
 );
 
 --DELETE FROM Teacher;
-INSERT INTO Teacher (surname, name_, patronymic)
-VALUES ('Смирнов', 'Константин', 'Вадимович'),
-('Ларионова', 'Елена', 'Анатольевна'),
-('Мурашов', 'Анатолий', 'Алексеевич'),
-('Глускер', 'Александр', 'Игоревич'),
-('Александров', 'Роман', 'Викторович'),
-('Храбров', 'Илья', 'Николаевич'),
-('Марцинкевич', 'Максим', 'Сергееевич'),
-('Сталин', 'Иосиф', 'Виссарионович'),
-('Троцкий', 'Лев', 'Давидович'),
-('Чиповская', 'Анна', 'Борисовная');
+INSERT INTO Examiners (surname, name_, patronymic, role_)
+VALUES ('Смирнов', 'Константин', 'Вадимович', 'Председатель ПЦК'),
+('Ларионова', 'Елена', 'Анатольевна', 'Председатель ПЦК'),
+('Мурашов', 'Анатолий', 'Алексеевич', 'Председатель ПЦК'),
+('Глускер', 'Александр', 'Игоревич', 'Председатель ПЦК'),
+('Александров', 'Роман', 'Викторович', 'Председатель ПЦК'),
+('Храбров', 'Илья', 'Николаевич', 'Председатель ПЦК'),
+('Марцинкевич', 'Максим', 'Сергееевич', 'Председатель ПЦК'),
+('Сталин', 'Иосиф', 'Виссарионович', 'Председатель ПЦК'),
+('Троцкий', 'Лев', 'Давидович', 'Председатель ПЦК'),
+('Чиповская', 'Анна', 'Борисовная', 'Преподаватель'),
+('Котик', 'Владислав', 'Вадимович', 'Преподаватель'),
+('Ларионова', 'Елена', 'Анатольевна', 'Преподаватель'),
+('Мурашов', 'Анатолий', 'Алексеевич', 'Преподаватель'),
+('Глускер', 'Александр', 'Игоревич', 'Преподаватель'),
+('Ленин', 'Владимир', 'Ильич', 'Преподаватель'),
+('Керенский', 'Александр', 'Фёдорович', 'Преподаватель'),
+('Корнилов', 'Лавр', 'Георгиевич', 'Преподаватель'),
+('Деникин', 'Антон', 'Иванович', 'Преподаватель'),
+('Солонин', 'Марк', 'Семёнович', 'Преподаватель'),
+('Суворов', 'Виктор', 'Богданович', 'Преподаватель');
 
-CREATE TABLE Chairman_pck
+CREATE TABLE Komplect_tickets
 (
-	id_chairman_pck INT IDENTITY PRIMARY KEY,
-    name_ nvarchar(20),
-    surname nvarchar(20),
-    patronymic nvarchar(20)
+    nom_komplect INT IDENTITY PRIMARY KEY,
+    nom_kurs INT,
+    nom_semester INT,
+    nom_protocol INT,
+	id_examiners INT,
+	FOREIGN KEY (nom_kurs) REFERENCES Kurs (nom_kurs) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (nom_semester) REFERENCES Semesters (nom_semester) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (nom_protocol) REFERENCES Protocols (nom_protocol) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (id_examiners) REFERENCES Examiners (id_examiners) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
---DROP TABLE Chairman_pck;
-INSERT INTO Chairman_pck (surname, name_, patronymic)
-VALUES ('Котик', 'Владислава', 'Вадимович'),
-('Ларионова', 'Елена', 'Анатольевна'),
-('Мурашов', 'Анатолий', 'Алексеевич'),
-('Глускер', 'Александр', 'Игоревич'),
-('Ленин', 'Владимир', 'Ильич'),
-('Керенский', 'Александр', 'Фёдорович'),
-('Корнилов', 'Лавр', 'Георгиевич'),
-('Деникин', 'Антон', 'Иванович'),
-('Солонин', 'Марк', 'Семёнович'),
-('Суворов', 'Виктор', 'Богданович');
+--DELETE FROM Komplect_tickets;
+INSERT INTO Komplect_tickets (nom_kurs, nom_semester, nom_protocol)
+VALUES ('1', '1', '1'),
+('2', '2', '2'),
+('3', '3', '3'),
+('4', '4', '4'),
+('5', '5', '5');
 
 
 CREATE TABLE Speciality
@@ -114,102 +179,21 @@ VALUES ('09.02.06', 'Сетевое и системной администрирование'),
 ('21.02.19', 'Землеустройство'),
 ('42.02.01', 'Реклама');
 
-CREATE TABLE Cycle_commissions
-(
-	id_cycle_commission INT IDENTITY PRIMARY KEY,
-    id_chairman_pck int,
-    id_teacher int,
-    code_speciality nvarchar(100),
-	FOREIGN KEY (code_speciality) REFERENCES Speciality (code_speciality) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (id_chairman_pck) REFERENCES Chairman_Pck (id_chairman_pck) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (id_teacher) REFERENCES Teacher (id_teacher) ON DELETE CASCADE ON UPDATE CASCADE
-
-);
-
-INSERT INTO Cycle_commissions (id_chairman_pck, id_teacher, code_speciality)
-VALUES ('1', '1', '09.02.06'),
-('2', '2', '09.02.07'),
-('3', '3', '10.02.05'),
-('4', '4', '21.02.19'),
-('5', '5', '42.02.01');
-
-
-CREATE TABLE Protocols
-(
-	nom_protocol INT IDENTITY PRIMARY KEY,
-    date_protocol date,
-    id_cycle_commission INT,
-	FOREIGN KEY (id_cycle_commission) REFERENCES Cycle_commissions (id_cycle_commission) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
---DELETE FROM Protocols;
-INSERT INTO Protocols (date_protocol, id_cycle_commission)
-VALUES ('02.02.2023', '1'),
-('03.03.2023', '2'),
-('04.04.2023', '3'),
-('05.05.2023', '4'),
-('06.06.2023', '5');
-
-CREATE TABLE Semesters
-(
-	nom_semester INT IDENTITY PRIMARY KEY,
-    academic_year DATE
-);
-
---DELETE FROM Semesters;
-INSERT INTO Semesters (academic_year)
-VALUES ('01.01.2020'),
-('05.05.2020'),
-('01.01.2021'),
-('05.05.2021'),
-('01.01.2022');
 
 CREATE TABLE Disciplines
 (
 	id_discipline int IDENTITY PRIMARY KEY,
-    name_discipline nvarchar(500)
+    name_discipline nvarchar(500),
+	code_speciality nvarchar(100) FOREIGN KEY (code_speciality) REFERENCES Speciality (code_speciality) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 --DELETE FROM Disciplines;
-INSERT INTO Disciplines (name_discipline)
-VALUES ('ОП.01. Операционные системы'),
-('ОП.10. Математическое моделирование'),
-('МДК.02.01. Инфокоммуникационные системы и сети'),
-('МДК.02.02. Технология разработки и защиты баз данных'),
-('ОГСЭ.03. Иностранный язык');
-
-CREATE TABLE Kurs
-(
-    nom_kurs INT PRIMARY KEY
-);
-
---DELETE FROM Kurs;
-INSERT INTO Kurs (nom_kurs)
-VALUES ('1'),
-('2'),
-('3'),
-('4'),
-('5');
-
-CREATE TABLE Komplect_tickets
-(
-    nom_komplect INT IDENTITY PRIMARY KEY,
-    nom_kurs INT,
-    nom_semester INT,
-    nom_protocol INT,
-	id_discipline nvarchar(100),
-	FOREIGN KEY (nom_semester) REFERENCES Semesters (nom_semester) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (nom_kurs) REFERENCES Kurs (nom_kurs) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (nom_protocol) REFERENCES Protocols (nom_protocol) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
---DELETE FROM Komplect_tickets;
-INSERT INTO Komplect_tickets (nom_kurs, nom_semester, nom_protocol, id_discipline)
-VALUES ('1', '1', '1', '1'),
-('2', '2', '2', '2'),
-('3', '3', '3', '3'),
-('4', '4', '4', '4'),
-('5', '5', '5', '5');
+INSERT INTO Disciplines (name_discipline, code_speciality)
+VALUES ('ОП.01. Операционные системы', '09.02.06'),
+('ОП.10. Математическое моделирование', '09.02.07'),
+('МДК.02.01. Инфокоммуникационные системы и сети', '10.02.05'),
+('МДК.02.02. Технология разработки и защиты баз данных', '21.02.19'),
+('ОГСЭ.03. Иностранный язык', '42.02.01');
 
 CREATE TABLE Questions
 (
@@ -681,34 +665,25 @@ Ethernet.', 'Теоретический', 'Средний'),
 CREATE TABLE Tickets
 (
     id_ticket INT IDENTITY,
-    nom_quetion_in_ticket INT,
+    nom_question_in_ticket INT,
     id_question INT,
     nom_komplect INT,
-	PRIMARY KEY(id_ticket, nom_quetion_in_ticket),
+	PRIMARY KEY(id_ticket, nom_question_in_ticket),
 	FOREIGN KEY (id_question) REFERENCES Questions (id_question) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (nom_komplect) REFERENCES Komplect_tickets (nom_komplect) ON DELETE CASCADE ON UPDATE CASCADE	
 );
 
 --DELETE FROM Tickets;
-INSERT INTO Tickets (nom_quetion_in_ticket, id_question, nom_komplect)
+INSERT INTO Tickets (nom_question_in_ticket, id_question, nom_komplect)
 VALUES ('1', '1', '1'),
 ('2', '2', '2'),
 ('3', '3', '3'),
 ('4', '4', '4'),
 ('5', '5', '5');
 
-CREATE TABLE Users
-(
-	nom_user INT IDENTITY PRIMARY KEY,
-    login_ nvarchar(50),
-    password_ nvarchar(50),
-	role_ nvarchar(5)
-);
-
---DELETE FROM Users;
-INSERT INTO Users (login_, password_, role_)
-VALUES ('Consta', '34', 'User'),
-('Nohcha', '11','User'),
-('Alex', '12','Admin'),
-('Elena', '13','Admin'),
-('Parampampam', '14','User');
+GO
+CREATE PROCEDURE dbo.GetExaminersRole @choice nvarchar(100)
+	AS
+	Select surname, name_, patronymic
+	From Examiners
+	Where role_ = @choice

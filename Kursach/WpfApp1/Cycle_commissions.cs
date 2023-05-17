@@ -21,13 +21,11 @@ namespace WpfApp1
         }
     
         public int id_cycle_commission { get; set; }
-        public Nullable<int> id_chairman_pck { get; set; }
-        public Nullable<int> id_teacher { get; set; }
+        public Nullable<int> id_examiners { get; set; }
         public string code_speciality { get; set; }
     
-        public virtual Chairman_pck Chairman_pck { get; set; }
         public virtual Speciality Speciality { get; set; }
-        public virtual Teacher Teacher { get; set; }
+        public virtual Examiners Examiners { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Protocols> Protocols { get; set; }
     }

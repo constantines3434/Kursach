@@ -10,22 +10,11 @@
 namespace WpfApp1
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Chairman_pck
+    public partial class GetExaminersRole_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Chairman_pck()
-        {
-            this.Cycle_commissions = new HashSet<Cycle_commissions>();
-        }
-    
-        public int id_chairman_pck { get; set; }
-        public string name_ { get; set; }
         public string surname { get; set; }
+        public string name_ { get; set; }
         public string patronymic { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cycle_commissions> Cycle_commissions { get; set; }
     }
 }

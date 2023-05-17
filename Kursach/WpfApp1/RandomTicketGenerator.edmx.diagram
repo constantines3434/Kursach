@@ -4,29 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7f81301d1a2248809c9d7974dee689c2" Name="Diagram1">
-        <EntityTypeShape EntityType="BaseModel.Chairman_pck" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Cycle_commissions" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="b3a9e9bc454248f9a50ff963cf1e0b0c" Name="Diagram1">
+        <EntityTypeShape EntityType="BaseModel.Cycle_commissions" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseModel.Disciplines" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Examiners" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseModel.Komplect_tickets" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseModel.Kurs" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseModel.Protocols" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseModel.Questions" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseModel.Semesters" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Speciality" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Teacher" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Speciality" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseModel.Tickets" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseModel.Users" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="BaseModel.FK__Cycle_com__id_ch__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Cycle_com__code___3D5E1FD2" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Cycle_com__id_te__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Protocols__id_cy__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Questions__id_di__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Komplect___nom_k__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Komplect___nom_p__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Komplect___nom_s__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Tickets__nom_kom__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Tickets__id_ques__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Cycle_com__code___3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Cycle_com__id_ex__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Protocols__id_cy__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Questions__id_di__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Komplect___nom_k__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Komplect___nom_p__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Komplect___nom_s__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Tickets__nom_kom__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Tickets__id_ques__4F7CD00D" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

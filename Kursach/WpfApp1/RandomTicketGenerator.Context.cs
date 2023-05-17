@@ -12,9 +12,12 @@ namespace WpfApp1
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
 
     public partial class RandomTicketGenerator : DbContext
     {
+
         private static RandomTicketGenerator context_;
         public RandomTicketGenerator()
             : base("name=RandomTicketGenerator")
@@ -28,23 +31,31 @@ namespace WpfApp1
             return context_;
         }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
             throw new UnintentionalCodeFirstException();
         }
-    
-        public virtual DbSet<Chairman_pck> Chairman_pck { get; set; }
+
         public virtual DbSet<Cycle_commissions> Cycle_commissions { get; set; }
         public virtual DbSet<Disciplines> Disciplines { get; set; }
+        public virtual DbSet<Examiners> Examiners { get; set; }
         public virtual DbSet<Komplect_tickets> Komplect_tickets { get; set; }
         public virtual DbSet<Kurs> Kurs { get; set; }
         public virtual DbSet<Protocols> Protocols { get; set; }
         public virtual DbSet<Questions> Questions { get; set; }
         public virtual DbSet<Semesters> Semesters { get; set; }
         public virtual DbSet<Speciality> Speciality { get; set; }
-        public virtual DbSet<Teacher> Teacher { get; set; }
         public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+
+        public virtual ObjectResult<GetExaminersRole_Result> GetExaminersRole(string choice)
+        {
+            var choiceParameter = choice != null ?
+                new ObjectParameter("choice", choice) :
+                new ObjectParameter("choice", typeof(string));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetExaminersRole_Result>("GetExaminersRole", choiceParameter);
+        }
     }
 }
