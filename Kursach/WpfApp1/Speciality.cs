@@ -17,13 +17,13 @@ namespace WpfApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Speciality()
         {
-            this.Cycle_commissions = new HashSet<Cycle_commissions>();
+            this.Disciplines = new HashSet<Disciplines>();
         }
     
         public string code_speciality { get; set; }
         public string name_of_speciality { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cycle_commissions> Cycle_commissions { get; set; }
+        public virtual ICollection<Disciplines> Disciplines { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace WpfApp1
     public partial class Tickets
     {
         public int id_ticket { get; set; }
-        public int nom_quetion_in_ticket { get; set; }
+        public int nom_question_in_ticket { get; set; }
         public Nullable<int> id_question { get; set; }
         public Nullable<int> nom_komplect { get; set; }
     

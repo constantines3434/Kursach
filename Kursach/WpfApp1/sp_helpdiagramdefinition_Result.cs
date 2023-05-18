@@ -10,20 +10,10 @@
 namespace WpfApp1
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Protocols
+    public partial class sp_helpdiagramdefinition_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Protocols()
-        {
-            this.Komplect_tickets = new HashSet<Komplect_tickets>();
-        }
-    
-        public int nom_protocol { get; set; }
-        public Nullable<System.DateTime> date_protocol { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Komplect_tickets> Komplect_tickets { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -4,27 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b3a9e9bc454248f9a50ff963cf1e0b0c" Name="Diagram1">
-        <EntityTypeShape EntityType="BaseModel.Cycle_commissions" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Disciplines" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Examiners" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Komplect_tickets" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Kurs" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Protocols" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Questions" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Semesters" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Speciality" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Tickets" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseModel.Users" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="BaseModel.FK__Cycle_com__code___3B75D760" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Cycle_com__id_ex__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Protocols__id_cy__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Questions__id_di__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Komplect___nom_k__48CFD27E" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Komplect___nom_p__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Komplect___nom_s__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Tickets__nom_kom__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseModel.FK__Tickets__id_ques__4F7CD00D" ManuallyRouted="false" />
+      <Diagram DiagramId="0c0ec900ee4f4177b5ba3dac5b70c50f" Name="Diagram1">
+        <EntityTypeShape EntityType="BaseModel.Disciplines" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Examiners" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Komplect_tickets" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Kurs" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Protocols" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Questions" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Semesters" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Speciality" Width="1.5" PointX="1.5" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Tickets" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Users" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="BaseModel.FK__Disciplin__code___48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Questions__id_di__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Komplect___id_ex__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Komplect___nom_k__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Komplect___nom_p__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Komplect___nom_s__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Tickets__nom_kom__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Tickets__id_ques__4E88ABD4" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -22,7 +22,9 @@ namespace WpfApp1
     
         public int id_discipline { get; set; }
         public string name_discipline { get; set; }
+        public string code_speciality { get; set; }
     
+        public virtual Speciality Speciality { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Questions> Questions { get; set; }
     }

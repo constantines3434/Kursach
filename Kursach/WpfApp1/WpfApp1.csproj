@@ -111,9 +111,6 @@
     <Compile Include="Choice_admin.xaml.cs">
       <DependentUpon>Choice_admin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Cycle_commissions.cs">
-      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataBase.cs" />
     <Compile Include="Disciplines.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
@@ -167,6 +164,15 @@
       <DependentUpon>Sign_up.xaml</DependentUpon>
     </Compile>
     <Compile Include="Speciality.cs">
+      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Tickets.cs">

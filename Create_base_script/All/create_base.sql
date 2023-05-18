@@ -21,13 +21,10 @@ GO
 USE Base;
 
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Teacher')
-	DROP TABLE Examiners
+	DROP TABLE Teacher
 
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Speciality')
 	DROP TABLE Speciality
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Cycle_commissions')
-	DROP TABLE Cycle_commissions
 
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Protocols')
 	DROP TABLE Protocols
@@ -111,7 +108,7 @@ VALUES ('02.02.2023'),
 ('05.05.2023'),
 ('06.06.2023');
 
-CREATE TABLE Examiners
+CREATE TABLE Teacher
 (
 	id_examiners INT IDENTITY PRIMARY KEY,
     surname nvarchar(100),
@@ -121,7 +118,7 @@ CREATE TABLE Examiners
 );
 
 --DELETE FROM Teacher;
-INSERT INTO Examiners (surname, name_, patronymic, role_)
+INSERT INTO Teacher (surname, name_, patronymic)
 VALUES ('Смирнов', 'Константин', 'Вадимович', 'Председатель ПЦК'),
 ('Ларионова', 'Елена', 'Анатольевна', 'Председатель ПЦК'),
 ('Мурашов', 'Анатолий', 'Алексеевич', 'Председатель ПЦК'),
@@ -143,6 +140,40 @@ VALUES ('Смирнов', 'Константин', 'Вадимович', 'Председатель ПЦК'),
 ('Солонин', 'Марк', 'Семёнович', 'Преподаватель'),
 ('Суворов', 'Виктор', 'Богданович', 'Преподаватель');
 
+CREATE TABLE Teacher
+(
+	id_examiners INT IDENTITY PRIMARY KEY,
+    surname nvarchar(100),
+	name_ nvarchar(100),
+    patronymic nvarchar(100),
+	role_ nvarchar(16) --Учитель Председатель ПЦК
+);
+
+--DELETE FROM Teacher;
+INSERT INTO Chairman_pck (surname, name_, patronymic)
+VALUES ('Смирнов', 'Константин', 'Вадимович', 'Председатель ПЦК'),
+('Ларионова', 'Елена', 'Анатольевна', 'Председатель ПЦК'),
+('Мурашов', 'Анатолий', 'Алексеевич', 'Председатель ПЦК'),
+('Глускер', 'Александр', 'Игоревич', 'Председатель ПЦК'),
+('Александров', 'Роман', 'Викторович', 'Председатель ПЦК'),
+('Храбров', 'Илья', 'Николаевич', 'Председатель ПЦК'),
+('Марцинкевич', 'Максим', 'Сергееевич', 'Председатель ПЦК'),
+('Сталин', 'Иосиф', 'Виссарионович', 'Председатель ПЦК'),
+('Троцкий', 'Лев', 'Давидович', 'Председатель ПЦК'),
+('Чиповская', 'Анна', 'Борисовная', 'Преподаватель'),
+('Котик', 'Владислав', 'Вадимович', 'Преподаватель'),
+('Ларионова', 'Елена', 'Анатольевна', 'Преподаватель'),
+('Мурашов', 'Анатолий', 'Алексеевич', 'Преподаватель'),
+('Глускер', 'Александр', 'Игоревич', 'Преподаватель'),
+('Ленин', 'Владимир', 'Ильич', 'Преподаватель'),
+('Керенский', 'Александр', 'Фёдорович', 'Преподаватель'),
+('Корнилов', 'Лавр', 'Георгиевич', 'Преподаватель'),
+('Деникин', 'Антон', 'Иванович', 'Преподаватель'),
+('Солонин', 'Марк', 'Семёнович', 'Преподаватель'),
+('Суворов', 'Виктор', 'Богданович', 'Преподаватель');
+
+
+
 CREATE TABLE Komplect_tickets
 (
     nom_komplect INT IDENTITY PRIMARY KEY,
@@ -157,12 +188,12 @@ CREATE TABLE Komplect_tickets
 );
 
 --DELETE FROM Komplect_tickets;
-INSERT INTO Komplect_tickets (nom_kurs, nom_semester, nom_protocol)
-VALUES ('1', '1', '1'),
-('2', '2', '2'),
-('3', '3', '3'),
-('4', '4', '4'),
-('5', '5', '5');
+INSERT INTO Komplect_tickets (nom_kurs, nom_semester, nom_protocol, id_examiners)
+VALUES ('1', '1', '1', '1'),
+('2', '2', '2', '2'),
+('3', '3', '3', '3'),
+('4', '4', '4', '4'),
+('5', '5', '5', '5');
 
 
 CREATE TABLE Speciality
