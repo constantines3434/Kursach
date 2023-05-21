@@ -20,35 +20,38 @@ GO
 
 USE Base;
 
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Teacher')
-	DROP TABLE Teacher
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Speciality')
-	DROP TABLE Speciality
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Protocols')
-	DROP TABLE Protocols
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Semesters')
-	DROP TABLE Semesters
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Disciplines')
-	DROP TABLE Disciplines
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Users')
+	DROP TABLE Users
 
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Kurs')
 	DROP TABLE Kurs
 
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Semesters')
+	DROP TABLE Semesters
+
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Protocols')
+	DROP TABLE Protocols
+
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Chairman_pck')
+	DROP TABLE Chairman_pck
+
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Komplect_tickets')
 	DROP TABLE Komplect_tickets
+
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Speciality')
+	DROP TABLE Speciality
+
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Disciplines')
+	DROP TABLE Disciplines
 
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Questions')
 	DROP TABLE Questions
 
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Teacher')
+	DROP TABLE Teacher
+
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Tickets')
 	DROP TABLE Tickets
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Users')
-	DROP TABLE Users
 
 CREATE TABLE Users
 (
@@ -108,71 +111,29 @@ VALUES ('02.02.2023'),
 ('05.05.2023'),
 ('06.06.2023');
 
-CREATE TABLE Teacher
+CREATE TABLE Chairman_pck
 (
-	id_examiners INT IDENTITY PRIMARY KEY,
+	id_chairman_pck INT IDENTITY PRIMARY KEY,
     surname nvarchar(100),
 	name_ nvarchar(100),
-    patronymic nvarchar(100),
-	role_ nvarchar(16) --Учитель Председатель ПЦК
-);
-
---DELETE FROM Teacher;
-INSERT INTO Teacher (surname, name_, patronymic)
-VALUES ('Смирнов', 'Константин', 'Вадимович', 'Председатель ПЦК'),
-('Ларионова', 'Елена', 'Анатольевна', 'Председатель ПЦК'),
-('Мурашов', 'Анатолий', 'Алексеевич', 'Председатель ПЦК'),
-('Глускер', 'Александр', 'Игоревич', 'Председатель ПЦК'),
-('Александров', 'Роман', 'Викторович', 'Председатель ПЦК'),
-('Храбров', 'Илья', 'Николаевич', 'Председатель ПЦК'),
-('Марцинкевич', 'Максим', 'Сергееевич', 'Председатель ПЦК'),
-('Сталин', 'Иосиф', 'Виссарионович', 'Председатель ПЦК'),
-('Троцкий', 'Лев', 'Давидович', 'Председатель ПЦК'),
-('Чиповская', 'Анна', 'Борисовная', 'Преподаватель'),
-('Котик', 'Владислав', 'Вадимович', 'Преподаватель'),
-('Ларионова', 'Елена', 'Анатольевна', 'Преподаватель'),
-('Мурашов', 'Анатолий', 'Алексеевич', 'Преподаватель'),
-('Глускер', 'Александр', 'Игоревич', 'Преподаватель'),
-('Ленин', 'Владимир', 'Ильич', 'Преподаватель'),
-('Керенский', 'Александр', 'Фёдорович', 'Преподаватель'),
-('Корнилов', 'Лавр', 'Георгиевич', 'Преподаватель'),
-('Деникин', 'Антон', 'Иванович', 'Преподаватель'),
-('Солонин', 'Марк', 'Семёнович', 'Преподаватель'),
-('Суворов', 'Виктор', 'Богданович', 'Преподаватель');
-
-CREATE TABLE Teacher
-(
-	id_examiners INT IDENTITY PRIMARY KEY,
-    surname nvarchar(100),
-	name_ nvarchar(100),
-    patronymic nvarchar(100),
-	role_ nvarchar(16) --Учитель Председатель ПЦК
+    patronymic nvarchar(100)
+	--Учитель Председатель ПЦК
 );
 
 --DELETE FROM Teacher;
 INSERT INTO Chairman_pck (surname, name_, patronymic)
-VALUES ('Смирнов', 'Константин', 'Вадимович', 'Председатель ПЦК'),
-('Ларионова', 'Елена', 'Анатольевна', 'Председатель ПЦК'),
-('Мурашов', 'Анатолий', 'Алексеевич', 'Председатель ПЦК'),
-('Глускер', 'Александр', 'Игоревич', 'Председатель ПЦК'),
-('Александров', 'Роман', 'Викторович', 'Председатель ПЦК'),
-('Храбров', 'Илья', 'Николаевич', 'Председатель ПЦК'),
-('Марцинкевич', 'Максим', 'Сергееевич', 'Председатель ПЦК'),
-('Сталин', 'Иосиф', 'Виссарионович', 'Председатель ПЦК'),
-('Троцкий', 'Лев', 'Давидович', 'Председатель ПЦК'),
-('Чиповская', 'Анна', 'Борисовная', 'Преподаватель'),
-('Котик', 'Владислав', 'Вадимович', 'Преподаватель'),
-('Ларионова', 'Елена', 'Анатольевна', 'Преподаватель'),
-('Мурашов', 'Анатолий', 'Алексеевич', 'Преподаватель'),
-('Глускер', 'Александр', 'Игоревич', 'Преподаватель'),
-('Ленин', 'Владимир', 'Ильич', 'Преподаватель'),
-('Керенский', 'Александр', 'Фёдорович', 'Преподаватель'),
-('Корнилов', 'Лавр', 'Георгиевич', 'Преподаватель'),
-('Деникин', 'Антон', 'Иванович', 'Преподаватель'),
-('Солонин', 'Марк', 'Семёнович', 'Преподаватель'),
-('Суворов', 'Виктор', 'Богданович', 'Преподаватель');
-
-
+VALUES
+('Чиповская', 'Анна', 'Борисовная'),
+('Котик', 'Владислав', 'Вадимович'),
+('Ларионова', 'Елена', 'Анатольевна'),
+('Мурашов', 'Анатолий', 'Алексеевич'),
+('Глускер', 'Александр', 'Игоревич'),
+('Ленин', 'Владимир', 'Ильич'),
+('Керенский', 'Александр', 'Фёдорович'),
+('Корнилов', 'Лавр', 'Георгиевич'),
+('Деникин', 'Антон', 'Иванович'),
+('Солонин', 'Марк', 'Семёнович'),
+('Суворов', 'Виктор', 'Богданович'); --11
 
 CREATE TABLE Komplect_tickets
 (
@@ -180,15 +141,15 @@ CREATE TABLE Komplect_tickets
     nom_kurs INT,
     nom_semester INT,
     nom_protocol INT,
-	id_examiners INT,
+	id_chairman_pck INT,
 	FOREIGN KEY (nom_kurs) REFERENCES Kurs (nom_kurs) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (nom_semester) REFERENCES Semesters (nom_semester) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (nom_protocol) REFERENCES Protocols (nom_protocol) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (id_examiners) REFERENCES Examiners (id_examiners) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (id_chairman_pck) REFERENCES Chairman_pck (id_chairman_pck) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 --DELETE FROM Komplect_tickets;
-INSERT INTO Komplect_tickets (nom_kurs, nom_semester, nom_protocol, id_examiners)
+INSERT INTO Komplect_tickets (nom_kurs, nom_semester, nom_protocol, id_chairman_pck)
 VALUES ('1', '1', '1', '1'),
 ('2', '2', '2', '2'),
 ('3', '3', '3', '3'),
@@ -215,7 +176,9 @@ CREATE TABLE Disciplines
 (
 	id_discipline int IDENTITY PRIMARY KEY,
     name_discipline nvarchar(500),
-	code_speciality nvarchar(100) FOREIGN KEY (code_speciality) REFERENCES Speciality (code_speciality) ON DELETE CASCADE ON UPDATE CASCADE
+	code_speciality nvarchar(100),
+	FOREIGN KEY (code_speciality) REFERENCES Speciality (code_speciality) ON DELETE CASCADE ON UPDATE CASCADE,
+	
 );
 
 --DELETE FROM Disciplines;
@@ -225,6 +188,32 @@ VALUES ('ОП.01. Операционные системы', '09.02.06'),
 ('МДК.02.01. Инфокоммуникационные системы и сети', '10.02.05'),
 ('МДК.02.02. Технология разработки и защиты баз данных', '21.02.19'),
 ('ОГСЭ.03. Иностранный язык', '42.02.01');
+
+CREATE TABLE Teacher
+(
+	id_teacher INT IDENTITY PRIMARY KEY,
+    surname nvarchar(100),
+	name_ nvarchar(100),
+    patronymic nvarchar(100),
+	id_discipline int,
+	FOREIGN KEY (id_discipline) REFERENCES Disciplines (id_discipline) ON DELETE CASCADE ON UPDATE CASCADE
+	--тут смотри
+);
+
+--DELETE FROM Teacher;
+INSERT INTO Teacher (surname, name_, patronymic, id_discipline)
+VALUES
+('Смирнов', 'Константин', 'Вадимович', '1'),
+('Ларионова', 'Елена', 'Анатольевна', '1'),
+('Мурашов', 'Анатолий', 'Алексеевич', '1'),
+('Глускер', 'Александр', 'Игоревич', '1'),
+('Александров', 'Роман', 'Викторович', '1'),
+('Храбров', 'Илья', 'Николаевич', '2'),
+('Марцинкевич', 'Максим', 'Сергееевич', '2'),
+('Сталин', 'Иосиф', 'Виссарионович', '3'),
+('Троцкий', 'Лев', 'Давидович', '3'),
+('Бухарин', 'Николай', 'Иванович', '4'),
+('Зиновье', 'Григорий', 'Евсеевич', '5');
 
 CREATE TABLE Questions
 (
@@ -699,18 +688,20 @@ CREATE TABLE Tickets
     nom_question_in_ticket INT,
     id_question INT,
     nom_komplect INT,
+	id_teacher INT,
 	PRIMARY KEY(id_ticket, nom_question_in_ticket),
 	FOREIGN KEY (id_question) REFERENCES Questions (id_question) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (nom_komplect) REFERENCES Komplect_tickets (nom_komplect) ON DELETE CASCADE ON UPDATE CASCADE	
+	FOREIGN KEY (nom_komplect) REFERENCES Komplect_tickets (nom_komplect) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (id_teacher) REFERENCES Teacher (id_teacher)
 );
 
 --DELETE FROM Tickets;
-INSERT INTO Tickets (nom_question_in_ticket, id_question, nom_komplect)
-VALUES ('1', '1', '1'),
-('2', '2', '2'),
-('3', '3', '3'),
-('4', '4', '4'),
-('5', '5', '5');
+INSERT INTO Tickets (nom_question_in_ticket, id_question, nom_komplect, id_teacher)
+VALUES ('1', '1', '1', '1'),
+('2', '2', '2', '2'),
+('3', '3', '3', '3'),
+('4', '4', '4', '4'),
+('5', '5', '5', '5');
 
 GO
 CREATE PROCEDURE dbo.GetExaminersRole @choice nvarchar(100)

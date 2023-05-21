@@ -234,7 +234,7 @@
                   Height="30">
         </ComboBox>
 
-        <ComboBox Name="Chairman_pck"
+        <ComboBox Name="Chairman"
                   Grid.Row="2"
                   Grid.Column="5"
             
@@ -333,7 +333,7 @@
                 Height="70" Width="250"
                 FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_Confirmation"
-                Content="Подтверждение"
+                Content="Подтверждение специальности"
                  
             Click="But_Confirmation_Click">
             <Button.Background>

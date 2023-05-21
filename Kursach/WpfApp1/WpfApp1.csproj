@@ -108,6 +108,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Chairman_pck.cs">
+      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Choice_admin.xaml.cs">
       <DependentUpon>Choice_admin.xaml</DependentUpon>
     </Compile>
@@ -123,12 +126,6 @@
     </Compile>
     <Compile Include="EditingUser.xaml.cs">
       <DependentUpon>EditingUser.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Examiners.cs">
-      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GetExaminersRole_Result.cs">
-      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Komplect_tickets.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
@@ -166,13 +163,7 @@
     <Compile Include="Speciality.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
+    <Compile Include="Teacher.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Tickets.cs">

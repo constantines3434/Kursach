@@ -24,9 +24,9 @@ namespace WpfApp1
         public Nullable<int> nom_kurs { get; set; }
         public Nullable<int> nom_semester { get; set; }
         public Nullable<int> nom_protocol { get; set; }
-        public Nullable<int> id_examiners { get; set; }
+        public Nullable<int> id_chairman_pck { get; set; }
     
-        public virtual Examiners Examiners { get; set; }
+        public virtual Chairman_pck Chairman_pck { get; set; }
         public virtual Kurs Kurs { get; set; }
         public virtual Protocols Protocols { get; set; }
         public virtual Semesters Semesters { get; set; }

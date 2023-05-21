@@ -18,6 +18,7 @@ namespace WpfApp1
         public Disciplines()
         {
             this.Questions = new HashSet<Questions>();
+            this.Teacher = new HashSet<Teacher>();
         }
     
         public int id_discipline { get; set; }
@@ -27,5 +28,7 @@ namespace WpfApp1
         public virtual Speciality Speciality { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Questions> Questions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Teacher> Teacher { get; set; }
     }
 }

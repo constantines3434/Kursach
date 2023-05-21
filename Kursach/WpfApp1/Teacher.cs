@@ -12,21 +12,22 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Examiners
+    public partial class Teacher
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Examiners()
+        public Teacher()
         {
-            this.Komplect_tickets = new HashSet<Komplect_tickets>();
+            this.Tickets = new HashSet<Tickets>();
         }
     
-        public int id_examiners { get; set; }
+        public int id_teacher { get; set; }
         public string surname { get; set; }
         public string name_ { get; set; }
         public string patronymic { get; set; }
-        public string role_ { get; set; }
+        public Nullable<int> id_discipline { get; set; }
     
+        public virtual Disciplines Disciplines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Komplect_tickets> Komplect_tickets { get; set; }
+        public virtual ICollection<Tickets> Tickets { get; set; }
     }
 }
