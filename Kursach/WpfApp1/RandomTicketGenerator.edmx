@@ -82,11 +82,11 @@
         <EntityType Name="Tickets">
           <Key>
             <PropertyRef Name="id_ticket" />
-            <PropertyRef Name="nom_question_in_ticket" />
           </Key>
           <Property Name="id_ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nom_question_in_ticket" Type="int" Nullable="false" />
-          <Property Name="id_question" Type="int" />
+          <Property Name="id_quest1" Type="int" />
+          <Property Name="id_quest2" Type="int" />
+          <Property Name="id_quest3" Type="int" />
           <Property Name="nom_komplect" Type="int" />
           <Property Name="id_teacher" Type="int" />
         </EntityType>
@@ -198,20 +198,42 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Tickets__id_ques__5165187F">
-          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Questions">
               <PropertyRef Name="id_question" />
             </Principal>
             <Dependent Role="Tickets">
-              <PropertyRef Name="id_question" />
+              <PropertyRef Name="id_quest1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tickets__id_teac__534D60F1">
+        <Association Name="FK__Tickets__id_ques__52593CB8">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id_question" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_quest2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tickets__id_ques__534D60F1">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id_question" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_quest3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tickets__id_teac__5535A963">
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -223,7 +245,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tickets__nom_kom__52593CB8">
+        <Association Name="FK__Tickets__nom_kom__5441852A">
           <End Role="Komplect_tickets" Type="Self.Komplect_tickets" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -284,11 +306,19 @@
             <End Role="Questions" EntitySet="Questions" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tickets__id_teac__534D60F1" Association="Self.FK__Tickets__id_teac__534D60F1">
+          <AssociationSet Name="FK__Tickets__id_ques__52593CB8" Association="Self.FK__Tickets__id_ques__52593CB8">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tickets__id_ques__534D60F1" Association="Self.FK__Tickets__id_ques__534D60F1">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tickets__id_teac__5535A963" Association="Self.FK__Tickets__id_teac__5535A963">
             <End Role="Teacher" EntitySet="Teacher" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tickets__nom_kom__52593CB8" Association="Self.FK__Tickets__nom_kom__52593CB8">
+          <AssociationSet Name="FK__Tickets__nom_kom__5441852A" Association="Self.FK__Tickets__nom_kom__5441852A">
             <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
@@ -332,7 +362,7 @@
           <NavigationProperty Name="Kurs" Relationship="Self.FK__Komplect___nom_k__412EB0B6" FromRole="Komplect_tickets" ToRole="Kurs" />
           <NavigationProperty Name="Protocols" Relationship="Self.FK__Komplect___nom_p__4316F928" FromRole="Komplect_tickets" ToRole="Protocols" />
           <NavigationProperty Name="Semesters" Relationship="Self.FK__Komplect___nom_s__4222D4EF" FromRole="Komplect_tickets" ToRole="Semesters" />
-          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__nom_kom__52593CB8" FromRole="Komplect_tickets" ToRole="Tickets" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__nom_kom__5441852A" FromRole="Komplect_tickets" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="Kurs">
           <Key>
@@ -360,6 +390,8 @@
           <Property Name="complexity" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Disciplines" Relationship="Self.FK__Questions__id_di__4E88ABD4" FromRole="Questions" ToRole="Disciplines" />
           <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__id_ques__5165187F" FromRole="Questions" ToRole="Tickets" />
+          <NavigationProperty Name="Tickets1" Relationship="Self.FK__Tickets__id_ques__52593CB8" FromRole="Questions" ToRole="Tickets" />
+          <NavigationProperty Name="Tickets2" Relationship="Self.FK__Tickets__id_ques__534D60F1" FromRole="Questions" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="Semesters">
           <Key>
@@ -387,21 +419,23 @@
           <Property Name="patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="id_discipline" Type="Int32" />
           <NavigationProperty Name="Disciplines" Relationship="Self.FK__Teacher__id_disc__4BAC3F29" FromRole="Teacher" ToRole="Disciplines" />
-          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__id_teac__534D60F1" FromRole="Teacher" ToRole="Tickets" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__id_teac__5535A963" FromRole="Teacher" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="Tickets">
           <Key>
             <PropertyRef Name="id_ticket" />
-            <PropertyRef Name="nom_question_in_ticket" />
           </Key>
           <Property Name="id_ticket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nom_question_in_ticket" Type="Int32" Nullable="false" />
-          <Property Name="id_question" Type="Int32" />
+          <Property Name="id_quest1" Type="Int32" />
+          <Property Name="id_quest2" Type="Int32" />
+          <Property Name="id_quest3" Type="Int32" />
           <Property Name="nom_komplect" Type="Int32" />
           <Property Name="id_teacher" Type="Int32" />
-          <NavigationProperty Name="Komplect_tickets" Relationship="Self.FK__Tickets__nom_kom__52593CB8" FromRole="Tickets" ToRole="Komplect_tickets" />
+          <NavigationProperty Name="Komplect_tickets" Relationship="Self.FK__Tickets__nom_kom__5441852A" FromRole="Tickets" ToRole="Komplect_tickets" />
           <NavigationProperty Name="Questions" Relationship="Self.FK__Tickets__id_ques__5165187F" FromRole="Tickets" ToRole="Questions" />
-          <NavigationProperty Name="Teacher" Relationship="Self.FK__Tickets__id_teac__534D60F1" FromRole="Tickets" ToRole="Teacher" />
+          <NavigationProperty Name="Questions1" Relationship="Self.FK__Tickets__id_ques__52593CB8" FromRole="Tickets" ToRole="Questions" />
+          <NavigationProperty Name="Questions2" Relationship="Self.FK__Tickets__id_ques__534D60F1" FromRole="Tickets" ToRole="Questions" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__Tickets__id_teac__5535A963" FromRole="Tickets" ToRole="Teacher" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -510,7 +544,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tickets__nom_kom__52593CB8">
+        <Association Name="FK__Tickets__nom_kom__5441852A">
           <End Role="Komplect_tickets" Type="Self.Komplect_tickets" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -525,20 +559,42 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Tickets__id_ques__5165187F">
-          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Questions">
               <PropertyRef Name="id_question" />
             </Principal>
             <Dependent Role="Tickets">
-              <PropertyRef Name="id_question" />
+              <PropertyRef Name="id_quest1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tickets__id_teac__534D60F1">
+        <Association Name="FK__Tickets__id_ques__52593CB8">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id_question" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_quest2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tickets__id_ques__534D60F1">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id_question" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_quest3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tickets__id_teac__5535A963">
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -590,7 +646,7 @@
             <End Role="Semesters" EntitySet="Semesters" />
             <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tickets__nom_kom__52593CB8" Association="Self.FK__Tickets__nom_kom__52593CB8">
+          <AssociationSet Name="FK__Tickets__nom_kom__5441852A" Association="Self.FK__Tickets__nom_kom__5441852A">
             <End Role="Komplect_tickets" EntitySet="Komplect_tickets" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
@@ -598,7 +654,15 @@
             <End Role="Questions" EntitySet="Questions" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tickets__id_teac__534D60F1" Association="Self.FK__Tickets__id_teac__534D60F1">
+          <AssociationSet Name="FK__Tickets__id_ques__52593CB8" Association="Self.FK__Tickets__id_ques__52593CB8">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tickets__id_ques__534D60F1" Association="Self.FK__Tickets__id_ques__534D60F1">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tickets__id_teac__5535A963" Association="Self.FK__Tickets__id_teac__5535A963">
             <End Role="Teacher" EntitySet="Teacher" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
@@ -699,8 +763,9 @@
             <EntityTypeMapping TypeName="BaseModel.Tickets">
               <MappingFragment StoreEntitySet="Tickets">
                 <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
-                <ScalarProperty Name="nom_question_in_ticket" ColumnName="nom_question_in_ticket" />
-                <ScalarProperty Name="id_question" ColumnName="id_question" />
+                <ScalarProperty Name="id_quest1" ColumnName="id_quest1" />
+                <ScalarProperty Name="id_quest2" ColumnName="id_quest2" />
+                <ScalarProperty Name="id_quest3" ColumnName="id_quest3" />
                 <ScalarProperty Name="nom_komplect" ColumnName="nom_komplect" />
                 <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
               </MappingFragment>

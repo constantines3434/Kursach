@@ -18,6 +18,8 @@ namespace WpfApp1
         public Questions()
         {
             this.Tickets = new HashSet<Tickets>();
+            this.Tickets1 = new HashSet<Tickets>();
+            this.Tickets2 = new HashSet<Tickets>();
         }
     
         public int id_question { get; set; }
@@ -29,5 +31,9 @@ namespace WpfApp1
         public virtual Disciplines Disciplines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tickets> Tickets { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tickets> Tickets1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tickets> Tickets2 { get; set; }
     }
 }

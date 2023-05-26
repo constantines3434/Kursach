@@ -15,13 +15,16 @@ namespace WpfApp1
     public partial class Tickets
     {
         public int id_ticket { get; set; }
-        public int nom_question_in_ticket { get; set; }
-        public Nullable<int> id_question { get; set; }
+        public Nullable<int> id_quest1 { get; set; }
+        public Nullable<int> id_quest2 { get; set; }
+        public Nullable<int> id_quest3 { get; set; }
         public Nullable<int> nom_komplect { get; set; }
         public Nullable<int> id_teacher { get; set; }
     
         public virtual Komplect_tickets Komplect_tickets { get; set; }
         public virtual Questions Questions { get; set; }
+        public virtual Questions Questions1 { get; set; }
+        public virtual Questions Questions2 { get; set; }
         public virtual Teacher Teacher { get; set; }
     }
 }
