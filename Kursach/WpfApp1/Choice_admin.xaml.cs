@@ -5,14 +5,20 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Data;
-using System.Data.SqlClient;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
-using System.Runtime.CompilerServices;
-using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Math;
 
 namespace WpfApp1
 {
+    public class ExaminerItem
+    {
+        public int Id { get; set; }
+        public string Fio { get; set; }
+
+        public ExaminerItem(int id, string fio)
+        {
+            this.Id = id;
+            this.Fio = fio;
+        }
+    }
     /// <summary>
     /// Логика взаимодействия для Choice.xaml
     /// </summary>
@@ -25,36 +31,16 @@ namespace WpfApp1
         public Choice_admin(string role)
         {
             InitializeComponent();
-            Bindcombo_speciality();
-            Bindcombo_kurs();
-            Bindcombo_semester();
-            Bindcombo_protocols();
-            Bindcombo_chairman();
+            InitializationSpeciality();
+            InitializationKurs();
+            InitializationSemester();
+            InitializationProtocols();
+            InitializationChairman();
             var rng = new Random();
             tick = RandomTicketGenerator.GetContext().Tickets.ToList();
             tick = tick.OrderBy(x => rng.Next()).ToList();
             roleUser = role;
         }
-
-        //связывание таблиц
-        /////////////////////////////////////////
-
-        /// <summary>
-        /// получение id Председателя
-        /// </summary>
-        private int GetChairmanId()
-        {
-            int id =
-    (from i in RandomTicketGenerator.GetContext().Chairman_pck.ToList()
-     where i.id_chairman_pck == Convert.ToInt32(Chairman.Text)
-     select i.id_chairman_pck).First();
-            return id;
-        }
-        private int GetChairman()
-        {
-            return ((Chairman_pck)Chairman.SelectedItem).id_chairman_pck;
-        }
-        /////////////////////////////////////////
         private string FindSpecialityId()
         {
             return ((Speciality)Spec.SelectedItem).code_speciality;
@@ -66,15 +52,14 @@ namespace WpfApp1
         {
             string id =
     (from i in RandomTicketGenerator.GetContext().Speciality.ToList()
-         // where i.code_speciality == code//FindSpecialityId()
+     where i.code_speciality == code//FindSpecialityId()
      select i.code_speciality).First();
             return id;
         }
-
         /// <summary>
         /// заполнение ComboBox Специальности
         /// </summary>
-        private void Bindcombo_speciality()
+        private void InitializationSpeciality()
         {
 
             IEnumerable<Speciality> Speciality_list = from i in RandomTicketGenerator.GetContext().Speciality.ToList()
@@ -101,8 +86,7 @@ namespace WpfApp1
             return ((Kurs)Kurs.SelectedItem).nom_kurs;
         }
 
-
-        private void Bindcombo_kurs()
+        private void InitializationKurs()
         {
             IEnumerable<Kurs> Kurs_list = from i in RandomTicketGenerator.GetContext().Kurs.ToList()
                                           select i;
@@ -124,9 +108,6 @@ namespace WpfApp1
      select i.nom_semester).First();
             return id;
         }
-
-
-
         private DateTime GetSemDate()
         {
             return ((Semesters)Semester.SelectedItem).academic_year.Value;
@@ -136,11 +117,10 @@ namespace WpfApp1
         {
             return GetSemDate().ToString("yyyy");
         }
-
         /// <summary>
         /// заполнение ComboBox Специальности
         /// </summary>
-        private void Bindcombo_semester()
+        private void InitializationSemester()
         {
             IEnumerable<Semesters> Semesters_list = from i in RandomTicketGenerator.GetContext().Semesters.ToList()
                                                     select i;
@@ -150,7 +130,6 @@ namespace WpfApp1
             Semester.DisplayMemberPath = "nom_semester";
             Semester.SelectedIndex = 0;
         }
-
         /// <summary>
         /// получение id протокола
         /// </summary>
@@ -165,7 +144,7 @@ namespace WpfApp1
         /// <summary>
         /// заполнение ComboBox Протоколов
         /// </summary>
-        private void Bindcombo_protocols()
+        private void InitializationProtocols()
         {
             IEnumerable<Protocols> Protocols_list = from i in RandomTicketGenerator.GetContext().Protocols.ToList()
                                                     select i;
@@ -179,33 +158,27 @@ namespace WpfApp1
         {
             return ((Protocols)Protocol.SelectedItem).date_protocol.Value;
         }
-
         private string GetProtDateString()
         {
             return GetProtDate().ToString("dd.MM.yyyy");
         }
-
-        private int GetChairmnaId()
+        private void InitializationChairman()
         {
-            int id =
-   (from i in RandomTicketGenerator.GetContext().Chairman_pck.ToList()
-    where i.id_chairman_pck == Convert.ToInt32(Protocol.Text)
-    select i.id_chairman_pck).First();
-            return id;
-        }
-
-        private void Bindcombo_chairman()
-        {
-            IEnumerable<string> Chairman_list = from i in RandomTicketGenerator.GetContext().Chairman_pck.ToList()
-                                                let fio = i.surname + " " + i.name_[0] + "." + i.patronymic[0] + "."
-                                                select fio;
-            //Chairman_list.ToList();
+            IEnumerable<ExaminerItem> Chairman_list = from i in RandomTicketGenerator.GetContext().Chairman_pck.ToList()
+                                                      let fio = i.surname + " " + i.name_[0] + "." + i.patronymic[0] + "."
+                                                      select new ExaminerItem(i.id_chairman_pck, fio);
             DataContext = Chairman_list;
             Chairman.ItemsSource = Chairman_list;
-            Chairman.SelectedValuePath = "";
+            Chairman.DisplayMemberPath = "Fio";
             Chairman.SelectedIndex = 0;
         }
-
+        /// <summary>
+        /// получение id Председателя
+        /// </summary>
+        private int GetChairmanId()
+        {
+            return ((ExaminerItem)Chairman.SelectedItem).Id;
+        }
         /// <summary>
         /// получение id вопроса
         /// </summary>
@@ -217,7 +190,6 @@ namespace WpfApp1
           select i.id_question).First();
             return id;
         }
-
         List<Questions> Questions_list { get; set; }
         /// <summary>
         /// Инициализация Вопросов
@@ -231,7 +203,6 @@ namespace WpfApp1
             var rng = new Random();
             Questions_list = Quest_list.OrderBy(x => rng.Next()).ToList();
         }
-
         /// <summary>
         /// получение id комплекта билетов
         /// </summary>
@@ -242,11 +213,10 @@ namespace WpfApp1
           where i.nom_kurs == kursId//GetKursId() //+
            && i.nom_semester == semesterId//GetSemesterId() //+
            && i.nom_protocol == protocolId//GetProtocolsId() //+
-                                          //&& i.id_chairman_pck == GetChairmanId() //+
+           && i.id_chairman_pck == GetChairmanId() //+
           select i.nom_komplect).First();
             return id;
         }
-
         /// <summary>
         /// получение id билета
         /// </summary>
@@ -257,16 +227,16 @@ namespace WpfApp1
                        select i.id_ticket).First();
 
             tick.RemoveAll((ticket) => ticket.id_ticket == res);
-            return res;
+            return res; //обработать исключение, когда билетов не осталось
         }
-
         private IEnumerable<string> FindQuestions(int tickId) //NextTicketid
         {
             foreach (var t in tick)
                 Console.WriteLine($"*** {t.id_ticket}");
             var tickets = (from i in RandomTicketGenerator.GetContext().Tickets.ToList()
                            where i.id_ticket == tickId
-                          select i).First();
+                           && i.id_teacher == FindTeacherId(GetTeacher(), FindDisciplineId(FindSpecId(FindSpecialityId())))
+                           select i).First();
 
             var questions = (from quest in RandomTicketGenerator.GetContext().Questions.ToList()
                              where
@@ -274,7 +244,6 @@ namespace WpfApp1
                              || quest.id_question == tickets.id_quest2
                              || quest.id_question == tickets.id_quest3
                              select quest.question);
-            
             return questions;
         }
         private void But_Click_Form_Ticket(object sender, RoutedEventArgs e)
@@ -311,41 +280,42 @@ namespace WpfApp1
                 MessageBox.Show("Неверный формат");
                 return;
             }
-
-
-            for (int i = 0; i < Convert.ToInt32(count_tickets); i++)
+            try
             {
-
-                var ticket = new List<string>(FindQuestions(NextTicketId(FindKomplectId(GetKursId(), GetSemesterId(), GetProtocolsId()))));
-                string quest1 = ticket[0];
-                string quest2 = ticket[1];
-                string quest3 = ticket[2];
-
-                var Items = new Dictionary<string, string>
+                for (int i = 0; i < Convert.ToInt32(count_tickets); i++)
                 {
-                    {"<DISC>", disca_content},
-                    {"<PCK>",  Chairman_pck_content},
-                    {"<PREP>", teacher_content},
-                    {"<KURS>", kurs_content},
-                    {"<SEM>", semester_content},
-                    {"<SPEC>", speciality_content},
-                    {"<NOMPROT>", protocol_content},
-                    {"<DATEPROT>", protocol_date_content},
-                    {"<YEARSEM> ", sem_year_content},
-                    {"<NOMTICK>", nom_ticket.ToString()},
-                    {"<TEO1>", quest1},
-                    {"<TEO2>", quest2},
-                    {"<PRAC1>", quest3},
-                };
-                helper.Process(Items);
-                nom_ticket++;
+
+                    var ticket = new List<string>(FindQuestions(NextTicketId(FindKomplectId(GetKursId(), GetSemesterId(), GetProtocolsId()))));
+                    string quest1 = ticket[0];
+                    string quest2 = ticket[1];
+                    string quest3 = ticket[2];
+
+                    var Items = new Dictionary<string, string>
+                         {
+                             {"<DISC>", disca_content},
+                             {"<PCK>",  Chairman_pck_content},
+                             {"<PREP>", teacher_content},
+                             {"<KURS>", kurs_content},
+                             {"<SEM>", semester_content},
+                             {"<SPEC>", speciality_content},
+                             {"<NOMPROT>", protocol_content},
+                             {"<DATEPROT>", protocol_date_content},
+                             {"<YEARSEM> ", sem_year_content},
+                             {"<NOMTICK>", nom_ticket.ToString()},
+                             {"<TEO1>", quest1},
+                             {"<TEO2>", quest2},
+                             {"<PRAC1>", quest3},
+                         };
+                    helper.Process(Items);
+                    nom_ticket++;
+                    MessageBox.Show($"Билет №{nom_ticket} сформирован");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Билеты закончились");
             }
         }
-        //MessageBox.Show($"Выбор сделан, Дисциплина: {disca_content},\n" +
-        //        $"Количество билетов: {count_tickets},\n" +
-        //        //$"Преподаватель {teacher_content},\n" +
-        //        $"Председатель цикловой комиссии {Chairman_pck_content} ");
-
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
             if (roleUser == "Admin")
@@ -361,11 +331,6 @@ namespace WpfApp1
         {
             NavigationService.Navigate(new Authorization());
         }
-
-        /// <summary>
-        /// получение id Дисциплины
-        /// </summary>
-        /// 
         private int FindDisciplineId(string specfind) //+
         {
             int id =
@@ -378,14 +343,12 @@ namespace WpfApp1
         {
             return ((Disciplines)Disca.SelectedItem).id_discipline;
         }
-
         /// <summary>
         /// получение id учителя
         /// </summary>
-
         private int GetTeacher()
         {
-            return ((Teacher)Teacher.SelectedItem).id_teacher;
+            return ((ExaminerItem)Teacher.SelectedItem).Id;
         }
         private int FindTeacherId(int teacherId, int discId)
         {
@@ -396,8 +359,6 @@ namespace WpfApp1
              select i.id_teacher).First();
             return id;
         }
-
-
         private void But_Confirmation_Click(object sender, RoutedEventArgs e)
         {
 
@@ -411,14 +372,12 @@ namespace WpfApp1
             Disca.DisplayMemberPath = "name_discipline";
             Disca.SelectedIndex = 0;
 
-            IEnumerable<string> FullNameTeach_list = from i in RandomTicketGenerator.GetContext().Teacher.ToList()
-                                                     where i.id_discipline == FindDisciplineId(FindSpecialityId())
+            IEnumerable<ExaminerItem> Teacher_list = from i in RandomTicketGenerator.GetContext().Teacher.ToList()
                                                      let fio = i.surname + " " + i.name_[0] + "." + i.patronymic[0] + "."
-                                                     select fio;
-            FullNameTeach_list.ToList();
-            DataContext = FullNameTeach_list;
-            Teacher.ItemsSource = FullNameTeach_list;
-            Teacher.SelectedValuePath = "";
+                                                     select new ExaminerItem(i.id_teacher, fio);
+            DataContext = Teacher_list;
+            Teacher.ItemsSource = Teacher_list;
+            Teacher.DisplayMemberPath = "Fio";
             Teacher.SelectedIndex = 0;
         }
     }
