@@ -227,7 +227,7 @@ namespace WpfApp1
                        select i.id_ticket).First();
 
             tick.RemoveAll((ticket) => ticket.id_ticket == res);
-            return res; //обработать исключение, когда билетов не осталось
+            return res;
         }
         private IEnumerable<string> FindQuestions(int tickId) //NextTicketid
         {

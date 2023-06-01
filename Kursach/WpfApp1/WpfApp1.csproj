@@ -100,6 +100,9 @@
     <Compile Include="AddEditPAge.xaml.cs">
       <DependentUpon>AddEditPAge.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddTicket.xaml.cs">
+      <DependentUpon>AddTicket.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,9 @@
     </Compile>
     <Compile Include="EditingQuestion.xaml.cs">
       <DependentUpon>EditingQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditingTicket.xaml.cs">
+      <DependentUpon>EditingTicket.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditingUser.xaml.cs">
       <DependentUpon>EditingUser.xaml</DependentUpon>
@@ -178,6 +184,9 @@
     <Compile Include="ViewingTableData_admin.xaml.cs">
       <DependentUpon>ViewingTableData_admin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewingTicketTable.xaml.cs">
+      <DependentUpon>ViewingTicketTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VIewingUsersTable.xaml.cs">
       <DependentUpon>VIewingUsersTable.xaml</DependentUpon>
     </Compile>
@@ -187,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddEditPAge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditingQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditingTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewingTableData_admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewingTicketTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -23,7 +23,7 @@ namespace WpfApp1
             }
         }
         /// <summary>
-        /// ////////////
+        /// формирование word документа
         /// </summary>
         internal bool Process(Dictionary<string, string> items)
         {

@@ -1,36 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace WpfApp1
 {
     /// <summary>
-    /// Логика взаимодействия для EditingDiscipline
+    /// Логика взаимодействия для EditingTicket.xaml
     /// </summary>
-    public partial class EditingDiscipline : Page
+    public partial class EditingTicket : Page
     {
-
-        private Disciplines _selectedDiscipline;
+        private Tickets _selectedTicket;
         private string roleUser;
 
-        public EditingDiscipline(Disciplines selectedDisca, string roleUser)
+        public EditingTicket(Tickets selectedTick, string roleUser)
         {
             InitializeComponent();
-            _selectedDiscipline = selectedDisca;
-            name_discipline_textbox.Text = selectedDisca.name_discipline;
-            DataContext = _selectedDiscipline;
+            _selectedTicket = selectedTick;
+            int IdTick = int.Parse(id_ticket.Text);
+            IdTick = selectedTick.id_ticket;
+            DataContext = _selectedTicket;
             this.roleUser = roleUser;
         }
         private void UpdateQuestions()
         {
-            _selectedDiscipline.name_discipline = name_discipline_textbox.Text;
+            _selectedTicket.id_ticket = id_ticket.Text;
         }
 
         private void But_Click_Save_Question(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(_selectedDiscipline.name_discipline))
+            if (string.IsNullOrWhiteSpace(_selectedTicket.id_ticket))
             {
                 MessageBox.Show("Корректно напишите вопрос");
                 return;

@@ -56,5 +56,9 @@ namespace WpfApp1
             NavigationService.Navigate(new Choice_admin(roleUser));
         }
 
+        private void Next_Table(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ViewingTicketTable(roleUser));
+        }
     }
 }
