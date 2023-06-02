@@ -12,8 +12,6 @@ namespace WpfApp1
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class RandomTicketGenerator : DbContext
     {
@@ -46,14 +44,5 @@ namespace WpfApp1
         public virtual DbSet<Teacher> Teacher { get; set; }
         public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-    
-        public virtual int GetExaminersRole(string choice)
-        {
-            var choiceParameter = choice != null ?
-                new ObjectParameter("choice", choice) :
-                new ObjectParameter("choice", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetExaminersRole", choiceParameter);
-        }
     }
 }

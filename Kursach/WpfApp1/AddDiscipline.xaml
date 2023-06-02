@@ -71,10 +71,10 @@
         <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                 Height="70" Width="250"
                  FontSize="12" FontFamily="Verdana" FontWeight="Bold"
-                x:Name="But_Save_Question"
+                x:Name="But_Save_Discipline"
                 Content="Сохранение"
                  
-            Click="But_Click_Save_Question" Margin="120,3,230,2">
+            Click="But_Click_Save_Discipline" Margin="120,3,230,2">
             <Button.Background>
                 <SolidColorBrush Color="#FF87CEFA" />
             </Button.Background>

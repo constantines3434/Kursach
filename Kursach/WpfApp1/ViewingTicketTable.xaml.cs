@@ -34,7 +34,7 @@ namespace WpfApp1
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e) //страница добавления
         {
-            NavigationService.Navigate(new AddEditPAge(roleUser));
+            NavigationService.Navigate(new AddTicket(roleUser));
         }
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {

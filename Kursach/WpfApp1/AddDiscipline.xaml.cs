@@ -52,28 +52,5 @@ namespace WpfApp1
         {
             NavigationService.Navigate(new ViewingDisciplineTable(roleUser));
         }
-
-        private void But_Click_Save_Question(object sender, RoutedEventArgs e)
-        {
-            var currentQuest = GetDiscipline();
-
-            if (string.IsNullOrWhiteSpace(currentQuest.name_discipline))
-            {
-                MessageBox.Show("Корректно напишите вопрос");
-                return;
-            }
-
-            RandomTicketGenerator.GetContext().Disciplines.Add(currentQuest);
-
-            try
-            {
-                RandomTicketGenerator.GetContext().SaveChanges();
-                MessageBox.Show("Информация сохранена");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-        }
     }
 }

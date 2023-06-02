@@ -15,7 +15,16 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
         <TextBlock  Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
                     Height="30"
                     Width="280"
                     FontSize="20"
@@ -25,7 +34,7 @@
                     >
             Редактирование вопроса
         </TextBlock>
-        <DataGrid x:Name="DGridQuestion" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
+        <DataGrid x:Name="DGridQuestion" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="4">
 
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Индентифиатор вопроса"
@@ -75,7 +84,8 @@
         </DataGrid>
         <Button Content="Формирование билета"
                 Grid.Row="2"
-                HorizontalAlignment="Center"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
                 Width="150"
                 Name="Form_Ticket"
                 Click="Form_Ticket_Click">
@@ -88,6 +98,7 @@
 
         <Button Content="Добавить"
                 Grid.Row="2"
+                Grid.Column="0"
                 HorizontalAlignment="Left"
                 Width="100"
                 Name="BtnAdd"
@@ -98,6 +109,7 @@
         </Button>
         <Button Content="Удалить"
                 Grid.Row="2"
+                Grid.Column="3"
                 HorizontalAlignment="Right"
                 Width="100"
                 Name="BtnDelete"
@@ -109,12 +121,13 @@
 
         <Button Content="Таблица дисциплин"
                 Grid.Row="2"
-                HorizontalAlignment="Left"
+                Grid.Column="2"
+                HorizontalAlignment="Right"
                 Width="150"
                 Name="Discipline_Table"
-                Click="Next_Table" Margin="510,0,0,0">
+                Click="Next_Table">
             <Button.Background>
-                <SolidColorBrush Color="#FF87CEFA" />
+                <SolidColorBrush Color="#FFAFEEEE" />
             </Button.Background>
         </Button>
     </Grid>

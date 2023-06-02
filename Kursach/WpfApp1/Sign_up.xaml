@@ -39,7 +39,7 @@
         <TextBlock  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                     Height="70" Width="680"
                     FontSize="40" FontFamily="Verdana" FontWeight="Bold" x:Name="Header">
-            Авторизация пользователя
+            Регистрация пользователя
         </TextBlock>
 
         <TextBlock  Grid.Row="1" Grid.Column="0"

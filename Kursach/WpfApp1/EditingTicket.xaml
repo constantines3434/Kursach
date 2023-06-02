@@ -86,7 +86,7 @@
         </TextBlock>
 
 
-        <ComboBox x:Name="id_ticket"
+        <ComboBox x:Name="TicketId"
                   Grid.Row="1"
                   Grid.Column="1"
                   Grid.ColumnSpan="2"

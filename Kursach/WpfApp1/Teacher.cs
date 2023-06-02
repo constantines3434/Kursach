@@ -17,7 +17,7 @@ namespace WpfApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Teacher()
         {
-            this.Tickets = new HashSet<Tickets>();
+            this.Komplect_tickets = new HashSet<Komplect_tickets>();
         }
     
         public int id_teacher { get; set; }
@@ -28,6 +28,6 @@ namespace WpfApp1
     
         public virtual Disciplines Disciplines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tickets> Tickets { get; set; }
+        public virtual ICollection<Komplect_tickets> Komplect_tickets { get; set; }
     }
 }

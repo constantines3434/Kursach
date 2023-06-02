@@ -19,12 +19,10 @@ namespace WpfApp1
         public Nullable<int> id_quest2 { get; set; }
         public Nullable<int> id_quest3 { get; set; }
         public Nullable<int> nom_komplect { get; set; }
-        public Nullable<int> id_teacher { get; set; }
     
         public virtual Komplect_tickets Komplect_tickets { get; set; }
         public virtual Questions Questions { get; set; }
         public virtual Questions Questions1 { get; set; }
         public virtual Questions Questions2 { get; set; }
-        public virtual Teacher Teacher { get; set; }
     }
 }

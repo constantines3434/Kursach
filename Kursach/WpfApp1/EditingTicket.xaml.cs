@@ -24,27 +24,32 @@ namespace WpfApp1
         private Tickets _selectedTicket;
         private string roleUser;
 
+        private int GetTicketId()
+        {
+            return ((Tickets)TicketId.SelectedItem).id_ticket;
+        }
         public EditingTicket(Tickets selectedTick, string roleUser)
         {
             InitializeComponent();
             _selectedTicket = selectedTick;
-            int IdTick = int.Parse(id_ticket.Text);
+            int IdTick = GetTicketId();
             IdTick = selectedTick.id_ticket;
             DataContext = _selectedTicket;
             this.roleUser = roleUser;
         }
+
         private void UpdateQuestions()
         {
-            _selectedTicket.id_ticket = id_ticket.Text;
+            _selectedTicket.id_ticket = GetTicketId();
         }
 
         private void But_Click_Save_Question(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(_selectedTicket.id_ticket))
-            {
-                MessageBox.Show("Корректно напишите вопрос");
-                return;
-            }
+            //if (string.IsNullOrWhiteSpace(_selectedTicket.id_ticket))
+            //{
+            //    MessageBox.Show("Корректно напишите вопрос");
+            //    return;
+            //}
 
             UpdateQuestions();
 

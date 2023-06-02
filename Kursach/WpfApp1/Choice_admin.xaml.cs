@@ -206,7 +206,7 @@ namespace WpfApp1
         /// <summary>
         /// получение id комплекта билетов
         /// </summary>
-        private int FindKomplectId(int kursId, int semesterId, int protocolId)
+        private int FindKomplectId(int kursId, int semesterId, int protocolId, int teacherId)
         {
             int id =
     (int)(from i in RandomTicketGenerator.GetContext().Komplect_tickets.ToList()
@@ -214,6 +214,7 @@ namespace WpfApp1
            && i.nom_semester == semesterId//GetSemesterId() //+
            && i.nom_protocol == protocolId//GetProtocolsId() //+
            && i.id_chairman_pck == GetChairmanId() //+
+           && i.id_teacher == teacherId //FindTeacherId(FindDisciplineId(FindSpecId(FindSpecialityId())))
           select i.nom_komplect).First();
             return id;
         }
@@ -235,7 +236,6 @@ namespace WpfApp1
                 Console.WriteLine($"*** {t.id_ticket}");
             var tickets = (from i in RandomTicketGenerator.GetContext().Tickets.ToList()
                            where i.id_ticket == tickId
-                           && i.id_teacher == FindTeacherId(GetTeacher(), FindDisciplineId(FindSpecId(FindSpecialityId())))
                            select i).First();
 
             var questions = (from quest in RandomTicketGenerator.GetContext().Questions.ToList()
@@ -285,7 +285,8 @@ namespace WpfApp1
                 for (int i = 0; i < Convert.ToInt32(count_tickets); i++)
                 {
 
-                    var ticket = new List<string>(FindQuestions(NextTicketId(FindKomplectId(GetKursId(), GetSemesterId(), GetProtocolsId()))));
+                    var ticket = new List<string>(FindQuestions(NextTicketId(FindKomplectId(GetKursId(), GetSemesterId(), GetProtocolsId(),
+                        FindTeacherId(FindDisciplineId(FindSpecId(FindSpecialityId())))))));
                     string quest1 = ticket[0];
                     string quest2 = ticket[1];
                     string quest3 = ticket[2];
@@ -307,8 +308,8 @@ namespace WpfApp1
                              {"<PRAC1>", quest3},
                          };
                     helper.Process(Items);
-                    nom_ticket++;
                     MessageBox.Show($"Билет №{nom_ticket} сформирован");
+                    nom_ticket++;
                 }
             }
             catch (Exception ex)
@@ -339,7 +340,7 @@ namespace WpfApp1
              select i.id_discipline).First();
             return id;
         }
-        private int FindDisipline()
+        private int FindDiscipline()
         {
             return ((Disciplines)Disca.SelectedItem).id_discipline;
         }
@@ -350,12 +351,12 @@ namespace WpfApp1
         {
             return ((ExaminerItem)Teacher.SelectedItem).Id;
         }
-        private int FindTeacherId(int teacherId, int discId)
+        private int FindTeacherId( int discId)
         {
             int id =
             (from i in RandomTicketGenerator.GetContext().Teacher.ToList()
-             where i.id_teacher == teacherId//GetTeacher()
-             && i.id_discipline == discId//GetDisciplineId()
+             where i.id_discipline == discId//GetDisciplineId()
+             && i.id_teacher == GetTeacher()
              select i.id_teacher).First();
             return id;
         }
@@ -373,6 +374,7 @@ namespace WpfApp1
             Disca.SelectedIndex = 0;
 
             IEnumerable<ExaminerItem> Teacher_list = from i in RandomTicketGenerator.GetContext().Teacher.ToList()
+                                                     where i.id_discipline == FindDiscipline()
                                                      let fio = i.surname + " " + i.name_[0] + "." + i.patronymic[0] + "."
                                                      select new ExaminerItem(i.id_teacher, fio);
             DataContext = Teacher_list;
