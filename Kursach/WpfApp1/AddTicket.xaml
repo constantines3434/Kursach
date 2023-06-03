@@ -159,7 +159,7 @@
                 Height="70" Width="200"
                 FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_viewing"
-                Content="Просмотр базы данных"    
+                Content="Просмотр базы данных" Click="But_viewing_Click"    
         >
             <Button.Background>
                 <SolidColorBrush Color="#FFFA8072" />

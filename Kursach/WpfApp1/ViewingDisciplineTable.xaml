@@ -47,11 +47,23 @@
                                         
                                     Binding="{Binding id_discipline}"
                                     Width="50">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
 
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Индетификатор дисциплины"
                                     Binding="{Binding name_discipline}"
                                     Width="940">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
 
                 </DataGridTextColumn>
 

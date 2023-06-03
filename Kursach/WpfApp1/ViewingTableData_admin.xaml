@@ -41,41 +41,79 @@
                                         
                                     Binding="{Binding id_question}"
                                     Width="50">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
 
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Индетификатор дисциплины"
                                     Binding="{Binding id_discipline}"
                                     Width="50">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
 
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="Название дисциплины"
                                     Binding="{Binding Disciplines.name_discipline}"
-                                    Width="300">
+                                    Width="200"
+                                    >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
 
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="Вопрос"
                                     Binding="{Binding question}"
-                                    Width="450">
+                                    Width="430"
+                                    >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
 
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Тип вопроса"
                                     Binding="{Binding type_question}"
                                     Width="120">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
 
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="Сложность вопроса"
                                     Binding="{Binding complexity}"
                                     Width="120">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
 
                 </DataGridTextColumn>
 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Редактировать" x:Name="BtnEdit" Click="BtnEdit_Click" Width="190"></Button>
+                            <Button Content="Редактировать" x:Name="BtnEdit" Click="BtnEdit_Click" Width="185"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -1,5 +1,4 @@
 USE master;
-
 IF EXISTS (SELECT * FROM SYS.DATABASES WHERE NAME = 'Base')
 	DROP DATABASE Base 
 GO  
@@ -17,42 +16,29 @@ LOG ON
     MAXSIZE = 25MB,  
     FILEGROWTH = 5MB );  
 GO  
-
 USE Base;
-
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Users')
 	DROP TABLE Users
-
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Kurs')
 	DROP TABLE Kurs
-
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Semesters')
 	DROP TABLE Semesters
-
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Protocols')
 	DROP TABLE Protocols
-
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Chairman_pck')
 	DROP TABLE Chairman_pck
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Komplect_tickets')
-	DROP TABLE Komplect_tickets
-
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Speciality')
 	DROP TABLE Speciality
-
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Disciplines')
 	DROP TABLE Disciplines
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Questions')
-	DROP TABLE Questions
-
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Teacher')
 	DROP TABLE Teacher
-
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Komplect_tickets')
+	DROP TABLE Komplect_tickets
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Questions')
+	DROP TABLE Questions
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Tickets')
 	DROP TABLE Tickets
-
 CREATE TABLE Users
 (
 	nom_user INT IDENTITY PRIMARY KEY,
@@ -60,49 +46,38 @@ CREATE TABLE Users
     password_ nvarchar(50),
 	role_ nvarchar(5)
 );
-
---DELETE FROM Users;
 INSERT INTO Users (login_, password_, role_)
 VALUES ('Consta', 34, 'User'),
 ('Nohcha', 11,'User'),
 ('Alex', 12,'Admin'),
 ('Elena', 13,'Admin'),
 ('Parampampam', 14,'User');
-
 CREATE TABLE Kurs
 (
     nom_kurs INT PRIMARY KEY
 );
-
---DELETE FROM Kurs;
 INSERT INTO Kurs (nom_kurs)
 VALUES (1),
 (2),
 (3),
 (4),
 (5);
-
 CREATE TABLE Semesters
 (
 	nom_semester INT IDENTITY PRIMARY KEY,
     academic_year DATE
 );
-
---DELETE FROM Semesters;
 INSERT INTO Semesters (academic_year)
 VALUES ('01.01.2019'),
 ('05.05.2020'),
 ('01.01.2021'),
 ('05.05.2022'),
 ('01.01.2023');
-
-
 CREATE TABLE Protocols
 (
 	nom_protocol INT IDENTITY PRIMARY KEY,
     date_protocol date,
 );
-
 --DELETE FROM Protocols;
 INSERT INTO Protocols (date_protocol)
 VALUES ('02.02.2023'),
@@ -110,39 +85,31 @@ VALUES ('02.02.2023'),
 ('04.04.2023'),
 ('05.05.2023'),
 ('06.06.2023');
-
 CREATE TABLE Chairman_pck
 (
 	id_chairman_pck INT IDENTITY PRIMARY KEY,
     surname nvarchar(100),
 	name_ nvarchar(100),
     patronymic nvarchar(100)
-	--Учитель Председатель ПЦК
 );
-
---DELETE FROM Teacher;
 INSERT INTO Chairman_pck (surname, name_, patronymic)
 VALUES
 ('Солонин', 'Марк', 'Семёнович'),
 ('Суворов', 'Виктор', 'Богданович'),
 ('Ларионова', 'Елена', 'Анатольевна'),
 ('Ленин', 'Владимир', 'Ильич'),
-('Керенский', 'Александр', 'Фёдорович'); --11
-
+('Керенский', 'Александр', 'Фёдорович');
 CREATE TABLE Speciality
 (
 	code_speciality nvarchar(100) PRIMARY KEY,
     name_of_speciality nvarchar(100),
 );
-
---DELETE FROM Speciality;
 INSERT INTO Speciality (code_speciality, name_of_speciality)
 VALUES ('09.02.06', 'Сетевое и системной администрирование'),
 ('09.02.07', 'Информационные системы и программирование'),
 ('10.02.05', 'Обеспечение информационной безопасности автоматизированных систем'),
 ('21.02.19', 'Землеустройство'),
 ('42.02.01', 'Реклама');
-
 CREATE TABLE Disciplines
 (
 	id_discipline int IDENTITY PRIMARY KEY,
@@ -151,15 +118,12 @@ CREATE TABLE Disciplines
 	FOREIGN KEY (code_speciality) REFERENCES Speciality (code_speciality) ON DELETE CASCADE ON UPDATE CASCADE,
 	
 );
-
---DELETE FROM Disciplines;
 INSERT INTO Disciplines (name_discipline, code_speciality)
 VALUES ('ОП.01. Операционные системы', '09.02.06'),
 ('ОП.10. Математическое моделирование', '09.02.07'),
 ('МДК.02.01. Инфокоммуникационные системы и сети', '10.02.05'),
 ('МДК.02.02. Технология разработки и защиты баз данных', '21.02.19'),
 ('ОГСЭ.03. Иностранный язык', '42.02.01');
-
 CREATE TABLE Teacher
 (
 	id_teacher INT IDENTITY PRIMARY KEY,
@@ -167,10 +131,10 @@ CREATE TABLE Teacher
 	name_ nvarchar(100),
     patronymic nvarchar(100),
 	id_discipline int,
-	FOREIGN KEY (id_discipline) REFERENCES Disciplines (id_discipline) ON DELETE CASCADE ON UPDATE CASCADE
-	--тут смотри
+	FOREIGN KEY (id_discipline) REFERENCES Disciplines (id_discipline)
+	ON DELETE CASCADE ON UPDATE CASCADE
+
 );
---DELETE FROM Teacher;
 INSERT INTO Teacher (surname, name_, patronymic, id_discipline)
 VALUES
 ('Смирнов', 'Константин', 'Вадимович', 1),
@@ -183,7 +147,6 @@ VALUES
 ('Троцкий', 'Лев', 'Давидович', 3),
 ('Бухарин', 'Николай', 'Иванович', 4),
 ('Зиновье', 'Григорий', 'Евсеевич', 5);
-
 CREATE TABLE Komplect_tickets
 (
     nom_komplect INT IDENTITY PRIMARY KEY,
@@ -198,17 +161,12 @@ CREATE TABLE Komplect_tickets
 	FOREIGN KEY (id_chairman_pck) REFERENCES Chairman_pck (id_chairman_pck) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (id_teacher) REFERENCES Teacher (id_teacher) ON DELETE CASCADE ON UPDATE CASCADE,
 );
-
---DELETE FROM Komplect_tickets;
 INSERT INTO Komplect_tickets (nom_kurs, nom_semester, nom_protocol, id_chairman_pck, id_teacher)
 VALUES (1, 1, 1, 1, 1),
 (2, 2, 2, 2, 2),
 (3, 3, 3, 3, 3),
 (4, 4, 4, 4, 4),
 (5, 5, 5, 5, 5);
-
-
-
 CREATE TABLE Questions
 (
 	id_question INT IDENTITY,
@@ -220,8 +178,6 @@ CREATE TABLE Questions
 	FOREIGN KEY (id_discipline) REFERENCES Disciplines (id_discipline)
 	ON DELETE CASCADE ON UPDATE CASCADE	
 );
-
---DELETE FROM Questions;
 INSERT INTO Questions (id_discipline, question, type_question, complexity)
 VALUES 
 --ОП.01. Операционные системы практические и теоретические

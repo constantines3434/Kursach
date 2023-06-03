@@ -72,7 +72,12 @@ namespace WpfApp1
         }
         private void Next_Table(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewingDisciplineTable(roleUser));
+
+        }
+
+        private void NextTable(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ViewingTableData_admin(roleUser));
         }
     }
 }

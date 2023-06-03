@@ -47,7 +47,12 @@
                                         
                                     Binding="{Binding nom_user}"
                                     Width="50">
-
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Логин"
                                     Binding="{Binding login_}"
@@ -58,13 +63,23 @@
                 <DataGridTextColumn Header="Пароль"
                                     Binding="{Binding password_}"
                                     Width="300">
-
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="Роль"
                                     Binding="{Binding role_}"
                                     Width="300">
-
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
                 <DataGridTemplateColumn>

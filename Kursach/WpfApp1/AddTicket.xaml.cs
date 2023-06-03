@@ -29,7 +29,6 @@ namespace WpfApp1
             DataContext = NewTicket();
             this.roleUser = roleUser;
         }
-
         private void InitializationTicket()
         {
             var TicketList = from i in RandomTicketGenerator.GetContext().Tickets.ToList()
@@ -73,8 +72,6 @@ namespace WpfApp1
                 nom_komplect = ((Tickets)komplectId.SelectedItem).nom_komplect
             };
         }
-        //int i;
-        //i = Convert.ToInt32(quest1Id.Text);
         private void But_Click_Save_Ticket(object sender, RoutedEventArgs e)
         {
             var currentTicket = NewTicket();
@@ -99,7 +96,12 @@ namespace WpfApp1
 
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewingDisciplineTable(roleUser));
+           
+        }
+
+        private void But_viewing_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ViewingTicketTable(roleUser));
         }
     }
 }

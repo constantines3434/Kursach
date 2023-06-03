@@ -22,7 +22,7 @@ namespace WpfApp1
 
             DataContext = _selectedQuestion;
             Bindcombo_disca();
-            this.roleUser = roleUser; 
+            this.roleUser = roleUser;
             InitializeBoxes();
         }
         public List<Disciplines> Disc_list { get; set; }

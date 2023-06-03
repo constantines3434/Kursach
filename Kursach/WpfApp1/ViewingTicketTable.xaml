@@ -46,36 +46,61 @@
                 <DataGridTextColumn Header="Индентифиатор билета"
                                         
                                     Binding="{Binding id_ticket}"
-                                    Width="170">
-
+                                    Width="220">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Индетификатор вопроса 1"
                                     Binding="{Binding id_quest1}"
-                                    Width="170">
-
+                                    Width="190">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="Идентификатор вопроса 2"
                                     Binding="{Binding id_quest2}"
-                                    Width="170">
-
+                                    Width="190">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="Идентификатор вопроса 3"
                                     Binding="{Binding id_quest3}"
-                                    Width="170">
-
+                                    Width="190">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Номер комплекта"
                                     Binding="{Binding nom_komplect}"
-                                    Width="170">
-
+                                    Width="190">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Редактировать" x:Name="BtnEdit"  Width="190"></Button>
+                            <Button Content="Редактировать" x:Name="BtnEdit" Click="BtnEdit_Click"  Width="177"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -119,13 +144,13 @@
             </Button.Background>
         </Button>
 
-        <Button Content="Таблица дисциплин"
+        <Button Content="Таблица вопросов"
                 Grid.Row="2"
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 Width="150"
-                Name="Discipline_Table"
-                Click="Next_Table">
+                Name="QuestionTable"
+                Click="NextTable" >
             <Button.Background>
                 <SolidColorBrush Color="#FFAFEEEE" />
             </Button.Background>
