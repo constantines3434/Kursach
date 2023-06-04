@@ -10,16 +10,14 @@
 
     <Grid x:Name="EditPage_admin" Background="#FFD3D3D3">
         <Grid.RowDefinitions >
-            <RowDefinition>
 
+            <RowDefinition>
             </RowDefinition>
-
             <RowDefinition>
-
             </RowDefinition>
-            
             <RowDefinition>
-
+            </RowDefinition>
+            <RowDefinition>
             </RowDefinition>
         </Grid.RowDefinitions>
 
@@ -31,19 +29,19 @@
 
         <TextBlock  Grid.Row="0"
                     Grid.Column="1"
-                    Grid.ColumnSpan="2"
+                    Grid.ColumnSpan="3"
                     Height="70"
-                    Width="450"
-                    HorizontalAlignment="Left"
+                    Width="400"
+                    HorizontalAlignment="Center"
                     FontSize="25"
                     FontFamily="Verdana"
                     FontWeight="Bold"
                     x:Name="edit_header"
                     VerticalAlignment="Center">
-            Редактирование дисциплины
+            Добавление дисциплины
         </TextBlock>
 
-       <TextBlock  Grid.Row="1"
+        <TextBlock  Grid.Row="1"
                     Grid.Column="0"
                     Height="40"
                     Width="120"
@@ -56,30 +54,55 @@
             Название дисциплины:
         </TextBlock>
 
-        <TextBox Grid.Row="1"
+        <TextBlock  Grid.Row="2"
+                    Grid.Column="0"
+                    Height="40"
+                    Width="125"
+                    FontSize="14"
+                    FontFamily="Verdana"
+                    FontWeight="Bold"
+                    TextWrapping="Wrap"
+                    x:Name="spec_header"
+                    VerticalAlignment="Center">
+            Код специальности:
+        </TextBlock>
+
+        <ComboBox x:Name="spec"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  Height="75"
+                  Width="600"
+                  HorizontalAlignment="Center"
+                  SelectedIndex="0"
+ 
+                  Background="White">
+        </ComboBox>
+
+        <TextBox x:Name="NameDiscipline" 
+                 Grid.Row="1"
                  Grid.Column="1"
                  Grid.ColumnSpan="2"
                  Height="70"
                  Width="600"
+                 HorizontalAlignment="Center"
                  TextWrapping="Wrap" 
                  MaxLength="500"
-                 x:Name="name_discipline_textbox" 
-                  Background="White"
-                 />
+                  Background="White" />
 
-        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
+        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                 Height="70" Width="250"
                  FontSize="12" FontFamily="Verdana" FontWeight="Bold"
-                x:Name="But_Save_Question"
+                x:Name="But_Save_Discipline"
                 Content="Сохранение"
                  
-            Click="But_Click_Save_Question" Margin="120,3,230,2">
+            Click="But_Click_Save_Discipline" >
             <Button.Background>
                 <SolidColorBrush Color="#FF87CEFA" />
             </Button.Background>
         </Button>
 
-        <Button Grid.Row="5" Grid.Column="0"
+        <Button Grid.Row="3" Grid.Column="0"
                 Height="70" Width="200"
                 FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_viewing"

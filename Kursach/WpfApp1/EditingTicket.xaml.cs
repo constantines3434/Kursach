@@ -19,12 +19,10 @@ namespace WpfApp1
     /// <summary>
     /// Логика взаимодействия для EditingTicket.xaml
     /// </summary>
-    public partial class EditingTicket : Page 
+    public partial class EditingTicket : Page
     {
         private Tickets _selectedTicket;
         private string roleUser;
-
-      
         public EditingTicket(Tickets selectedTick, string roleUser)
         {
             InitializeComponent();
@@ -65,9 +63,8 @@ namespace WpfApp1
             quest2Id.Text = _selectedTicket.id_quest2.ToString();
             quest3Id.Text = _selectedTicket.id_quest3.ToString();
             komplectId.Text = _selectedTicket.nom_komplect.ToString();
-            
-        }
 
+        }
         private void UpdateTicket()
         {
             _selectedTicket.id_quest1 = ((Tickets)quest1Id.SelectedItem).id_quest1;

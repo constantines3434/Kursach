@@ -25,7 +25,7 @@ namespace WpfApp1
         /// <summary>
         /// формирование word документа
         /// </summary>
-        internal bool Process(Dictionary<string, string> items)
+        internal bool Process(Dictionary<string, string> items, int count)
         {
             using (var doc = WordprocessingDocument.Create("FilePath", WordprocessingDocumentType.Document))
             {
@@ -55,7 +55,6 @@ namespace WpfApp1
                     Word.Find find = app.Selection.Find;
                     find.Text = item.Key;
                     find.Replacement.Text = item.Value;
-
                     Object wrap = Word.WdFindWrap.wdFindContinue;
                     Object replace = Word.WdReplace.wdReplaceAll;
 
@@ -71,8 +70,8 @@ namespace WpfApp1
                         ReplaceWith: missing, Replace: replace
                         );
                 }
-                Object newFileName = Path.Combine("C:\\VS Projects\\Commit\\Kursach\\Kursach\\WpfApp1\\Tickets\\",
-                    DateTime.Now.ToString("HHmmss") + fileinfo_.Name);
+                Object newFileName = Path.Combine($"C:\\VS Projects\\Commit\\Kursach\\Kursach\\WpfApp1\\Tickets\\",
+                     count.ToString() + "_Ticket.docx");
                 app.ActiveDocument.SaveAs2(newFileName);
                 app.ActiveDocument.Close();
                 return true;
@@ -90,6 +89,5 @@ namespace WpfApp1
                 }
             }
         }
-
     }
 }

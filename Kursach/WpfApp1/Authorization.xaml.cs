@@ -17,11 +17,8 @@ namespace WpfApp1
         {
             InitializeComponent();
             bindcombo_Users();
-
             db = new RandomTicketGenerator();
-
         }
-
         //ComboBox kurs
         public List<Users> Users_list { get; set; }
         private void bindcombo_Users()
@@ -30,8 +27,6 @@ namespace WpfApp1
             Role.Items.Add("User");
             Role.SelectedIndex = 0;
         }
-        //
-
         /// <summary>
         /// сокрытие пароля
         /// </summary>
@@ -46,17 +41,13 @@ namespace WpfApp1
         private void But_authorization(object sender, RoutedEventArgs e)
         {
             string loginUser = textBox_login.Text;
-
             string roleUser = Role.Text;
-
             string passUser = textBox_password.Password.ToString();
-
-
             if ((loginUser != "") && (roleUser != "") && (passUser != ""))
             {
                 if (roleUser == "Admin" || roleUser == "User") //работает Admin
                 {
-                    //сверяем введённые данные и данные в бд
+                    //проверка на соответствиее данных
                     if (db.Users.Any(o => (o.login_ == loginUser) && (o.password_ == passUser) && (o.role_ == roleUser)))
                     {
                         MessageBox.Show("Успешная авторизация");

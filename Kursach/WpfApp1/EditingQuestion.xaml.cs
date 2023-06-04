@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-
 
 namespace WpfApp1
 {
@@ -21,40 +19,31 @@ namespace WpfApp1
             _selectedQuestion = selectedQuest;
 
             DataContext = _selectedQuestion;
-            Bindcombo_disca();
+            Initialization();
             this.roleUser = roleUser;
             InitializeBoxes();
         }
-        public List<Disciplines> Disc_list { get; set; }
-        private void Bindcombo_disca()
+        private void Initialization()
         {
-            var Item = RandomTicketGenerator.GetContext().Disciplines.ToList();
-            Disc_list = Item;
-            DataContext = Disc_list;
-            Disca.ItemsSource = Disc_list;
+            var QuestionList = from i in RandomTicketGenerator.GetContext().Questions.ToList()
+                               select i;
+            DataContext = QuestionList;
+            Disca.ItemsSource = QuestionList;
             Disca.SelectedValuePath = "";
-            Disca.DisplayMemberPath = "name_discipline";
+            Disca.DisplayMemberPath = "id_discipline";
+            Disca.SelectedIndex = 0;
+
         }
         private void InitializeBoxes()
         {
+            Disca.Text = _selectedQuestion.id_discipline.ToString();
             question_textbox.Text = _selectedQuestion.question;
             Type_question.Text = _selectedQuestion.type_question;
-
-            for (int i = 0; i < Disc_list.Count; i++) //получение по названию дисцы индекса
-            {
-                if (GetDisciplineId() == _selectedQuestion.id_discipline)
-                {
-                    return;
-                }
-            }
-        }
-        private int GetDisciplineId()
-        {
-            return ((Disciplines)Disca.SelectedItem).id_discipline;
+            Complexity_question.Text = _selectedQuestion.complexity.ToString();
         }
         private void UpdateQuestions()
         {
-            _selectedQuestion.id_discipline = GetDisciplineId();
+            _selectedQuestion.id_discipline = Convert.ToInt32(Disca.Text);
             _selectedQuestion.question = question_textbox.Text;
             _selectedQuestion.type_question = Type_question.Text;
             _selectedQuestion.complexity = Complexity_question.Text;

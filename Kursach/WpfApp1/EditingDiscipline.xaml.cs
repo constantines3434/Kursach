@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -18,17 +19,31 @@ namespace WpfApp1
         public EditingDiscipline(Disciplines selectedDisca, string roleUser)
         {
             InitializeComponent();
+            Initialization();
             _selectedDiscipline = selectedDisca;
-            name_discipline_textbox.Text = selectedDisca.name_discipline;
+            NameDiscipline.Text = selectedDisca.name_discipline;
+            spec.Text = selectedDisca.code_speciality;
             DataContext = _selectedDiscipline;
             this.roleUser = roleUser;
         }
         private void UpdateQuestions()
         {
-            _selectedDiscipline.name_discipline = name_discipline_textbox.Text;
+            _selectedDiscipline.name_discipline = NameDiscipline.Text;
+            _selectedDiscipline.code_speciality = spec.Text;
         }
 
-        private void But_Click_Save_Question(object sender, RoutedEventArgs e)
+        private void Initialization()
+        {
+            var DisciplineList = from i in RandomTicketGenerator.GetContext().Disciplines.ToList()
+                                 select i;
+            DataContext = DisciplineList;
+            spec.ItemsSource = DisciplineList;
+            spec.SelectedValuePath = "";
+            spec.DisplayMemberPath = "code_speciality";
+            spec.SelectedIndex = 0;
+        }
+
+        private void But_Click_Save_Discipline(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(_selectedDiscipline.name_discipline))
             {

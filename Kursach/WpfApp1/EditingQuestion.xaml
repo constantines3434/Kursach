@@ -113,7 +113,7 @@
                  x:Name="question_textbox" 
                   Background="White"
                  />
-                
+
         <ComboBox x:Name="Type_question"
                   Grid.Row="3"
                   Grid.Column="1"

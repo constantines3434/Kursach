@@ -17,12 +17,10 @@ namespace WpfApp1
             InitializeComponent();
             roleUser = role;
         }
-
         private void BtnEdit_Click(object sender, RoutedEventArgs e) //страница редактирования
         {
             NavigationService.Navigate(new EditingQuestion((sender as Button).DataContext as Questions, roleUser));
         }
-
         private void BtnAdd_Click(object sender, RoutedEventArgs e) //страница добавления
         {
             NavigationService.Navigate(new AddEditPAge(roleUser));

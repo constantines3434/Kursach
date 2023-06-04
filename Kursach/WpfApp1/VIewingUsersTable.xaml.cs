@@ -12,7 +12,7 @@ namespace WpfApp1
         public VIewingUsersTable(string roleUser)
         {
             InitializeComponent();
-            this.roleUser = roleUser;   
+            this.roleUser = roleUser;
         }
         private void BtnEdit_Click(object sender, RoutedEventArgs e) //страница редактирования
         {

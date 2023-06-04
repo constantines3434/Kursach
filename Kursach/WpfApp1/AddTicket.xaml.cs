@@ -1,67 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp1
 {
-    /// <summary>
-    /// Логика взаимодействия для AddTicket.xaml
-    /// </summary>
     public partial class AddTicket : Page
     {
         private string roleUser;
         public AddTicket(string roleUser)
         {
             InitializeComponent();
-            InitializationTicket();
+            Initialization();
             DataContext = NewTicket();
             this.roleUser = roleUser;
         }
-        private void InitializationTicket()
+        private void Initialization()
         {
             var TicketList = from i in RandomTicketGenerator.GetContext().Tickets.ToList()
-                                              select i;
+                             select i;
             DataContext = TicketList;
             quest1Id.ItemsSource = TicketList;
             quest1Id.SelectedValuePath = "";
             quest1Id.DisplayMemberPath = "id_quest1";
             quest1Id.SelectedIndex = 0;
-        
+
             quest2Id.ItemsSource = TicketList;
             quest2Id.SelectedValuePath = "";
             quest2Id.DisplayMemberPath = "id_quest2";
             quest2Id.SelectedIndex = 0;
-        
+
             quest3Id.ItemsSource = TicketList;
             quest3Id.SelectedValuePath = "";
             quest3Id.DisplayMemberPath = "id_quest3";
             quest3Id.SelectedIndex = 0;
-            
+
             komplectId.ItemsSource = TicketList;
             komplectId.SelectedValuePath = "";
             komplectId.DisplayMemberPath = "nom_komplect";
             komplectId.SelectedIndex = 0;
         }
-
-        private int GetDisciplineId()
-        {
-            //return ((Disciplines)Disca.SelectedItem).id_discipline; ошибка
-            return 1;
-        }
-
-
         private Tickets NewTicket() //новый билет
         {
             return new Tickets
@@ -75,13 +54,6 @@ namespace WpfApp1
         private void But_Click_Save_Ticket(object sender, RoutedEventArgs e)
         {
             var currentTicket = NewTicket();
-
-            //    if (string.IsNullOrWhiteSpace(currentDiscipline.name_discipline))
-            //    {
-            //        MessageBox.Show("Корректно напишите название дисциплины");
-            //        return;
-            //    }
-
             try
             {
                 RandomTicketGenerator.GetContext().Tickets.Add(currentTicket);
@@ -93,12 +65,6 @@ namespace WpfApp1
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
-        private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
         private void But_viewing_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewingTicketTable(roleUser));

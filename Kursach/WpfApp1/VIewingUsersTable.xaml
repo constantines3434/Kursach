@@ -102,7 +102,7 @@
             <Button.Background>
                 <SolidColorBrush Color="#FFFA8072" />
             </Button.Background>
-            
+
         </Button>
 
         <Button Content="Таблица билетов"

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -14,28 +15,36 @@ namespace WpfApp1
         public AddDiscipline(string roleUser)
         {
             InitializeComponent();
-            DataContext = GetDiscipline();
+            Initialization();
+            DataContext = NewDiscipline();
             this.roleUser = roleUser;
         }
-
-        private Disciplines GetDiscipline()
+        private void Initialization()
+        {
+            var DisciplineList = from i in RandomTicketGenerator.GetContext().Disciplines.ToList()
+                                 select i;
+            DataContext = DisciplineList;
+            spec.ItemsSource = DisciplineList;
+            spec.SelectedValuePath = "";
+            spec.DisplayMemberPath = "code_speciality";
+            spec.SelectedIndex = 0;
+        }
+        private Disciplines NewDiscipline()
         {
             return new Disciplines
             {
-                name_discipline = name_discipline_textbox.Text
+                name_discipline = NameDiscipline.Text,
+                code_speciality = spec.Text
             };
         }
-
         private void But_Click_Save_Discipline(object sender, RoutedEventArgs e)
         {
-            var currentDiscipline = GetDiscipline();
-
+            var currentDiscipline = NewDiscipline();
             if (string.IsNullOrWhiteSpace(currentDiscipline.name_discipline))
             {
                 MessageBox.Show("Корректно напишите название дисциплины");
                 return;
             }
-
             try
             {
                 RandomTicketGenerator.GetContext().Disciplines.Add(currentDiscipline);
@@ -47,7 +56,6 @@ namespace WpfApp1
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewingDisciplineTable(roleUser));

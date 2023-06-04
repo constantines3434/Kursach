@@ -307,7 +307,7 @@ namespace WpfApp1
                              {"<TEO2>", quest2},
                              {"<PRAC1>", quest3},
                          };
-                    helper.Process(Items);
+                    helper.Process(Items, nom_ticket);
                     MessageBox.Show($"Билет №{nom_ticket} сформирован");
                     nom_ticket++;
                 }
@@ -342,7 +342,7 @@ namespace WpfApp1
         }
         private int FindDiscipline()
         {
-            return ((Disciplines)Disca.SelectedItem).id_discipline;
+            return ((Disciplines)Disca.SelectedItem).id_discipline; //вылет после изменения дисцы в вопросе
         }
         /// <summary>
         /// получение id учителя
@@ -351,7 +351,7 @@ namespace WpfApp1
         {
             return ((ExaminerItem)Teacher.SelectedItem).Id;
         }
-        private int FindTeacherId( int discId)
+        private int FindTeacherId(int discId)
         {
             int id =
             (from i in RandomTicketGenerator.GetContext().Teacher.ToList()

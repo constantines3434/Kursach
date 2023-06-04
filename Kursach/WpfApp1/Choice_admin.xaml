@@ -7,61 +7,35 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="800"
       Title="Choice_admin">
-
     <Grid Background="#FFD3D3D3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition>
-
             </ColumnDefinition>
-
             <ColumnDefinition>
-
             </ColumnDefinition>
-
             <ColumnDefinition>
-
             </ColumnDefinition>
-
             <ColumnDefinition>
-
             </ColumnDefinition>
-
             <ColumnDefinition>
-
             </ColumnDefinition>
-
             <ColumnDefinition>
-
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition>
-
-            </RowDefinition>
-
-            <RowDefinition>
-
-            </RowDefinition>
-
-            <RowDefinition>
-
-            </RowDefinition>
-
-            <RowDefinition>
-
-            </RowDefinition>
-
-
-            <RowDefinition>
-
             </RowDefinition>
             <RowDefinition>
-
+            </RowDefinition>
+            <RowDefinition>
+            </RowDefinition>
+            <RowDefinition>
+            </RowDefinition>
+            <RowDefinition>
+            </RowDefinition>
+            <RowDefinition>
             </RowDefinition>
         </Grid.RowDefinitions>
-
-
-
         <TextBlock  Grid.Row="0"
                     Grid.Column="1"
                     Grid.ColumnSpan="4"
@@ -74,7 +48,6 @@
                     >
             Формирование билета
         </TextBlock>
-
         <TextBlock  Grid.Row="1"
                     Height="70"
                     Width="130"
@@ -87,7 +60,6 @@
                     >
             Специальность:
         </TextBlock>
-
         <TextBlock  Grid.Row="1"
                     Grid.Column="3"
                     Height="70"
@@ -101,7 +73,6 @@
                     x:Name="count_of_tickets_header" >
             Количество билетов:
         </TextBlock>
-
         <TextBlock  Grid.Row="1"
                     Grid.Column="4"
                     Height="70"
@@ -115,7 +86,6 @@
                     x:Name="teacher_header" >
             Преподаватель:
         </TextBlock>
-
         <TextBlock  Grid.Row="1"
                     Grid.Column="5"
                     Height="70"
@@ -129,7 +99,6 @@
                     x:Name="ck_header"  >
             Председатель цикловой комиссии:
         </TextBlock>
-
         <TextBlock  Grid.Row="3"
                     Grid.Column="0"
                     Height="70"
@@ -142,7 +111,6 @@
                     VerticalAlignment="Center">
             Курс:
         </TextBlock>
-
         <TextBlock  Grid.Row="1"
                     Grid.Column="1"
                     Height="70"
@@ -155,7 +123,6 @@
                     VerticalAlignment="Center">
             Дисциплина:
         </TextBlock>
-
         <TextBlock  Grid.Row="1"
                     Grid.Column="2"
                     Height="70"
@@ -168,7 +135,6 @@
                     VerticalAlignment="Center">
             Семестр:
         </TextBlock>
-
         <TextBlock  Grid.Row="3"
                     Grid.Column="1"
                     Height="70"
@@ -181,7 +147,6 @@
                     VerticalAlignment="Center">
             Протокол:
         </TextBlock>
-
         <TextBlock  Grid.Row="3"
                     Grid.Column="2"
                     TextWrapping="Wrap"
@@ -195,7 +160,6 @@
                     VerticalAlignment="Center">
             Сложность вопросов:
         </TextBlock>
-
         <ComboBox Name="Disca"
                   Grid.Row="2"
                   Grid.Column="1"
@@ -204,7 +168,6 @@
                   HorizontalAlignment="Center"
                   VerticalAlignment="Top"
                    />
-        
         <TextBox Grid.Row="2"
                  Grid.Column="3"
                  Height="40"
@@ -216,7 +179,6 @@
                  HorizontalAlignment="Center"
                  VerticalAlignment="Top"
               />
-
         <ComboBox Name="Teacher"
                   Grid.Row="2"
                   Grid.Column="4"
@@ -225,7 +187,6 @@
                   Width="133"
                   Height="30">
         </ComboBox>
-
         <ComboBox Name="Chairman"
                   Grid.Row="2"
                   Grid.Column="5"
@@ -234,7 +195,6 @@
                   Width="133"
                   Height="30">
         </ComboBox>
-
         <ComboBox Name="Kurs"
                   Grid.Row="4"
                   Grid.Column="0"
@@ -242,7 +202,6 @@
                   HorizontalAlignment="Center"
                  VerticalAlignment="Top"
                   Width="133" />
-
         <ComboBox Name="Semester"
                   Grid.Row="2"
                   Grid.Column="2"
@@ -250,7 +209,6 @@
                   HorizontalAlignment="Center"
                   VerticalAlignment="Top"
                   Width="133"  />
-
         <ComboBox Name="Spec"
                   Grid.Row="2"
                   Grid.Column="0"
@@ -258,7 +216,6 @@
                   HorizontalAlignment="Center"
                   VerticalAlignment="Top"
                   Width="133" />
-
         <ComboBox Name="Protocol"
                   Grid.Row="4"
                   Grid.Column="1"
@@ -266,48 +223,39 @@
                   HorizontalAlignment="Center"
                   VerticalAlignment="Top"
                   Width="133" />
-
         <ComboBox x:Name="complexity_of_question"
                   Grid.Row="4"
-                  Grid.Column="2"
-                  
+                  Grid.Column="2"       
                   Height="30"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Top"
                   Width="133" 
                   SelectedIndex="0"
                   Background="White">
-
             <TextBlock>Сложный</TextBlock>
             <TextBlock>Средний</TextBlock>
             <TextBlock>Простой</TextBlock>
         </ComboBox>
-
-
         <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"
                 Height="70" Width="250"
                  FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_Form"
-                Content="Формирование билета"
-                 
+                Content="Формирование билета"   
             Click="But_Click_Form_Ticket">
             <Button.Background>
                 <SolidColorBrush Color="#FFFA8072" />
             </Button.Background>
         </Button>
-
         <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                 Height="70" Width="250"
                  FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_Authorization"
-                Content="Авторизация"
-                 
+                Content="Авторизация" 
             Click="But_Auto">
             <Button.Background>
                 <SolidColorBrush Color="#FFFFFACD" />
             </Button.Background>
         </Button>
-
         <Button Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2"
                 Height="70" Width="250"
                 FontSize="12" FontFamily="Verdana" FontWeight="Bold"
@@ -319,16 +267,14 @@
                 <SolidColorBrush Color="#FF87CEFA" />
             </Button.Background>
         </Button>
-
         <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2"
                 Height="70" Width="250"
                 FontSize="12" FontFamily="Verdana" FontWeight="Bold"
                 x:Name="But_Confirmation"
                 Content="Подтверждение специальности"
-                 
             Click="But_Confirmation_Click">
             <Button.Background>
-                <SolidColorBrush Color="#FF87CEFA" />
+                <SolidColorBrush Color="#FFAFEEEE" />
             </Button.Background>
         </Button>
     </Grid>

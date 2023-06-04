@@ -16,44 +16,30 @@ namespace WpfApp1
         public AddEditPAge(string roleUser)
         {
             InitializeComponent();
-
+            Initialization();
             DataContext = GetQuestions();
-            Bindcombo_disca();
             this.roleUser = roleUser;
         }
-
-        public List<Disciplines> Disc_list { get; set; }
-        /// <summary>
-        /// ComboBox Disciplines
-        /// </summary>
-        private void Bindcombo_disca()
+        private void Initialization()
         {
-            var Item = RandomTicketGenerator.GetContext().Disciplines.ToList();
-            Disc_list = Item;
-            DataContext = Disc_list;
-            Disca.ItemsSource = Disc_list;
+            var DisciplineList = from i in RandomTicketGenerator.GetContext().Questions.ToList()
+                                 select i;
+            DataContext = DisciplineList;
+            Disca.ItemsSource = DisciplineList;
             Disca.SelectedValuePath = "";
-            Disca.DisplayMemberPath = "name_discipline";
-            Disca.SelectedIndex = 0;
+            Disca.DisplayMemberPath = "id_discipline";
+            Disca.SelectedIndex = 1;
         }
-
-        private int GetDisciplineId()
-        {
-            //return ((Disciplines)Disca.SelectedItem).id_discipline; ошибка
-            return 1;
-        }
-
         private Questions GetQuestions()
         {
             return new Questions
             {
-                id_discipline = GetDisciplineId(),
+                id_discipline = Convert.ToInt32(Disca.Text),// ошибка
                 question = question_textbox.Text,
                 type_question = Type_question.Text,
                 complexity = Complexity_question.Text
             };
         }
-
         private void But_Click_Save_Question(object sender, RoutedEventArgs e)
         {
             var currentQuest = GetQuestions();
@@ -63,9 +49,7 @@ namespace WpfApp1
                 MessageBox.Show("Корректно напишите вопрос");
                 return;
             }
-
             RandomTicketGenerator.GetContext().Questions.Add(currentQuest);
-
             try
             {
                 RandomTicketGenerator.GetContext().SaveChanges();
@@ -76,7 +60,6 @@ namespace WpfApp1
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
         private void But_Click_Viewing_Table_Data(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewingTableData_admin(roleUser));

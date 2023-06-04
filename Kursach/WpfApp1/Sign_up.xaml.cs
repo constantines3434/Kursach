@@ -12,7 +12,6 @@ namespace WpfApp1
     public partial class Sign_up : Page
     {
         RandomTicketGenerator db;
-
         DataBase database = new DataBase();
         public Sign_up()
         {
@@ -20,7 +19,6 @@ namespace WpfApp1
             bindcombo_Users();
             db = new RandomTicketGenerator();
         }
-
         //ComboBox kurs
         public List<Users> Users_list { get; set; }
         private void bindcombo_Users()
@@ -29,7 +27,6 @@ namespace WpfApp1
             Role.Items.Add("User");
             Role.SelectedIndex = 0;
         }
-
         /// <summary>
         /// сокрытие пароля
         /// </summary>
@@ -38,7 +35,6 @@ namespace WpfApp1
             textBox_password.PasswordChar = '•';
             textBox_password.MaxLength = 100;
         }
-
         /// <summary>
         /// проверка на наличие пользователя в бд
         /// </summary>
@@ -68,16 +64,13 @@ namespace WpfApp1
                 return false;
             }
         }
-
         /// <summary>
         /// регистрация
         /// </summary>
         private void But_registration(object sender, RoutedEventArgs e)
         {
             var login = textBox_login.Text;
-
             var role = Role.Text;
-
             var password = textBox_password.Password.ToString();
 
             if ((login != "") && (role != "") && (password != ""))
