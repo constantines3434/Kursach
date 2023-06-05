@@ -112,18 +112,18 @@
                   SelectedItem="0"
                   Height="70"
                   Width="600"
-                  Background="White" Margin="0,7,0,0" Grid.RowSpan="2">
+                  Background="White"  Grid.RowSpan="2">
         </ComboBox>
 
-        <TextBox Grid.Row="2"
+        <TextBox x:Name="question_textbox"
+                 Grid.Row="2"
                  Grid.Column="1"
                  Grid.ColumnSpan="2"
                  Height="70"
                  Width="600"
                  TextWrapping="Wrap" 
-                 MaxLength="500"
-                 x:Name="question_textbox" 
-                  Background="White" />
+                 MaxLength="500" 
+                 Background="White" />
 
         <ComboBox x:Name="Type_question"
                   Grid.Row="3"

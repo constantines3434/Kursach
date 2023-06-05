@@ -26,7 +26,7 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Height="30"
-                    Width="280"
+                    Width="320"
                     FontSize="20"
                     FontFamily="Verdana"
                     FontWeight="Bold"
