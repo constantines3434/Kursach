@@ -191,16 +191,17 @@ namespace WpfApp1
         /// <summary>
         /// получение id комплекта билетов
         /// </summary>
-        private int FindKomplectId(int kursId, int semesterId, int protocolId, int teacherId)
+        private int FindKomplectId(int kursId, int semesterId, int protocolId, int chairmanId,int teacherId)
         {
             int id = //5;
-    //(int)(from i in RandomTicketGenerator.GetContext().Komplect_tickets.ToList()
-    //      where i.nom_kurs == kursId//GetKursId() //+
-    //       && i.nom_semester == semesterId//GetSemesterId() //+
-    //       && i.nom_protocol == protocolId//GetProtocolsId() //+
-    //       && i.id_chairman_pck == GetChairmanId() //+
-    //       && i.id_teacher == teacherId //FindTeacherId(FindDisciplineId(FindSpecId(FindSpecialityId())))
-    //      select i.nom_komplect).First(); //тут ошибка
+    (int)(from i in RandomTicketGenerator.GetContext().Komplect_tickets.ToList()
+          where i.nom_kurs == kursId//GetKursId() //+
+          && i.nom_semester == semesterId//GetSemesterId() //+
+          && i.nom_protocol == protocolId//GetProtocolsId() //+
+          //дальше вылет
+          && i.id_chairman_pck == 5//chairmanId //+
+        //  && i.id_teacher == teacherId //FindTeacherId(FindDisciplineId(FindSpecId(FindSpecialityId())))
+          select i.nom_komplect).First(); //тут ошибка
             return id;
         }
         /// <summary>
@@ -323,7 +324,7 @@ namespace WpfApp1
                 {
                     //тут подумай
                     var ticket = new List<string>(FindQuestions(NextTicketId(FindKomplectId(GetKursId(), GetSemesterId(), GetProtocolsId(),
-                        FindTeacherId()))));
+                       GetChairmanId(), FindTeacherId()))));
                     string quest1 = ticket[0];
                     string quest2 = ticket[1];
                     string quest3 = ticket[2];
