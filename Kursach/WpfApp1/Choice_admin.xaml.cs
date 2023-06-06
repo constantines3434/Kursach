@@ -181,16 +181,12 @@ namespace WpfApp1
             Chairman.DisplayMemberPath = "Fio";
             Chairman.SelectedIndex = 0;
         }
-
-
-
         List<Questions> Questions_list { get; set; }
         /// <summary>
         /// Инициализация Вопросов
         /// </summary>
         private void Initialize_questions()
         {
-
             IEnumerable<Questions> Quest_list = (from i in RandomTicketGenerator.GetContext().Questions.ToList()
                                                  where i.id_discipline == FindDisciplineId(FindSpecId(FindSpecialityId()))
                                                  select i);
@@ -218,20 +214,16 @@ namespace WpfApp1
         /// </summary>
         private int FindKomplectId(int kursId, int semesterId, int protocolId, int chairmanId, int teacherId)
         {
-            //int chair = GetChairmanId();
-            int id = //5;
+            int id = 
     (int)(from i in RandomTicketGenerator.GetContext().Komplect_tickets.ToList()
           where i.nom_kurs == kursId//GetKursId() //+
           && i.nom_semester == semesterId//GetSemesterId() //+
           && i.nom_protocol == protocolId//GetProtocolsId() //+
-          //неправильно получаю id
-        && i.id_chairman_pck == GetChairmanId() //+
+                  && i.id_chairman_pck == GetChairmanId() //+
           && i.id_teacher == FindTeacher() //6, а нужен 2
-          select i.nom_komplect).First(); //тут ошибка
+          select i.nom_komplect).First();
             return id;
         }
-
-
         /// <summary>
         /// получение id билета
         /// </summary>
@@ -254,11 +246,10 @@ namespace WpfApp1
                              (quest.id_question == tickets.id_quest1
                              || quest.id_question == tickets.id_quest2
                              || quest.id_question == tickets.id_quest3)
-                             && quest.id_discipline == FindDisciplineId(FindSpecId(FindSpecialityId()))//2//FindDisciplineId(FindSpecId(FindSpecialityId())) //discId//FindDisciplineId(FindSpecialityId())
+                             && quest.id_discipline == FindDisciplineId(FindSpecId(FindSpecialityId()))
                              select quest.question);
             return questions;
         }
-
         private int FindDisciplineId(string specfind) //+
         {
             int id =
@@ -302,12 +293,6 @@ namespace WpfApp1
 
         private void But_Click_Form_Ticket(object sender, RoutedEventArgs e)
         {
-            var test = FindDisciplineId(FindSpecId(FindSpecialityId()));
-            if (test == 5)
-            {
-                MessageBox.Show("Выберите Английский");
-
-            }
             Initialize_questions();
 
             string disca_content = Disca.Text;
@@ -346,7 +331,7 @@ namespace WpfApp1
                     string quest1 = ticket[0];
                     string quest2 = ticket[1];
                     string quest3 = ticket[2];
-                    MessageBox.Show("Тест");
+                    MessageBox.Show("Формирование билета");
                     var Items = new Dictionary<string, string>
                          {
                              {"<DISC>", disca_content},
