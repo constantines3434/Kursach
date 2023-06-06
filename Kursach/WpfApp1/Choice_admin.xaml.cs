@@ -19,6 +19,19 @@ namespace WpfApp1
             this.Fio = fio;
         }
     }
+
+
+    public class Teach
+    {
+        public int Id { get; set; }
+        public string Fio { get; set; }
+
+        public Teach(int id, string fio)
+        {
+            this.Id = id;
+            this.Fio = fio;
+        }
+    }
     public partial class Choice_admin : Page
     {
         private string roleUser;
@@ -59,7 +72,7 @@ namespace WpfApp1
         private void InitializationSpeciality()
         {
 
-            IEnumerable<Speciality> Speciality_list = from i in RandomTicketGenerator.GetContext().Speciality.ToList()                                                      
+            IEnumerable<Speciality> Speciality_list = from i in RandomTicketGenerator.GetContext().Speciality.ToList()
                                                       select i;
             DataContext = Speciality_list;
             Spec.ItemsSource = Speciality_list;
@@ -168,13 +181,9 @@ namespace WpfApp1
             Chairman.DisplayMemberPath = "Fio";
             Chairman.SelectedIndex = 0;
         }
-        /// <summary>
-        /// получение id Председателя
-        /// </summary>
-        private int GetChairmanId()
-        {
-            return ((ExaminerItem)Chairman.SelectedItem).Id;
-        }
+
+
+
         List<Questions> Questions_list { get; set; }
         /// <summary>
         /// Инициализация Вопросов
@@ -188,22 +197,41 @@ namespace WpfApp1
             var rng = new Random();
             Questions_list = Quest_list.OrderBy(x => rng.Next()).ToList();
         }
+
+        /// <summary>
+        /// получение id Председателя
+        /// </summary>
+        private int GetChairmanId()
+        {
+            return ((ExaminerItem)Chairman.SelectedItem).Id;
+        }
+
+        /// <summary>
+        /// получение id учителя
+        /// </summary>
+        private int FindTeacher()
+        {
+            return ((Teach)Teacher.SelectedItem).Id;
+        }
         /// <summary>
         /// получение id комплекта билетов
         /// </summary>
-        private int FindKomplectId(int kursId, int semesterId, int protocolId, int chairmanId,int teacherId)
+        private int FindKomplectId(int kursId, int semesterId, int protocolId, int chairmanId, int teacherId)
         {
+            //int chair = GetChairmanId();
             int id = //5;
     (int)(from i in RandomTicketGenerator.GetContext().Komplect_tickets.ToList()
           where i.nom_kurs == kursId//GetKursId() //+
           && i.nom_semester == semesterId//GetSemesterId() //+
           && i.nom_protocol == protocolId//GetProtocolsId() //+
-          //дальше вылет
-          && i.id_chairman_pck == 5//chairmanId //+
-        //  && i.id_teacher == teacherId //FindTeacherId(FindDisciplineId(FindSpecId(FindSpecialityId())))
+          //неправильно получаю id
+        && i.id_chairman_pck == GetChairmanId() //+
+          && i.id_teacher == FindTeacher() //6, а нужен 2
           select i.nom_komplect).First(); //тут ошибка
             return id;
         }
+
+
         /// <summary>
         /// получение id билета
         /// </summary>
@@ -239,17 +267,7 @@ namespace WpfApp1
              select i.id_discipline).First();
             return id;
         }
-        private int FindDiscipline()
-        {
-            return ((Disciplines)Disca.SelectedItem).id_discipline; //вылет после изменения дисцы в вопросе
-        }
-        /// <summary>
-        /// получение id учителя
-        /// </summary>
-        private int FindTeacher()
-        {
-            return ((ExaminerItem)Teacher.SelectedItem).Id;
-        }
+
         private int FindTeacherId()
         {
             int id =
@@ -272,10 +290,10 @@ namespace WpfApp1
             Disca.DisplayMemberPath = "name_discipline";
             Disca.SelectedIndex = 0;
 
-            IEnumerable<ExaminerItem> Teacher_list = from i in RandomTicketGenerator.GetContext().Teacher.ToList()
-                                                     where i.id_discipline == FindDisciplineId(FindSpecId(FindSpecialityId()))//2//FindDiscipline()
-                                                     let fio = i.surname + " " + i.name_[0] + "." + i.patronymic[0] + "."
-                                                     select new ExaminerItem(i.id_teacher, fio);
+            IEnumerable<Teach> Teacher_list = from i in RandomTicketGenerator.GetContext().Teacher.ToList()
+                                              where i.id_discipline == FindDisciplineId(FindSpecId(FindSpecialityId()))//2//FindDiscipline()
+                                              let fio = i.surname + " " + i.name_[0] + "." + i.patronymic[0] + "."
+                                              select new Teach(i.id_teacher, fio);
             DataContext = Teacher_list;
             Teacher.ItemsSource = Teacher_list;
             Teacher.DisplayMemberPath = "Fio";
@@ -287,7 +305,7 @@ namespace WpfApp1
             var test = FindDisciplineId(FindSpecId(FindSpecialityId()));
             if (test == 5)
             {
-                MessageBox.Show("Выберите Дисциплину");
+                MessageBox.Show("Выберите Английский");
 
             }
             Initialize_questions();
@@ -369,7 +387,7 @@ namespace WpfApp1
         private void But_Auto(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Authorization());
-        }        
+        }
     }
 }
 
