@@ -25,7 +25,7 @@ namespace WpfApp1
         /// <summary>
         /// формирование word документа
         /// </summary>
-        internal bool Process(Dictionary<string, string> items, int count)
+        internal bool Process(Dictionary<string, string> items, string disca, int count)
         {
             using (var doc = WordprocessingDocument.Create("FilePath", WordprocessingDocumentType.Document))
             {
@@ -71,7 +71,7 @@ namespace WpfApp1
                         );
                 }
                 Object newFileName = Path.Combine($"C:\\VS Projects\\Commit\\Kursach\\Kursach\\WpfApp1\\Tickets\\",
-                     count.ToString() + "_Ticket.docx");
+                     count.ToString() + "_" + disca + " Билет.docx");
                 app.ActiveDocument.SaveAs2(newFileName);
                 app.ActiveDocument.Close();
                 return true;

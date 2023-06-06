@@ -40,7 +40,7 @@ namespace WpfApp1
         }
         private string FindSpecialityId()
         {
-            return "42.02.01";//((Speciality)Spec.SelectedItem).code_speciality;
+            return ((Speciality)Spec.SelectedItem).code_speciality;
         }
         /// <summary>
         /// получение id специальности 
@@ -183,7 +183,7 @@ namespace WpfApp1
         {
 
             IEnumerable<Questions> Quest_list = (from i in RandomTicketGenerator.GetContext().Questions.ToList()
-                                                 where i.id_discipline == 5//FindDisciplineId(FindSpecId(FindSpecialityId()))
+                                                 where i.id_discipline == FindDisciplineId(FindSpecId(FindSpecialityId()))
                                                  select i);
             var rng = new Random();
             Questions_list = Quest_list.OrderBy(x => rng.Next()).ToList();
@@ -193,14 +193,14 @@ namespace WpfApp1
         /// </summary>
         private int FindKomplectId(int kursId, int semesterId, int protocolId, int teacherId)
         {
-            int id = 5;
+            int id = //5;
     //(int)(from i in RandomTicketGenerator.GetContext().Komplect_tickets.ToList()
     //      where i.nom_kurs == kursId//GetKursId() //+
     //       && i.nom_semester == semesterId//GetSemesterId() //+
     //       && i.nom_protocol == protocolId//GetProtocolsId() //+
     //       && i.id_chairman_pck == GetChairmanId() //+
     //       && i.id_teacher == teacherId //FindTeacherId(FindDisciplineId(FindSpecId(FindSpecialityId())))
-    //      select i.nom_komplect).First();
+    //      select i.nom_komplect).First(); //тут ошибка
             return id;
         }
         /// <summary>
@@ -225,7 +225,7 @@ namespace WpfApp1
                              (quest.id_question == tickets.id_quest1
                              || quest.id_question == tickets.id_quest2
                              || quest.id_question == tickets.id_quest3)
-                             && quest.id_discipline == 5//FindDisciplineId(FindSpecId(FindSpecialityId()))//2//FindDisciplineId(FindSpecId(FindSpecialityId())) //discId//FindDisciplineId(FindSpecialityId())
+                             && quest.id_discipline == FindDisciplineId(FindSpecId(FindSpecialityId()))//2//FindDisciplineId(FindSpecId(FindSpecialityId())) //discId//FindDisciplineId(FindSpecialityId())
                              select quest.question);
             return questions;
         }
@@ -253,7 +253,7 @@ namespace WpfApp1
         {
             int id =
             (from i in RandomTicketGenerator.GetContext().Teacher.ToList()
-             where i.id_discipline == 5//FindDisciplineId(FindSpecId(FindSpecialityId())) //discId//GetDisciplineId()
+             where i.id_discipline == FindDisciplineId(FindSpecId(FindSpecialityId())) //discId//GetDisciplineId()
              && i.id_teacher == FindTeacher()
              select i.id_teacher).First();
             return id;
@@ -262,8 +262,8 @@ namespace WpfApp1
         {
 
             IEnumerable<Disciplines> Disc_list = from i in RandomTicketGenerator.GetContext().Disciplines.ToList()
-                                                 where i.code_speciality == "42.02.01"//FindSpecId(FindSpecialityId())
-                                                 && i.id_discipline == 5//FindDisciplineId(FindSpecId(FindSpecialityId())) //2//FindDisciplineId(FindSpecialityId())
+                                                 where i.code_speciality == FindSpecId(FindSpecialityId())
+                                                 && i.id_discipline == FindDisciplineId(FindSpecId(FindSpecialityId())) //2//FindDisciplineId(FindSpecialityId())
                                                  select i;
             DataContext = Disc_list;
             Disca.ItemsSource = Disc_list;
@@ -272,7 +272,7 @@ namespace WpfApp1
             Disca.SelectedIndex = 0;
 
             IEnumerable<ExaminerItem> Teacher_list = from i in RandomTicketGenerator.GetContext().Teacher.ToList()
-                                                     where i.id_discipline == 5//FindDisciplineId(FindSpecId(FindSpecialityId()))//2//FindDiscipline()
+                                                     where i.id_discipline == FindDisciplineId(FindSpecId(FindSpecialityId()))//2//FindDiscipline()
                                                      let fio = i.surname + " " + i.name_[0] + "." + i.patronymic[0] + "."
                                                      select new ExaminerItem(i.id_teacher, fio);
             DataContext = Teacher_list;
@@ -289,7 +289,7 @@ namespace WpfApp1
                 MessageBox.Show("Выберите Дисциплину");
 
             }
-  //          Initialize_questions();
+            Initialize_questions();
 
             string disca_content = Disca.Text;
             var helper = new WordHelper("Ex_Ticket_Prac.docx");
@@ -344,8 +344,8 @@ namespace WpfApp1
                              {"<TEO2>", quest2},
                              {"<PRAC1>", quest3},
                          };
-                    helper.Process(Items, nom_ticket);
-                    MessageBox.Show($"Билет №{nom_ticket} сформирован");
+                    helper.Process(Items, disca_content, nom_ticket);
+                    MessageBox.Show($"Билет {disca_content} №{nom_ticket} сформирован");
                     nom_ticket++;
                 }
             }
