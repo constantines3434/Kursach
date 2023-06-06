@@ -133,6 +133,7 @@
     <Compile Include="EditingUser.xaml.cs">
       <DependentUpon>EditingUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EncryptionHelper.cs" />
     <Compile Include="Komplect_tickets.cs">
       <DependentUpon>RandomTicketGenerator.tt</DependentUpon>
     </Compile>

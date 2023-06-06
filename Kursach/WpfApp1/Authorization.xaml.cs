@@ -42,7 +42,7 @@ namespace WpfApp1
         {
             string loginUser = textBox_login.Text;
             string roleUser = Role.Text;
-            string passUser = textBox_password.Password.ToString();
+            string passUser = textBox_password.Password.ToString().Encrypt();
             if ((loginUser != "") && (roleUser != "") && (passUser != ""))
             {
                 if (roleUser == "Admin" || roleUser == "User") //работает Admin

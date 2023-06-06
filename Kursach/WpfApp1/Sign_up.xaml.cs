@@ -36,42 +36,13 @@ namespace WpfApp1
             textBox_password.MaxLength = 100;
         }
         /// <summary>
-        /// проверка на наличие пользователя в бд
-        /// </summary>
-        private Boolean check_user()
-        {
-            var login = textBox_login.Text;
-            var role = Role.Text;
-            var password = textBox_password.Password.ToString();
-
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            DataTable table = new DataTable();
-
-            string querystring = $"select nom_user, login_, password_, role_ from Users where login_ = '{login}' and role_ = '{role}'";
-            //, password_ = '{passUser}
-            SqlCommand command = new SqlCommand(querystring, database.getConnection());
-
-            adapter.SelectCommand = command;
-            adapter.Fill(table);
-
-            if (table.Rows.Count > 0)
-            {
-                MessageBox.Show("Пользователь уже существует");
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        /// <summary>
         /// регистрация
         /// </summary>
         private void But_registration(object sender, RoutedEventArgs e)
         {
             var login = textBox_login.Text;
             var role = Role.Text;
-            var password = textBox_password.Password.ToString();
+            var password = textBox_password.Password.ToString().Encrypt();
 
             if ((login != "") && (role != "") && (password != ""))
             {
@@ -87,10 +58,6 @@ namespace WpfApp1
                         newUser.login_ = login;
                         newUser.password_ = password;
                         newUser.role_ = role;
-                        if (!check_user())
-                        {
-                            return;
-                        }
                         db.Users.Add(newUser);
                         db.SaveChanges();
                         MessageBox.Show("Регистрация прошла успешно");

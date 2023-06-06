@@ -43,7 +43,7 @@
                   Grid.Row="1">
 
             <DataGrid.Columns >
-                <DataGridTextColumn Header="Индентифиатор вопроса"
+                <DataGridTextColumn Header="Индентифиатор дисциплины"
                                         
                                     Binding="{Binding id_discipline}"
                                     Width="50">
@@ -55,7 +55,7 @@
                     </DataGridTextColumn.ElementStyle>
 
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Индетификатор дисциплины"
+                <DataGridTextColumn Header="Название дисциплины"
                                     Binding="{Binding name_discipline}"
                                     Width="940">
                     <DataGridTextColumn.ElementStyle>

@@ -20,12 +20,15 @@ namespace WpfApp1
             : base("name=RandomTicketGenerator")
         {
         }
+
         public static RandomTicketGenerator GetContext()
         {
             if (context_ == null)
                 context_ = new RandomTicketGenerator();
             return context_;
         }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

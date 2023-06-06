@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -55,6 +56,7 @@ namespace WpfApp1
 
             try
             {
+             //   RandomTicketGenerator.GetContext().Disciplines.AddOrUpdate(_selectedDiscipline);
                 RandomTicketGenerator.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена");
             }
