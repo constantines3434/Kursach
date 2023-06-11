@@ -676,11 +676,12 @@ Ethernet.', 'Теоретический', 'Средний'),
 CREATE TABLE Tickets
 (
     id_ticket INT IDENTITY, --IDENTITY,
-    id_quest1 INT,
+    idQuestInTicket int
+	id_quest1 INT,
 	id_quest2 INT,
 	id_quest3 INT,
     nom_komplect INT,
-	PRIMARY KEY(id_ticket),
+	PRIMARY KEY(id_ticket, idQuestInTicket),
 	FOREIGN KEY (id_quest1) REFERENCES Questions (id_question),
 	FOREIGN KEY (id_quest2) REFERENCES Questions (id_question),
 	FOREIGN KEY (id_quest3) REFERENCES Questions (id_question),

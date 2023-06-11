@@ -1,0 +1,27 @@
+RandomTicketGenerator1
+
+
+
+1) редактирование (админ) вопросов,
+юзеров и дисциплин
+
+2) проблема в chairmanId
+
+EXEC dbo.GetExaminersRole @choice = 'Председатель ПЦК'
+
+
+RandomTicketGenerator1
+WIN-OMJN02Q49QC
+
+     private static RandomTicketGenerator context_;
+        public RandomTicketGenerator()
+            : base("name=RandomTicketGenerator")
+        {
+        }
+
+        public static RandomTicketGenerator GetContext()
+        {
+            if (context_ == null)
+                context_ = new RandomTicketGenerator();
+            return context_;
+        }
