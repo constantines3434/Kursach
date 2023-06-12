@@ -33,18 +33,21 @@ IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Disciplines')
 	DROP TABLE Disciplines
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Teacher')
 	DROP TABLE Teacher
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'TeacherDiscipline')
+	DROP TABLE TeacherDiscipline
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Komplect_tickets')
 	DROP TABLE Komplect_tickets
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Questions')
 	DROP TABLE Questions
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Tickets')
 	DROP TABLE Tickets
+
 CREATE TABLE Users
 (
 	nom_user INT IDENTITY PRIMARY KEY,
-    login_ nvarchar(50),
-    password_ nvarchar(50),
-	role_ nvarchar(5)
+    login_ nvarchar(50) NOT NULL,
+    password_ nvarchar(50) NOT NULL,
+	role_ nvarchar(5) NOT NULL
 );
 --INSERT INTO Users (login_, password_, role_)
 --VALUES ('Consta', 34, 'User'),
@@ -65,7 +68,7 @@ VALUES (1),
 CREATE TABLE Semesters
 (
 	nom_semester INT IDENTITY PRIMARY KEY,
-    academic_year DATE
+    academic_year DATE NOT NULL
 );
 INSERT INTO Semesters (academic_year)
 VALUES ('01.01.2019'),
@@ -76,7 +79,7 @@ VALUES ('01.01.2019'),
 CREATE TABLE Protocols
 (
 	nom_protocol INT IDENTITY PRIMARY KEY,
-    date_protocol date,
+    date_protocol date NOT NULL,
 );
 --DELETE FROM Protocols;
 INSERT INTO Protocols (date_protocol)
@@ -88,9 +91,9 @@ VALUES ('02.02.2023'),
 CREATE TABLE Chairman_pck
 (
 	id_chairman_pck INT IDENTITY PRIMARY KEY,
-    surname nvarchar(100),
-	name_ nvarchar(100),
-    patronymic nvarchar(100)
+    surname nvarchar(100) NOT NULL,
+	name_ nvarchar(100) NOT NULL,
+    patronymic nvarchar(100) NOT NULL
 );
 INSERT INTO Chairman_pck (surname, name_, patronymic)
 VALUES
@@ -102,7 +105,7 @@ VALUES
 CREATE TABLE Speciality
 (
 	code_speciality nvarchar(100) PRIMARY KEY,
-    name_of_speciality nvarchar(100),
+    name_of_speciality nvarchar(100) NOT NULL,
 );
 INSERT INTO Speciality (code_speciality, name_of_speciality)
 VALUES ('09.02.06', 'Сетевое и системной администрирование'),
@@ -113,63 +116,87 @@ VALUES ('09.02.06', 'Сетевое и системной администрирование'),
 CREATE TABLE Disciplines
 (
 	id_discipline int IDENTITY PRIMARY KEY,
-    name_discipline nvarchar(500),
-	code_speciality nvarchar(100),
-	FOREIGN KEY (code_speciality) REFERENCES Speciality (code_speciality) ON DELETE CASCADE ON UPDATE CASCADE,
+    name_discipline nvarchar(500) NOT NULL,
+	code_speciality nvarchar(100) NOT NULL,
+	FOREIGN KEY (code_speciality) REFERENCES Speciality (code_speciality) ON UPDATE CASCADE,
 	
 );
 INSERT INTO Disciplines (name_discipline, code_speciality)
 VALUES ('ОП.01. Операционные системы', '09.02.06'),
+('Тест1', '09.02.06'),
+('Тест2', '09.02.06'),
 ('ОП.10. Математическое моделирование', '09.02.07'),
 ('МДК.02.01. Инфокоммуникационные системы и сети', '10.02.05'),
 ('МДК.02.02. Технология разработки и защиты баз данных', '21.02.19'),
 ('ОГСЭ.03. Иностранный язык', '42.02.01');
+
+
 CREATE TABLE Teacher
 (
 	id_teacher INT IDENTITY PRIMARY KEY,
-    surname nvarchar(100),
-	name_ nvarchar(100),
-    patronymic nvarchar(100),
-	id_discipline int,
-	FOREIGN KEY (id_discipline) REFERENCES Disciplines (id_discipline)
-	ON DELETE CASCADE ON UPDATE CASCADE
-
+    surname nvarchar(100) NOT NULL,
+	name_ nvarchar(100) NOT NULL,
+    patronymic nvarchar(100) NOT NULL
 );
-INSERT INTO Teacher (surname, name_, patronymic, id_discipline)
+INSERT INTO Teacher (surname, name_, patronymic)
 VALUES
-('Смирнов', 'Константин', 'Вадимович', 1),
-('Марцинкевич', 'Максим', 'Сергееевич', 2),
-('Ларионова', 'Елена', 'Анатольевна', 3),
-('Мурашов', 'Анатолий', 'Алексеевич', 4),
-('Глускер', 'Александр', 'Игоревич', 5);
+('Смирнов', 'Константин', 'Вадимович'),
+('Марцинкевич', 'Максим', 'Сергееевич'),
+('Ларионова', 'Елена', 'Анатольевна'),
+('Мурашов', 'Анатолий', 'Алексеевич'),
+('Глускер', 'Александр', 'Игоревич');
+
+CREATE TABLE TeacherDiscipline
+(
+	Id INT IDENTITY PRIMARY KEY,
+	id_teacher INT NOT NULL,
+	id_discipline int NOT NULL,
+	FOREIGN KEY (id_teacher) REFERENCES Teacher (id_teacher)
+	ON UPDATE CASCADE,
+	FOREIGN KEY (id_discipline) REFERENCES Disciplines (id_discipline)
+	ON UPDATE CASCADE
+);
+INSERT INTO TeacherDiscipline(id_teacher, id_discipline)
+VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 1),
+(2, 2),
+(2, 3);
 CREATE TABLE Komplect_tickets
 (
     nom_komplect INT IDENTITY PRIMARY KEY,
-    nom_kurs INT,
-    nom_semester INT,
-    nom_protocol INT,
-	id_chairman_pck INT,
-	id_teacher INT,
-	FOREIGN KEY (nom_kurs) REFERENCES Kurs (nom_kurs) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (nom_semester) REFERENCES Semesters (nom_semester) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (nom_protocol) REFERENCES Protocols (nom_protocol) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (id_chairman_pck) REFERENCES Chairman_pck (id_chairman_pck) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (id_teacher) REFERENCES Teacher (id_teacher) ON DELETE CASCADE ON UPDATE CASCADE,
+    nom_kurs INT NOT NULL,
+    nom_semester INT NOT NULL,
+    nom_protocol INT NOT NULL,
+	id_chairman_pck INT NOT NULL,
+	Id INT NOT NULL,
+	FOREIGN KEY (nom_kurs) REFERENCES Kurs (nom_kurs) 
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (nom_semester) REFERENCES Semesters (nom_semester)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (nom_protocol) REFERENCES Protocols (nom_protocol)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (id_chairman_pck) REFERENCES Chairman_pck (id_chairman_pck)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (Id) REFERENCES TeacherDiscipline (Id) 
+	ON DELETE CASCADE ON UPDATE CASCADE,
 );
-INSERT INTO Komplect_tickets (nom_kurs, nom_semester, nom_protocol, id_chairman_pck, id_teacher)
+INSERT INTO Komplect_tickets (nom_kurs, nom_semester, nom_protocol, id_chairman_pck, Id)
 VALUES (1, 1, 1, 1, 1),
-(2, 2, 2, 2, 2),
-(3, 3, 3, 3, 3),
-(4, 4, 4, 4, 4),
-(5, 5, 5, 5, 5);
+(2, 2, 2, 2, 2);
+--(3, 3, 3, 3, 3),
+--(4, 4, 4, 4, 4),
+--(5, 5, 5, 5, 5);
 CREATE TABLE Questions
 (
-	id_question INT IDENTITY,
-    id_discipline int,
-    question nvarchar(500),
-    type_question nvarchar(14),
-	complexity nvarchar(8),
-	PRIMARY KEY(id_question),
+	QuestionID INT IDENTITY,
+    id_discipline int NOT NULL,
+    question nvarchar(500) NOT NULL,
+    type_question nvarchar(14) NOT NULL,
+	complexity nvarchar(8) NOT NULL,
+	PRIMARY KEY(QuestionID),
 	FOREIGN KEY (id_discipline) REFERENCES Disciplines (id_discipline)
 	ON DELETE CASCADE ON UPDATE CASCADE	
 );
@@ -673,137 +700,140 @@ Ethernet.', 'Теоретический', 'Средний'),
 (5, 'Примеры модальных глаголов с переводом', 'Теоретические', 'Простой'),
 (5, 'Вспомогательные глаголы в английском языке', 'Практический', 'Простой');
 --295-297
+
 CREATE TABLE Tickets
 (
-    id_ticket INT IDENTITY, --IDENTITY,
-    idQuestInTicket int
-	id_quest1 INT,
-	id_quest2 INT,
-	id_quest3 INT,
-    nom_komplect INT,
-	PRIMARY KEY(id_ticket, idQuestInTicket),
-	FOREIGN KEY (id_quest1) REFERENCES Questions (id_question),
-	FOREIGN KEY (id_quest2) REFERENCES Questions (id_question),
-	FOREIGN KEY (id_quest3) REFERENCES Questions (id_question),
-	FOREIGN KEY (nom_komplect) REFERENCES Komplect_tickets (nom_komplect) ON DELETE CASCADE ON UPDATE CASCADE
+  TicketID INT NOT NULL,
+  QuestionNumberInTicket INT NOT NULL,
+  QuestionID INT NOT NULL,
+  nom_komplect INT NOT NULL,
+  PRIMARY KEY (TicketID, QuestionNumberInTicket),
+  FOREIGN KEY (QuestionID) REFERENCES Questions(QuestionID),
+  FOREIGN KEY (nom_komplect) REFERENCES Komplect_tickets (nom_komplect)  ON UPDATE CASCADE
 );
-INSERT INTO Tickets (id_quest1, id_quest2, id_quest3, nom_komplect) --доделать
+
+INSERT INTO Tickets (TicketID, QuestionNumberInTicket, QuestionID,  nom_komplect) --доделать
 VALUES 
 --ОП.01. Операционные системы практические и теоретические 1-77
-(1, 2, 3, 1 ),
-(4, 5, 6, 1),
-(7, 8, 9, 1),
-(10, 11, 12, 1),
-(13, 14, 15, 1),
-(16, 17, 18, 1),
-(19, 20, 21, 1),
-(22, 23, 24, 1),
-(25, 26, 27, 1),
-(28, 29, 30, 1), --1-30
-----средние (+)
-(31, 32, 33, 1),
-(34, 35, 36, 1),
-(37, 38, 39, 1),
-(40, 41, 42, 1),
-(43, 44, 45, 1),
-(46, 47, 48, 1),
-(49, 50, 51, 1),
-(52, 53, 54, 1),
-(55, 56, 57, 1),
-(58, 59, 60, 1), --31-60
-----простые
-(61, 62, 63, 1),
-(64, 65, 66, 1),
-(67, 68, 69, 1),
-(70, 71, 72, 1),
-(73, 74, 75, 1),
-(76, 77, 78, 1),
-(79, 80, 81, 1),
-(82, 83, 84, 1),
-(85, 86, 87, 1), --61-87
-----ОП.10. Математическое моделирование теоретические и практические вопросы -177(100)
-----сложные (+)
-(88, 89, 90, 2), 
-(91, 92, 93, 2),
-(94, 95, 96, 2),
-(97, 98, 99, 2),
-(100, 101, 102, 2),
-(103, 104, 105, 2),
-(106, 107, 108, 2),
-(109, 110, 111, 2),
---(112, 113, 114, 2),
---(115, 116, 117, 2), --88-117
-----средние
-(118, 119, 120, 2),
-(121, 122, 123, 2),
-(124, 125, 126, 2),
-(127, 128, 129, 2),
-(130, 131, 132, 2),
-(133, 134, 135, 2),
-(136, 137, 138, 2),
-(139, 140, 141, 2),
-(142, 143, 144, 2),
-(145, 146, 147, 2), --118-147
-----простые
-(148, 149, 150, 2),
-(151, 152, 153, 2),
-(154, 155, 156, 2),
-(157, 158, 159, 2),
-(150, 161, 162, 2),
-(163, 164, 165, 2),
-(166, 167, 168, 2),
-(169, 170, 171, 2),
-(172, 173, 174, 2),
-( 175, 176, 177, 2), --148-177
-----МДК.02.01. Инфокоммуникационные системы и сети теоретические вопросы 178-210
-----сложные
-(178, 179, 180, 3),
-(181, 182, 183, 3),
-(184, 185, 186, 3),
-(187, 188, 189, 3),
-(190, 191, 192, 3),
-(193, 194, 195, 3),
-(196, 197, 198, 3),
-(199, 200, 201, 3),
-(202, 203, 204, 3),
-(205, 206, 207, 3),
-(208, 209, 210, 3), --178-210
-----средние 211-241
-(211, 212, 213, 3),
-(214, 215, 216, 3),
-(217, 218, 219, 3),
-(220, 221, 222, 3),
-(223, 224, 225, 3),
-(226, 227, 228, 3),
-(229, 230, 231, 3),
-(232, 233, 234, 3),
-(235, 236, 237, 3),
-(238, 239, 240, 3), --211-240
-------простые 241-270
-(241, 242, 243, 3),
-(244, 245, 246, 3),
-(247, 248, 249, 3),
-(250, 251, 252, 3),
-(253, 254, 255, 3),
-(256, 257, 258, 3),
-(259,260, 261, 3),
-(262, 263, 264, 3),
-(265, 266, 267, 3),
-(268,269, 270, 3), --241-270
-------МДК.02.02. Технология разработки и защиты баз данных теоретические вопросы
-----сложные 271-276
-(271, 272, 273, 4),
-(274, 275, 276, 4),
-----средние 277-282
-(277,278, 279, 4),
-(280, 281, 282, 4),
-----простые 283-288
-(283, 284, 285, 4),
-(286,287, 288, 4),
-------ОГСЭ.03. Иностранный язык теоретические вопросы
-----сложные 289-291
-(289, 290, 291, 5),
-------средние
-(292, 293, 294, 5),
+(1, 1, 1, 1 ),
+(1, 2, 2, 1 ),
+(1, 3, 3, 1 ),
+(2, 1, 4, 1 ),
+(2, 2, 5, 1 ),
+(2, 3, 6, 1 );
+--(4, 5, 6, 1),
+--(7, 8, 9, 1),
+--(10, 11, 12, 1),
+--(13, 14, 15, 1),
+--(16, 17, 18, 1),
+--(19, 20, 21, 1),
+--(22, 23, 24, 1),
+--(25, 26, 27, 1),
+--(28, 29, 30, 1), --1-30
+------средние (+)
+--(31, 32, 33, 1),
+--(34, 35, 36, 1),
+--(37, 38, 39, 1),
+--(40, 41, 42, 1),
+--(43, 44, 45, 1),
+--(46, 47, 48, 1),
+--(49, 50, 51, 1),
+--(52, 53, 54, 1),
+--(55, 56, 57, 1),
+--(58, 59, 60, 1), --31-60
 ------простые
-(295, 296, 297, 5);
+--(61, 62, 63, 1),
+--(64, 65, 66, 1),
+--(67, 68, 69, 1),
+--(70, 71, 72, 1),
+--(73, 74, 75, 1),
+--(76, 77, 78, 1),
+--(79, 80, 81, 1),
+--(82, 83, 84, 1),
+--(85, 86, 87, 1), --61-87
+------ОП.10. Математическое моделирование теоретические и практические вопросы -177(100)
+------сложные (+)
+--(88, 89, 90, 2), 
+--(91, 92, 93, 2),
+--(94, 95, 96, 2),
+--(97, 98, 99, 2),
+--(100, 101, 102, 2),
+--(103, 104, 105, 2),
+--(106, 107, 108, 2),
+--(109, 110, 111, 2),
+----(112, 113, 114, 2),
+----(115, 116, 117, 2), --88-117
+------средние
+--(118, 119, 120, 2),
+--(121, 122, 123, 2),
+--(124, 125, 126, 2),
+--(127, 128, 129, 2),
+--(130, 131, 132, 2),
+--(133, 134, 135, 2),
+--(136, 137, 138, 2),
+--(139, 140, 141, 2),
+--(142, 143, 144, 2),
+--(145, 146, 147, 2), --118-147
+------простые
+--(148, 149, 150, 2),
+--(151, 152, 153, 2),
+--(154, 155, 156, 2),
+--(157, 158, 159, 2),
+--(150, 161, 162, 2),
+--(163, 164, 165, 2),
+--(166, 167, 168, 2),
+--(169, 170, 171, 2),
+--(172, 173, 174, 2),
+--( 175, 176, 177, 2), --148-177
+------МДК.02.01. Инфокоммуникационные системы и сети теоретические вопросы 178-210
+------сложные
+--(178, 179, 180, 3),
+--(181, 182, 183, 3),
+--(184, 185, 186, 3),
+--(187, 188, 189, 3),
+--(190, 191, 192, 3),
+--(193, 194, 195, 3),
+--(196, 197, 198, 3),
+--(199, 200, 201, 3),
+--(202, 203, 204, 3),
+--(205, 206, 207, 3),
+--(208, 209, 210, 3), --178-210
+------средние 211-241
+--(211, 212, 213, 3),
+--(214, 215, 216, 3),
+--(217, 218, 219, 3),
+--(220, 221, 222, 3),
+--(223, 224, 225, 3),
+--(226, 227, 228, 3),
+--(229, 230, 231, 3),
+--(232, 233, 234, 3),
+--(235, 236, 237, 3),
+--(238, 239, 240, 3), --211-240
+--------простые 241-270
+--(241, 242, 243, 3),
+--(244, 245, 246, 3),
+--(247, 248, 249, 3),
+--(250, 251, 252, 3),
+--(253, 254, 255, 3),
+--(256, 257, 258, 3),
+--(259,260, 261, 3),
+--(262, 263, 264, 3),
+--(265, 266, 267, 3),
+--(268,269, 270, 3), --241-270
+--------МДК.02.02. Технология разработки и защиты баз данных теоретические вопросы
+------сложные 271-276
+--(271, 272, 273, 4),
+--(274, 275, 276, 4),
+------средние 277-282
+--(277,278, 279, 4),
+--(280, 281, 282, 4),
+------простые 283-288
+--(283, 284, 285, 4),
+--(286,287, 288, 4),
+--------ОГСЭ.03. Иностранный язык теоретические вопросы
+------сложные 289-291
+--(289, 290, 291, 5),
+--------средние
+--(292, 293, 294, 5),
+--------простые
+--(295, 296, 297, 5);
